@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('monthly_reports', function (Blueprint $table) {
+        Schema::create('reports', function (Blueprint $table) {
             $table->id();
             $table->string("month");
             $table->string("theme");
             $table->integer("number_participants");
             $table->text("description");
-            $table->strign("obstacles");
+            $table->string("obstacles");
             $table->string("sent_by");
             $table->date("date");
             $table->foreignId("project_id")->constrained();
