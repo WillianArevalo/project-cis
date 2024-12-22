@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string("career");
             $table->string("study_level");
             $table->foreignId("community_id")->constrained();
-            $table->foreignId("project_id")->constrained();
+            $table->foreignId("project_id")->nullable()->constrained();
             $table->foreignId("user_id")->constrained();
             $table->timestamps();
         });
