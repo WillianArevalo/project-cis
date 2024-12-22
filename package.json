@@ -12,5 +12,11 @@
         "postcss": "^8.4.38",
         "tailwindcss": "^3.4.4",
         "vite": "^5.0"
+    },
+    "dependencies": {
+        "datatables.net": "^2.1.8",
+        "datatables.net-dt": "^2.1.8",
+        "flowbite": "^2.5.2",
+        "tailwindcss-animated": "^1.1.2"
     }
 }
