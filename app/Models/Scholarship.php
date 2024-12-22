@@ -28,7 +28,7 @@ class Scholarship extends Model
         'name',
         'photo',
         'institution',
-        'academic_year',
+        'academic_level',
         'career',
         'study_level',
         'community_id',
