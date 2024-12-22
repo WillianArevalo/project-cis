@@ -1,1 +1,12 @@
-import './bootstrap';
+import "./bootstrap";
+import "./jquery-3.7.1.min";
+import "./script";
+import "./theme";
+import "./login";
+import "./select";
+import "./comunidades";
+import "./becados";
+import "./proyectos";
+import "./calendar";
+import "./reportes";
+import "./order-table";
