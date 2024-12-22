@@ -11,17 +11,23 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
+    public function scholarship()
+    {
+        return $this->hasOne(Scholarship::class);
+    }
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'user',
         'email',
         'password',
         'role'
     ];
+
 
     /**
      * The attributes that should be hidden for serialization.
