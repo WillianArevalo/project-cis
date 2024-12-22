@@ -1,3 +1,126 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* dm-sans-latin-wght-normal */
+@font-face {
+    font-family: "DM Sans Variable";
+    font-style: normal;
+    font-display: swap;
+    font-weight: 100 1000;
+    src: url(https://cdn.jsdelivr.net/fontsource/fonts/dm-sans:vf@latest/latin-wght-normal.woff2)
+        format("woff2-variations");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+        U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122,
+        U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+body {
+    font-family: "Onest", sans-serif, system-ui;
+}
+
+input,
+select,
+p,
+small,
+a,
+button,
+textarea,
+label,
+span {
+    font-family: "Onest", sans-serif, system-ui;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "DM Sans Variable", sans-serif, system-ui;
+}
+
+.is-invalid {
+    border: 2px solid #ef4444;
+}
+
+.is-valid {
+    border: 2px solid #22c55e;
+}
+
+.toast {
+    box-shadow: none !important;
+    font-size: 14px !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+}
+
+*::-webkit-scrollbar {
+    height: 10px;
+    width: 10px;
+}
+
+*::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 10px;
+}
+
+.dark *::-webkit-scrollbar-track {
+    background-color: #080708ff;
+}
+
+.dark *::-webkit-scrollbar-thumb {
+    background-color: #a7a7a7;
+    border-radius: 10px;
+}
+
+.dark *::-webkit-scrollbar-thumb {
+    background-color: #a7a7a7;
+    border-radius: 10px;
+}
+
+.theme-selected {
+    @apply bg-zinc-200 dark:bg-zinc-900;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+}
+
+input[type="date"] {
+    -webkit-appearance: none;
+    margin: 0;
+    padding-right: 10px;
+}
+
+/* Datatables  */
+div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end,
+#dt-search-0,
+.dt-search {
+    display: none;
+}
+
+div.dt-container div.dt-layout-row {
+    margin: 0px !important;
+}
+
+html.dark table.dataTable > thead > tr > th,
+html.dark table.dataTable > thead > tr > td {
+    border-bottom: 0px !important;
+}
+
+div.dt-container.dt-empty-footer tbody > tr:last-child > *,
+html.dark .dt-container.dt-empty-footer table.dataTable {
+    border-bottom: 0px !important;
+}
