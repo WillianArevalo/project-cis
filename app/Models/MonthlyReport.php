@@ -9,6 +9,8 @@ class MonthlyReport extends Model
 {
     use HasFactory;
 
+    protected $table = 'reports';
+
     public function project()
     {
         return $this->belongsTo(Project::class);
