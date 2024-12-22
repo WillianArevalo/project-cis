@@ -14,6 +14,11 @@ class Project extends Model
         return $this->belongsTo(Community::class);
     }
 
+    public function scholarships()
+    {
+        return $this->hasMany(Scholarship::class);
+    }
+
     protected $fillable = [
         'name',
         'community_id'
