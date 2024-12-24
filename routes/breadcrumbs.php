@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Project;
+use App\Models\Report;
 use Diglactic\Breadcrumbs\Breadcrumbs;
 use Diglactic\Breadcrumbs\Generator as BreadcrumbTrail;
 use Illuminate\Support\Facades\Blade;
@@ -43,6 +45,20 @@ Breadcrumbs::for("admin.proyectos.asignar", function (BreadcrumbTrail $trail, $i
     $icon = Blade::render("<x-icon icon='user-up' class='w-4 h-4'/>");
     $trail->parent("admin.proyectos.index");
     $trail->push($icon . "Asignar becados", route("admin.proyectos.asignar", $id));
+});
+
+Breadcrumbs::for("admin.proyectos.reportes", function (BreadcrumbTrail $trail, $slug) {
+    $icon = Blade::render("<x-icon icon='files' class='w-4 h-4'/>");
+    $trail->parent("admin.proyectos.index");
+    $project = Project::where("slug", $slug)->first();
+    $trail->push($icon . "Reportes de " . $project->name, route("admin.proyectos.reportes", $slug));
+});
+
+Breadcrumbs::for("admin.reporte.show", function (BreadcrumbTrail $trail, $id) {
+    $icon = Blade::render("<x-icon icon='file' class='w-4 h-4'/>");
+    $report = Report::findOrFail($id);
+    $trail->parent("admin.proyectos.reportes", $report->project->slug);
+    $trail->push($icon . "Reporte de " . $report->month, route("admin.reporte.show", $id));
 });
 
 Breadcrumbs::for("admin.usuarios.index", function (BreadcrumbTrail $trail) {
