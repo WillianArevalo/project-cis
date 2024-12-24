@@ -55,6 +55,7 @@ $(document).ready(function () {
             $("#container-error-file").removeClass("hidden").addClass("flex");
         } else {
             $("#container-file").removeClass("is-invalid");
+            $("#container-error-file").removeClass("flex").addClass("hidden");
         }
 
         images.forEach((image) => {
@@ -62,19 +63,24 @@ $(document).ready(function () {
         });
 
         const isValid = validateForm("#form-report");
-        console.log(isValid);
+        console.log(images.length);
         if (
-            isValid ||
-            images.length !== 0 ||
+            isValid &&
+            images.length !== 0 &&
             $("#description").val().length > 90
         ) {
+            console.log("Formulario válido");
             $.ajax({
                 url: $form.attr("action"),
                 method: $form.attr("method"),
                 data: formData,
                 processData: false,
                 contentType: false,
+                beforeSend: function () {
+                    $("#loader").removeClass("hidden");
+                },
                 success: function (response) {
+                    $("#loader").hide();
                     showToast(
                         "success",
                         response.message,
@@ -82,28 +88,53 @@ $(document).ready(function () {
                     );
                     setTimeout(() => {
                         window.location.href = response.redirect;
-                    }, 3000);
+                    }, 2000);
                 },
                 error: function (error) {
                     console.log(error);
+                    showToast("error", error.responseJSON.message, "Ooops!");
+                },
+                complete: function () {
+                    $("#loader").hide();
                 },
             });
+        } else {
+            if (!isValid) {
+                showToast(
+                    "info",
+                    "Información incompleta",
+                    "Por favor, complete los campos requeridos"
+                );
+            } else if (images.length === 0) {
+                showToast(
+                    "error",
+                    "Ooops!",
+                    "Debe seleccionar al menos una imagen"
+                );
+            } else if ($("#description").val().length < 90) {
+                showToast(
+                    "error",
+                    "Ooops!",
+                    "La descripción debe tener al menos 90 caracteres"
+                );
+                $("#description").addClass("is-invalid");
+            }
         }
     });
 
     $("#description").on("input", function () {
         const maxLength = 90;
         const currentLength = $(this).val().length;
-
+        const input = $(this);
+        const container = $(input.data("container"));
         if (currentLength < maxLength) {
-            const input = $(this);
-            const container = $(input.data("container"));
-            container.removeClass("hidden").addClass("flex");
+            $(this).addClass("is-invalid");
             const erroMsg = input.closest("div").next().find(".error-msg");
+            erroMsg.show();
             erroMsg.text(`${maxLength - currentLength} caracteres restantes`);
+            container.removeClass("hidden").addClass("flex");
         } else {
-            const input = $(this);
-            const container = $(input.data("container"));
+            $(this).removeClass("is-invalid");
             container.removeClass("flex").addClass("hidden");
         }
     });
