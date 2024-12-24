@@ -2,12 +2,7 @@
 @section('title', 'Nuevo becado')
 @section('content')
     <section class="p-4">
-        <div class="flex items-center gap-2">
-            <x-icon icon="school" class="h-8 w-8 text-white" />
-            <h1 class="text-4xl font-bold text-white">
-                Nuevo becado
-            </h1>
-        </div>
+        @include('layouts.__partials.admin.header', ['title' => 'Nuevo becado', 'icon' => 'school'])
         <div class="mt-4">
             <form action="{{ Route('admin.becados.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
