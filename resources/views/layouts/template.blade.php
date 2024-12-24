@@ -34,9 +34,22 @@
 </head>
 
 <body class="mx-auto flex flex-col overflow-x-hidden bg-white dark:bg-black">
+    <div
+        class="absolute inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:6rem_4rem] dark:hidden">
+        <div
+            class="absolute bottom-0 left-0 right-0 top-0 bg-[radial-gradient(circle_500px_at_50%_200px,#C9EBFF,transparent)]">
+        </div>
+    </div>
+
+    <div
+        class="absolute top-0 z-[-2] hidden h-screen w-screen bg-neutral-950 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.15),rgba(255,255,255,0))] dark:block">
+    </div>
+
     <main>
         @include('layouts.__partials.alert')
-        <x-toggle-theme />
+        <div class="absolute bottom-0 right-0 w-max p-4">
+            <x-toggle-theme />
+        </div>
         @yield('content')
     </main>
 </body>
