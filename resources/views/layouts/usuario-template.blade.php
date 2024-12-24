@@ -30,12 +30,16 @@
     </script>
 </head>
 
-<body class="mx-auto flex w-[60%] flex-col overflow-x-hidden bg-white dark:bg-black">
+<body
+    class="mx-auto flex w-full flex-col overflow-x-hidden bg-white px-4 dark:bg-black md:w-[90%] lg:w-[75%] xl:w-[60%]">
     @include('layouts.__partials.usuario.navbar')
+    @include('layouts.__partials.loader')
     <main>
+        @include('layouts.__partials.toast-container', ['class' => 'top-4 right-4'])
         @include('layouts.__partials.alert')
         @yield('content')
     </main>
+    @include('layouts.__partials.usuario.footer')
 </body>
 @vite('resources/js/app.js')
 
