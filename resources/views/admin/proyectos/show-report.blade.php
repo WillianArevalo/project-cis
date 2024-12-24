@@ -4,22 +4,24 @@
     <section class="my-4 px-4">
         <div class="flex flex-col items-start justify-center gap-2">
             <div class="flex w-full justify-between">
-                <h1 class="flex items-center gap-2 text-3xl font-bold uppercase text-zinc-800 dark:text-white">Reporte de
+                <h1
+                    class="flex items-center gap-2 text-lg font-bold uppercase text-zinc-800 dark:text-white sm:text-xl md:text-2xl lg:text-3xl">
+                    Reporte de
                     {{ $report->month }}
                 </h1>
                 <x-button type="a" href="{{ Route('admin.proyectos.reportes', $report->project->slug) }}"
                     typeButton="secondary" text="Regresar" icon="corner-down-left" />
             </div>
             <div class="flex items-center gap-2">
-                <x-icon icon="folder" class="size-6 text-zinc-600 dark:text-zinc-300" />
-                <h2 class="font-plus text-lg font-bold text-zinc-600 dark:text-zinc-300">
+                <x-icon icon="folder" class="size-4 text-zinc-600 dark:text-zinc-300 sm:size-5 md:size-6" />
+                <h2 class="font-plus text-sm font-bold text-zinc-600 dark:text-zinc-300 sm:text-base md:text-lg">
                     {{ $report->project->name }}
                 </h2>
             </div>
         </div>
         <div class="mx-auto mt-4">
             <div>
-                <h3 class="text-xl font-bold text-blue-500 dark:text-blue-500">
+                <h3 class="text-lg font-bold text-blue-500 dark:text-blue-500 sm:text-xl">
                     {{ $report->theme }}
                 </h3>
                 <div class="mt-2 flex justify-between">
@@ -33,10 +35,10 @@
                     </span>
                 </div>
             </div>
-            <p class="mt-4 text-zinc-700 dark:text-zinc-400">
+            <p class="mt-4 text-sm text-zinc-700 dark:text-zinc-400 sm:text-base">
                 {{ $report->description }}
             </p>
-            <p class="mt-4 text-red-500 dark:text-red-500">
+            <p class="mt-4 text-sm text-red-500 dark:text-red-500 sm:text-base">
                 {{ $report->obstacles }}
             </p>
         </div>
@@ -59,7 +61,7 @@
             </div>
         </div>
         <div class="mx-auto mt-6">
-            <h3 class="mx-auto text-xl font-bold uppercase text-zinc-800 dark:text-white">
+            <h3 class="mx-auto text-base font-bold uppercase text-zinc-800 dark:text-white sm:text-lg md:text-xl">
                 Imágenes
             </h3>
             <div class="mt-2 flex flex-wrap gap-4">
