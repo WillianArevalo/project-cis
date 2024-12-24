@@ -2,12 +2,7 @@
 @section('title', 'Editar becado')
 @section('content')
     <section class="p-4">
-        <div class="flex items-center gap-2">
-            <x-icon icon="school" class="h-8 w-8 text-white" />
-            <h1 class="text-4xl font-bold text-white">
-                Editar becado
-            </h1>
-        </div>
+        @include('layouts.__partials.admin.header', ['title' => 'Editar becado', 'icon' => 'school'])
         <div class="mt-4">
             <form action="{{ Route('admin.becados.update', $becado->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
