@@ -2,20 +2,13 @@
 @section('title', 'Proyectos')
 @section('content')
     <section class="p-4">
-        <div class="flex items-center gap-2">
-            <x-icon icon="files" class="h-8 w-8 text-white" />
-            <h1 class="text-4xl font-bold text-white">
-                Reportes - {{ $proyecto->name }}
-            </h1>
-        </div>
+        @include('layouts.__partials.admin.header', [
+            'title' => 'Reportes - ' . $proyecto->name,
+            'icon' => 'files',
+        ])
         <div class="mt-4 flex gap-4">
             <div class="flex-1">
                 <x-input type="text" placeholder="Buscar reporte" icon="search" id="inputSearchReports" />
-            </div>
-            <div class="flex-3">
-                <x-button type="a" id="modalNewProjectButton" data-modal-target="modalNewProject"
-                    data-modal-toggle="modalNewProject" href="#" icon="folder-plus" typeButton="primary"
-                    text="Nuevo proyecto" />
             </div>
         </div>
         <div class="mt-4">
@@ -80,14 +73,14 @@
                                 </x-td>
                                 <x-td>
                                     <div class="flex gap-2">
-                                        <form action="{{ Route('admin.proyectos.destroy', $reporte->id) }}" method="POST"
-                                            id="proyecto-{{ $reporte->id }}">
+                                        <form action="{{ Route('admin.reporte.destroy', $reporte->id) }}" method="POST"
+                                            id="reporte-{{ $reporte->id }}">
                                             @csrf
                                             @method('DELETE')
                                             <x-button type="button" data-modal-target="deleteModal"
                                                 data-modal-toggle="deleteModal" onlyIcon
-                                                data-form="proyecto-{{ $reporte->id }}" class="buttonDelete"
-                                                icon="trash" typeButton="danger" />
+                                                data-form="proyecto-{{ $reporte->id }}" class="buttonDelete" icon="trash"
+                                                typeButton="danger" />
                                         </form>
                                         <x-button type="a" href="{{ Route('admin.reporte.show', $reporte->id) }}"
                                             onlyIcon icon="eye" typeButton="secondary" />
