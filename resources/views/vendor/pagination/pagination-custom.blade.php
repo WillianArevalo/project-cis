@@ -50,7 +50,7 @@
                     @foreach ($element as $page => $url)
                         @if ($page == $paginator->currentPage())
                             <li aria-current="page"><span
-                                    class="text-primary-600 bg-primary-50 border-primary-300 z-10 flex items-center justify-center border px-3 py-2 text-sm leading-tight dark:border-zinc-800 dark:bg-zinc-950 dark:text-white">{{ $page }}</span>
+                                    class="border-primary-300 z-10 flex items-center justify-center border bg-blue-50 bg-blue-600 px-3 py-2 text-sm leading-tight dark:border-zinc-800 dark:bg-zinc-950 dark:text-white">{{ $page }}</span>
                             </li>
                         @else
                             <li><a href="{{ $url }}"
