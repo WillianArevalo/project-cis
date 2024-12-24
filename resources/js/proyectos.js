@@ -1,4 +1,17 @@
 $(document).ready(function () {
+    $(".btnEditProject").on("click", function () {
+        const url = $(this).data("url");
+        const action = $(this).data("action");
+        $.ajax({
+            url,
+            success: function (response) {
+                $("#name").val(response.name);
+                $("#community_id_edit").val(response.community_id);
+                $("#formEditProject").attr("action", action);
+            },
+        });
+    });
+
     $(".assign-button").click(function () {
         const scholarItem = $(this).closest(".scholar-item");
         scholarItem.fadeOut(300, function () {
