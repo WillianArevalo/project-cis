@@ -149,6 +149,14 @@ html.dark .dot-spinner {
     --uib-color: #fff;
 }
 
+.active-link-admin {
+    @apply bg-blue-500 hover:bg-blue-600 text-white !important;
+}
+
+.active {
+    @apply focus:border-zinc-600 dark:border-zinc-500 ring-4 ring-zinc-200 dark:ring-zinc-950 !important;
+}
+
 .dot-spinner {
     --uib-size: 2.8rem;
     --uib-speed: 0.9s;
