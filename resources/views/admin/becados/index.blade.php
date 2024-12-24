@@ -2,13 +2,8 @@
 @section('title', 'Becados')
 @section('content')
     <section class="p-4">
-        <div class="flex items-center gap-2">
-            <x-icon icon="school" class="h-8 w-8 text-white" />
-            <h1 class="text-4xl font-bold text-white">
-                Becados
-            </h1>
-        </div>
-        <div class="mt-4 flex gap-4">
+        @include('layouts.__partials.admin.header', ['title' => 'Becados', 'icon' => 'school'])
+        <div class="mt-4 flex flex-col gap-4 sm:flex-row">
             <div class="flex-1">
                 <x-input type="text" placeholder="Buscar becado" icon="search" id="inputSearchScholarships" />
             </div>
