@@ -30,16 +30,27 @@
     </script>
 </head>
 
-<body
-    class="mx-auto flex w-full flex-col overflow-x-hidden bg-white px-4 dark:bg-black md:w-[90%] lg:w-[75%] xl:w-[60%]">
-    @include('layouts.__partials.usuario.navbar')
-    @include('layouts.__partials.loader')
-    <main>
-        @include('layouts.__partials.toast-container', ['class' => 'top-4 right-4'])
-        @include('layouts.__partials.alert')
-        @yield('content')
-    </main>
-    @include('layouts.__partials.usuario.footer')
+<body>
+    <div
+        class="fixed inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:6rem_4rem] dark:hidden">
+        <div
+            class="absolute bottom-0 left-0 right-0 top-0 bg-[radial-gradient(circle_500px_at_50%_300px,#C9EBFF,transparent)]">
+        </div>
+    </div>
+
+    <div
+        class="fixed top-0 z-[-2] hidden h-screen w-screen bg-neutral-950 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.15),rgba(255,255,255,0))] dark:block">
+    </div>
+    <div class="mx-auto flex min-h-screen flex-col px-4 md:w-[90%] lg:w-[75%] xl:w-[60%]">
+        @include('layouts.__partials.usuario.navbar')
+        @include('layouts.__partials.loader')
+        <main class="flex-1">
+            @include('layouts.__partials.toast-container', ['class' => 'top-4 right-4'])
+            @include('layouts.__partials.alert')
+            @yield('content')
+        </main>
+        @include('layouts.__partials.usuario.footer')
+    </div>
 </body>
 @vite('resources/js/app.js')
 
