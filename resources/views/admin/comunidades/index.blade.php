@@ -2,12 +2,10 @@
 @section('title', 'Comunidades')
 @section('content')
     <section class="p-4">
-        <div class="flex items-center gap-2">
-            <x-icon icon="home" class="h-8 w-8 text-white" />
-            <h1 class="text-4xl font-bold text-white">
-                Comunidades
-            </h1>
-        </div>
+        @include('layouts.__partials.admin.header', [
+            'title' => 'Comunidades',
+            'icon' => 'home',
+        ])
         <div class="mt-4 flex flex-col gap-4 sm:flex-row">
             <div class="flex-1">
                 <x-input type="text" placeholder="Buscar comunidad" icon="search" id="inputSearchCommunities" />
@@ -24,7 +22,7 @@
                     <x-tr>
                         <x-th class="w-10">
                             <input id="default-checkbox" type="checkbox" value=""
-                                class="focus:ring-primary-500 dark:focus:ring-primary-600 h-4 w-4 rounded border-2 border-zinc-400 bg-blue-600 bg-zinc-100 focus:ring-2 dark:border-zinc-800 dark:bg-zinc-950 dark:ring-offset-zinc-800">
+                                class="focus:ring-primary-500 dark:focus:ring-primary-600 h-4 w-4 rounded border-2 border-zinc-400 bg-zinc-100 focus:ring-2 dark:border-zinc-800 dark:bg-zinc-950 dark:ring-offset-zinc-800">
                         </x-th>
                         <x-th>Nombre</x-th>
                         <x-th last="true">Acciones</x-th>
@@ -36,7 +34,7 @@
                             <x-tr>
                                 <x-td class="w-10">
                                     <input id="default-checkbox" type="checkbox" value=""
-                                        class="focus:ring-primary-500 dark:focus:ring-primary-600 h-4 w-4 rounded border-2 border-zinc-400 bg-blue-600 bg-zinc-100 focus:ring-2 dark:border-zinc-800 dark:bg-zinc-950 dark:ring-offset-zinc-800">
+                                        class="focus:ring-primary-500 dark:focus:ring-primary-600 h-4 w-4 rounded border-2 border-zinc-400 bg-zinc-100 focus:ring-2 dark:border-zinc-800 dark:bg-zinc-950 dark:ring-offset-zinc-800">
                                 </x-td>
                                 <x-td>{{ $comunidad->name }}</x-td>
                                 <x-td>
