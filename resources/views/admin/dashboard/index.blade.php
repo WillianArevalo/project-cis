@@ -2,12 +2,10 @@
 @section('title', 'Dashboard')
 @section('content')
     <section class="p-4">
-        <div class="flex items-center gap-2">
-            <x-icon icon="dashboard" class="h-8 w-8 text-zinc-800 dark:text-white" />
-            <h1 class="text-4xl font-bold text-zinc-800 dark:text-white">
-                Dashboard
-            </h1>
-        </div>
+        @include('layouts.__partials.admin.header', [
+            'title' => 'Dashboard',
+            'icon' => 'dashboard',
+        ])
         <div class="mt-4 grid grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-3">
             <div class="h-full rounded-3xl border border-zinc-400 p-4 dark:border-zinc-800 dark:bg-zinc-950">
                 <div class="flex items-center justify-center gap-2">
