@@ -42,7 +42,7 @@ $(document).ready(function () {
         const lastDate = new Date(year, month + 1, 0).getDate();
 
         const calendarHeader = $(`
-            <div class="flex justify-between items-center mb-4 dark:bg-zinc-950">
+            <div class="flex justify-between gap-2 items-center mb-4 dark:bg-zinc-950">
                 <button class="prev-month text-white p-2 rounded-xl bg-zinc-500 hover:bg-zinc-600 dark:bg-zinc-900 dark:hover:bg-zinc-800">
                     <svg class="w-5 h-5 text-current"  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-left"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 6l-6 6l6 6" /></svg>
                 </button>
@@ -103,7 +103,7 @@ $(document).ready(function () {
                 year === today.getFullYear();
 
             const cellClass = isToday
-                ? "dark:bg-primary-800 dark:text-white bg-primary-500 hover:bg-primary-600 dark:hover:bg-primary-900 text-white"
+                ? "dark:bg-blue-800 dark:text-white bg-blue-500 hover:bg-blue-600 dark:hover:bg-blue-900 text-white"
                 : "dark:hover:bg-zinc-900 hover:bg-zinc-200";
 
             const cell = $(
