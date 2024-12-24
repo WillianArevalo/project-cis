@@ -13,7 +13,7 @@ class User extends Authenticatable
 
     public function scholarship()
     {
-        return $this->hasOne(Scholarship::class);
+        return $this->hasOne(Scholarship::class, "user_id");
     }
 
     /**
