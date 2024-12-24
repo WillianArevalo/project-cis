@@ -1,14 +1,14 @@
 <div class="w-full">
     @if (!empty($label))
         <label for="{{ $id }}"
-            class="{{ $required ? "after:content-['*'] after:ml-0.5 after:text-red-500" : '' }} mb-2 block text-sm font-medium text-zinc-500 dark:text-zinc-300">
+            class="{{ $required ? "after:content-['*'] after:ml-0.5 after:text-red-500" : '' }} mb-1 block text-sm font-medium text-zinc-500 dark:text-zinc-300">
             {{ ucfirst($label) }}
         </label>
     @endif
     <input type="hidden" id="{{ $id }}" name="{{ $name }}" value="{{ $value }}">
     <div class="relative">
         <div
-            class="selected @error($name) is-invalid @enderror flex w-full items-center justify-between rounded-xl border border-zinc-400 bg-zinc-50 px-4 py-3 text-sm dark:border-zinc-800 dark:bg-zinc-950 dark:text-white">
+            class="selected @error($name) is-invalid @enderror flex w-full items-center justify-between rounded-xl border border-zinc-400 bg-zinc-50 px-5 py-2.5 text-sm dark:border-zinc-800 dark:bg-transparent dark:text-white">
             <span class="itemSelected truncate" id="{{ $id }}_selected">
                 {{ $selected && isset($options[$selected]) ? $options[$selected] : ($text ?: 'Seleccionar') }}
             </span>
