@@ -32,4 +32,20 @@ $(document).ready(function () {
             $("#profile-dropdown").addClass("hidden");
         }
     });
+
+    $(document).on("click", ".toggle-password", function () {
+        const input = $(this).prev();
+        const eye = $(this).find("#eye-icon");
+        const eyeClosed = $(this).find("#eye-closed-icon");
+
+        if (input.attr("type") === "password") {
+            input.attr("type", "text");
+            eye.addClass("hidden");
+            eyeClosed.removeClass("hidden");
+        } else {
+            input.attr("type", "password");
+            eye.removeClass("hidden");
+            eyeClosed.addClass("hidden");
+        }
+    });
 });
