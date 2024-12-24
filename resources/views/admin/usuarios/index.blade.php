@@ -10,7 +10,7 @@
         </div>
         <div class="mt-4 flex gap-4">
             <div class="flex-1">
-                <x-input type="text" placeholder="Buscar usuario" icon="search" />
+                <x-input type="text" placeholder="Buscar usuario" icon="search" id="inputSearchUsers" />
             </div>
             <div class="flex-3">
                 <x-button type="a" href="{{ Route('admin.usuarios.create') }}" icon="plus" typeButton="primary"
@@ -18,7 +18,7 @@
             </div>
         </div>
         <div class="mt-4">
-            <x-table>
+            <x-table id="tableUsers">
                 <x-slot name="thead">
                     <x-tr>
                         <x-th class="w-5">
@@ -59,7 +59,7 @@
                             </x-td>
                             <x-td>
                                 <span
-                                    class="text-nowrap w-max rounded-full bg-blue-100 px-3 py-1 text-xs font-medium text-blue-800 dark:bg-blue-900 dark:bg-opacity-20 dark:text-blue-300">
+                                    class="w-max text-nowrap rounded-full bg-blue-100 px-3 py-1 text-xs font-medium text-blue-800 dark:bg-blue-900 dark:bg-opacity-20 dark:text-blue-300">
                                     {{ $usuario->role === 'admin' ? 'Administrador' : 'Usuario' }}
                                 </span>
                             </x-td>
@@ -82,6 +82,7 @@
                     @endforeach
                 </x-slot>
             </x-table>
+            {{ $usuarios->links('vendor.pagination.pagination-custom') }}
         </div>
         <x-delete-modal modalId="deleteModal" title="¿Estás seguro de eliminar el usuario?"
             message="No podrás recuperar este registro" />
