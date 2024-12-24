@@ -4,19 +4,19 @@
     <section class="my-4">
         <div class="flex items-center gap-4 rounded-2xl border border-zinc-400 p-4 shadow-md dark:border-zinc-800">
             <img src="{{ asset('svg/tree.svg') }}" alt="Tree SVG" class="h-14 w-14 rounded-full object-cover">
-            <h1 class="text-4xl font-bold uppercase text-zinc-800 dark:text-white">
+            <h1 class="text-base font-bold uppercase text-zinc-800 dark:text-white sm:text-lg md:text-xl">
                 Proyecto asignado:
                 <br>
-                <span class="text-3xl text-primary">
+                <span class="bg-blue text-xl sm:text-2xl md:text-3xl">
                     {{ $user->scholarship->project->name }}
                 </span>
             </h1>
         </div>
-        <div class="mt-4 grid grid-cols-2 gap-4">
+        <div class="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2">
             <div class="mt-4 flex flex-col rounded-2xl border border-zinc-400 p-4 shadow-md dark:border-zinc-800">
                 <div class="flex w-full items-center justify-center gap-2">
-                    <x-icon icon="calendar" class="h-6 w-6 text-primary" />
-                    <h2 class="text-2xl font-semibold text-primary">
+                    <x-icon icon="calendar" class="bg-blue h-6 w-6" />
+                    <h2 class="text-primary-800 text-2xl font-semibold dark:text-white">
                         Reportes mensuales
                     </h2>
                 </div>
@@ -27,32 +27,57 @@
                     <p class="text-center text-zinc-800 dark:text-zinc-300">
                         Reporte del mes de {{ $mes }}:
                     </p>
-                    @if ($reportes->count() > 0)
+                    @if ($monthReport)
+                        <span
+                            class="mt-4 flex flex-col items-start gap-2 rounded-2xl border border-dashed border-green-500 bg-green-100 px-4 py-2 dark:border-green-700 dark:bg-green-950/20">
+                            <div class="flex items-center gap-1 text-sm text-green-500 dark:text-green-500">
+                                <x-icon icon="circle-check" class="size-4 text-current" />
+                                Reporte enviado
+                            </div>
+                            <div class="flex flex-col">
+                                <h3 class="text-base font-semibold text-zinc-800 dark:text-zinc-100">
+                                    {{ $monthReport->theme }}
+                                </h3>
+                                <p class="mt-1 flex items-center gap-1 text-xs text-zinc-800 dark:text-zinc-300">
+                                    <x-icon icon="clock" class="h-4 w-4" />
+                                    {{ $monthReport->created_at->setTimezone('America/El_Salvador')->format('M d, Y h:i A') }}
+                                </p>
+                            </div>
+                            <a href="{{ Storage::url($monthReport->file) }}" target="_blank"
+                                class="ml-auto text-blue-500 dark:text-blue-500">
+                                <x-icon icon="download" class="h-6 w-6" />
+                            </a>
+                        </span>
                     @else
                         <p
-                            class="mt-4 rounded-2xl bg-red-100 p-4 text-center text-sm text-red-500 dark:bg-red-950 dark:bg-opacity-20 dark:text-red-500">
+                            class="mt-4 flex items-center justify-center gap-2 rounded-2xl bg-red-100 p-4 text-center text-sm text-red-500 dark:bg-red-950 dark:bg-opacity-20 dark:text-red-500">
+                            <x-icon icon="info-circle" class="h-6 w-6" />
                             No se ha subido ningún reporte
                         </p>
                     @endif
                 </div>
                 <div class="mt-4 flex items-center justify-center gap-4">
-                    <x-button type="a" href="#" typeButton="secondary" icon="eye" text="Ver reportes" />
-                    <x-button type="a" href="#" icon="arrow-big-up" typeButton="primary" text="Subir reporte" />
+                    <x-button type="a" href="{{ Route('reporte.index') }}" typeButton="secondary" icon="eye"
+                        text="Ver reportes" />
+                    @if (!$monthReport)
+                        <x-button type="a" href="{{ Route('reporte.create', ['mes' => $mes]) }}" icon="arrow-big-up"
+                            typeButton="primary" text="Subir reporte" />
+                    @endif
                 </div>
             </div>
             <div class="mt-4 flex h-max flex-col rounded-2xl border border-zinc-400 p-4 shadow-md dark:border-zinc-800">
                 <div class="flex w-full items-center justify-center gap-2">
-                    <x-icon icon="users" class="h-6 w-6 text-primary" />
-                    <h2 class="text-2xl font-semibold text-primary">
+                    <x-icon icon="users" class="text-primary-800 h-6 w-6 dark:text-white" />
+                    <h2 class="text-primary-800 text-2xl font-semibold dark:text-white">
                         Integrantes
                     </h2>
                 </div>
                 <div class="mt-4">
                     @if ($proyecto->scholarships->count() > 0)
-                        <ul class="flex flex-col gap-4 px-4 pb-4">
+                        <ul class="flex flex-col gap-4 px-2 pb-2 sm:px-4 sm:pb-4">
                             @foreach ($proyecto->scholarships as $integrante)
                                 <li
-                                    class="flex items-center gap-2 rounded-2xl border border-zinc-400 p-2 dark:border-zinc-800">
+                                    class="flex items-center gap-2 rounded-2xl border border-dashed border-zinc-400 p-2 dark:border-zinc-800">
                                     <img src="{{ Storage::url($integrante->photo) }}" alt="User SVG"
                                         class="h-10 w-10 rounded-full object-cover">
                                     <div class="flex flex-col">
