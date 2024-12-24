@@ -1,11 +1,11 @@
 @extends('layouts.template')
 @section('title', 'CIS | Iniciar sesión')
 @section('content')
-    <section class="bg-white dark:bg-black">
+    <section>
         <div class="container mx-auto flex min-h-screen items-center justify-center px-6">
             <form action="{{ Route('login.validate') }}" class="w-full max-w-sm" method="POST">
                 @csrf
-                <img class="size-14 sm:size-20 mx-auto w-auto" src="{{ asset('images/cis-logo.webp') }}" alt="Logo CIS">
+                <img class="mx-auto size-14 w-auto sm:size-20" src="{{ asset('images/cis-logo.webp') }}" alt="Logo CIS">
                 <h1 class="mt-3 text-center text-2xl font-semibold uppercase text-gray-800 dark:text-white sm:text-3xl">
                     Iniciar sesión
                 </h1>
