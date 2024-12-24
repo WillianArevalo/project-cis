@@ -21,11 +21,11 @@
 
     // Construir clases dinámicas para el input
     $classes = collect([
-        'bg-zinc-50 border border-zinc-400 text-zinc-900 text-sm rounded-lg  block w-full p-2.5 px-4',
+        'bg-zinc-50 border border-zinc-400 text-zinc-900 text-sm rounded-xl  block w-full p-3 px-4  ',
         'focus:ring-4 focus:ring-zinc-200 focus:border-zinc-600',
         'dark:bg-zinc-950 dark:border-zinc-800 dark:placeholder-zinc-400 dark:text-white',
         'dark:focus:ring-zinc-950 dark:focus:border-zinc-500',
-        'transition duration-300 dark:read-only:bg-zinc-900',
+        'transition duration-300',
         $class,
         $errorClass,
     ])
@@ -33,7 +33,7 @@
         ->join(' ');
 @endphp
 
-@if ($label && $type !== 'checkbox')
+@if ($label && $type !== 'checkbox' && $type !== 'radio' && $type !== 'file')
     <label for="{{ $id }}"
         class="{{ $labelClass }} mb-2 block text-sm font-medium text-zinc-500 dark:text-zinc-300">
         {{ $label }}
@@ -50,28 +50,33 @@
     @endif
 
     @if ($type === 'textarea')
-        <textarea id="{{ $id }}" {{ $attributes }} name="{{ $name }}" rows="4"
-            class="{{ $classes }} {{ $icon ? 'ps-10' : '' }}" placeholder="{{ $placeholder }}">{{ $value }}</textarea>
-    @elseif ($type === 'checkbox')
+        <textarea id="{{ $id }}" {{ $attributes }} name="{{ $name }}" rows="8"
+            class="{{ $classes }} {{ $icon ? 'ps-10' : '' }}" data-container=".error-{{ $name }}"
+            placeholder="{{ $placeholder }}" @if ($required) required @endif>{{ $value }}</textarea>
+    @elseif ($type === 'checkbox' || $type === 'radio')
         <input type="checkbox" value="{{ $value }}" name="{{ $name }}" id="{{ $id }}"
             {{ $attributes }} {{ $checked ? 'checked' : '' }}
-            class="{{ $class }} h-4 w-4 rounded border-2 border-zinc-400 bg-zinc-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-zinc-800 dark:bg-zinc-950 dark:ring-offset-zinc-800 dark:focus:ring-primary-600">
+            class="{{ $class }} focus:ring-primary-500 dark:focus:ring-primary-600 h-4 w-4 rounded border-2 border-zinc-400 bg-zinc-100 focus:ring-2 dark:border-zinc-800 dark:bg-zinc-950 dark:ring-offset-zinc-800"
+            @if ($required) required @endif>
         <label for="{{ $id }}"
-            class="{{ $labelClass }} ms-1 text-sm font-medium text-zinc-900 dark:text-white">
+            class="{{ $labelClass }} ms-1 inline-block text-sm font-medium text-zinc-500 dark:text-zinc-300">
             {{ $label }}
         </label>
     @else
         <input type="{{ $type }}" name="{{ $name }}" id="{{ $id }}"
-            placeholder="{{ $placeholder }}" value="{{ $value ?? old($name) }}"
-            class="{{ $classes }} {{ $icon ? 'ps-10' : '' }}" {{ $attributes }}>
+            data-container=".error-{{ $name }}" placeholder="{{ $placeholder }}"
+            value="{{ $value ?? old($name) }}" class="{{ $classes }} {{ $icon ? 'ps-10' : '' }}"
+            {{ $attributes }} @if ($required) required @endif>
     @endif
 </div>
 
+<span class="error-{{ $name }} mt-2 hidden items-center gap-1 text-sm text-red-500">
+    <x-icon icon="exclamation-circle" class="h-4 w-4" />
+    <span class="error-msg text-red-500">Este campo es obligatorio</span>
+</span>
+
 @if ($error === true)
     @error($name)
-        <small class="message-error mt-2 flex items-center gap-2 text-sm text-red-500 dark:text-red-400">
-            <x-icon icon="exclamation-circle" class="h-4 w-4 text-red-500 dark:text-red-400" />
-            {{ $message }}
-        </small>
+        <span class="text-sm text-red-500">{{ $message }}</span>
     @enderror
 @endif
