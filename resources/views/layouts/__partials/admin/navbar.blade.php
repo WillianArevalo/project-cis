@@ -70,7 +70,21 @@
             </ul>
         </div>
         <div
-            class="absolute bottom-0 left-0 z-20 flex w-full justify-center space-x-4 border-r border-t border-zinc-400 bg-white p-4 dark:border-zinc-800 dark:bg-zinc-950">
+            class="absolute bottom-0 left-0 z-20 flex w-full flex-col items-center justify-center gap-4 space-x-4 border-r border-t border-zinc-400 bg-white p-4 dark:border-zinc-800 dark:bg-zinc-950">
+            <div
+                class="ms-2 hidden w-max rounded-full border border-zinc-400 px-1 py-0.5 dark:border-zinc-800 sm:block">
+                <form action="" method="POST" class="flex items-center justify-center gap-2">
+                    @csrf
+                    <button type="button" data-theme="light"
+                        class="theme-toggle theme-light flex items-center rounded-full p-2 hover:bg-zinc-200 dark:hover:bg-zinc-900">
+                        <x-icon icon="sun" class="h-4 w-4 text-zinc-700 dark:text-white" />
+                    </button>
+                    <button type="button" data-theme="dark"
+                        class="theme-toggle theme-dark flex items-center rounded-full p-2 hover:bg-zinc-200 dark:hover:bg-zinc-900">
+                        <x-icon icon="moon" class="h-4 w-4 text-zinc-700 dark:text-white" />
+                    </button>
+                </form>
+            </div>
             <form action="{{ Route('logout') }}" method="POST" class="flex items-center justify-center">
                 @csrf
                 <x-button type="submit" icon="login" typeButton="secondary" text="Cerrar sesión" size="small" />
