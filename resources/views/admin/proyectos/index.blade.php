@@ -2,12 +2,7 @@
 @section('title', 'Proyectos')
 @section('content')
     <section class="p-4">
-        <div class="flex items-center gap-2">
-            <x-icon icon="folders" class="h-8 w-8 text-white" />
-            <h1 class="text-4xl font-bold text-white">
-                Proyectos
-            </h1>
-        </div>
+        @include('layouts.__partials.admin.header', ['title' => 'Proyectos', 'icon' => 'folders'])
         <div class="mt-4 flex gap-4">
             <div class="flex-1">
                 <x-input type="text" placeholder="Buscar proyecto" icon="search" id="inputSearchProjects" />
