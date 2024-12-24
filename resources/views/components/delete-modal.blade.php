@@ -31,7 +31,7 @@
               <div class="flex items-center justify-center space-x-4 py-4">
                   <x-button type="button" data-modal-toggle="{{ $modalId }}" class="closeModal"
                       text="No, cancelar" icon="cancel" typeButton="secondary" />
-                  <x-button type="button" class="confirmDelete" text="Sí, eliminar" icon="delete"
+                  <x-button type="button" class="confirmDelete" text="Sí, eliminar" icon="trash"
                       typeButton="danger" />
               </div>
           </div>
