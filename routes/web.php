@@ -2,9 +2,12 @@
 
 use App\Http\Controllers\BecadoController;
 use App\Http\Controllers\ComunidadController;
+use App\Http\Controllers\ConfigurationController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\EmailController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProyectoController;
 use App\Http\Controllers\ReporteController;
 use App\Http\Controllers\UserController;
@@ -23,6 +26,13 @@ Route::middleware("auth")->group(function () {
     Route::get("/enviar-reporte", [ReporteController::class, "create"])->name("reporte.create");
     Route::post("/reporte", [ReporteController::class, "store"])->name("reporte.store");
     Route::get("/reporte/{mes}", [ReporteController::class, "show"])->name("reporte.show");
+
+    Route::get("/perfil", [ProfileController::class, "index"])->name("profile");
+    Route::get("/verificar-correo", [ProfileController::class, "verifyEmail"])->name("profile.verifyEmail");
+    Route::post("/change-password", [ProfileController::class, "changePassword"])->name("profile.change-password");
+
+    Route::post("/enviar-correo", [EmailController::class, "sendEmail"])->name("sendEmail");
+    Route::get("/email/verified", [EmailController::class, "verifyEmail"])->name("verifyEmail");
 });
 
 Route::middleware("role:admin")->prefix("admin")->name("admin.")->group(function () {
@@ -53,6 +63,7 @@ Route::middleware("role:admin")->prefix("admin")->name("admin.")->group(function
     Route::post("/proyectos/{id}/asignar", [ProyectoController::class, "assignStore"])->name("proyectos.asignar.store");
     Route::get("/proyecto/reportes/{slug}", [ProyectoController::class, "reportes"])->name("proyectos.reportes");
     Route::get("/reporte/{id}", [ProyectoController::class, "showReport"])->name("reporte.show");
+    Route::delete("/reporte/{id}", [ProyectoController::class, "destroyReport"])->name("reporte.destroy");
 
     //Routes for users
     Route::get("/usuarios", [UserController::class, "index"])->name("usuarios.index");
@@ -61,4 +72,8 @@ Route::middleware("role:admin")->prefix("admin")->name("admin.")->group(function
     Route::get("/usuarios/{id}/edit", [UserController::class, "edit"])->name("usuarios.edit");
     Route::put("/usuarios/{id}", [UserController::class, "update"])->name("usuarios.update");
     Route::delete("/usuarios/{id}", [UserController::class, "destroy"])->name("usuarios.destroy");
+
+    Route::get("/perfil", [ProfileController::class, "admin"])->name("profile");
+
+    Route::post("/configuracion", [ConfigurationController::class, "update"])->name("configuracion.update");
 });
