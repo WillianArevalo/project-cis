@@ -10,3 +10,4 @@ import "./proyectos";
 import "./calendar";
 import "./reportes";
 import "./order-table";
+import "./profile";
