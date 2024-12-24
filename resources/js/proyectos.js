@@ -68,4 +68,29 @@ $(document).ready(function () {
         });
         $("#assign-form").submit();
     });
+
+    // Projects
+    const $file = $("#input-doc");
+    const $fileName = $("#file-name");
+    const $btnRemoveFile = $("#remove-file");
+
+    $file.on("change", function () {
+        const file = this.files[0];
+        const reader = new FileReader();
+        $fileName.text(file.name);
+
+        if (file.size > 1000000) {
+            showToast("El archivo no puede ser mayor a 1MB", "error");
+            $file.val("");
+            $fileName.text("Seleccionar archivo");
+        }
+
+        $btnRemoveFile.removeClass("hidden");
+
+        $btnRemoveFile.on("click", function () {
+            $file.val("");
+            $fileName.text("Formatos permitidos: .pdf, .docx");
+            $btnRemoveFile.addClass("hidden");
+        });
+    });
 });
