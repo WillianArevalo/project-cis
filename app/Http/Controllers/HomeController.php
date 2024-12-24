@@ -2,20 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\MonthlyReport;
 use App\Models\Project;
+use App\Models\Report;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+
+    public function __construct()
+    {
+        Carbon::setLocale("es");
+    }
+
     public function index()
     {
-        $user = auth()->user();
+
+        $user = User::with("scholarship")->find(auth()->id());
         $proyecto = Project::find($user->scholarship->project_id);
-        $reportes = MonthlyReport::where("project_id", $user->scholarship->project_id)->get();
-        Carbon::setLocale("es");
+        $reportes = Report::where("project_id", $user->scholarship->project_id)->get();
         $mes = Carbon::now()->translatedFormat("F");
-        return view("usuario.index", compact("user", "reportes", "proyecto", "mes"));
+        $monthReport = Report::where("project_id", $user->scholarship->project_id)->where("month", $mes)->first();
+        return view("usuario.index", compact("user", "reportes", "proyecto", "mes", "monthReport"));
     }
 }
