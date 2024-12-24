@@ -50,8 +50,7 @@ Breadcrumbs::for("admin.proyectos.asignar", function (BreadcrumbTrail $trail, $i
 Breadcrumbs::for("admin.proyectos.reportes", function (BreadcrumbTrail $trail, $slug) {
     $icon = Blade::render("<x-icon icon='files' class='w-4 h-4'/>");
     $trail->parent("admin.proyectos.index");
-    $project = Project::where("slug", $slug)->first();
-    $trail->push($icon . "Reportes de " . $project->name, route("admin.proyectos.reportes", $slug));
+    $trail->push($icon . "Reportes", route("admin.proyectos.reportes", $slug));
 });
 
 Breadcrumbs::for("admin.reporte.show", function (BreadcrumbTrail $trail, $id) {
@@ -77,4 +76,10 @@ Breadcrumbs::for("admin.usuarios.edit", function (BreadcrumbTrail $trail, $usuar
     $icon = Blade::render("<x-icon icon='user-edit' class='w-4 h-4'/>");
     $trail->parent("admin.usuarios.index");
     $trail->push($icon . "Editar usuario", route("admin.usuarios.edit", $usuario));
+});
+
+Breadcrumbs::for("admin.profile", function (BreadcrumbTrail $trail) {
+    $icon = Blade::render("<x-icon icon='user' class='w-4 h-4'/>");
+    $trail->parent("admin.dashboard");
+    $trail->push($icon . "Perfil", route("admin.profile"));
 });
