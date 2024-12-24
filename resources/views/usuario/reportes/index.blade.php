@@ -2,56 +2,26 @@
 @section('title', 'Enviar reporte')
 @section('content')
     <section class="my-4">
-        <div>
-            <div class="flex items-center gap-2">
-                <x-icon icon="file-upload" class="h-8 w-8 text-white" />
-                <h1 class="text-4xl font-bold text-white">
-                    Enviar reporte
-                </h1>
-            </div>
-            <p class="ms-10 mt-2 text-zinc-800 dark:text-zinc-400">
-                Datos del reporte
-            </p>
+        <div class="flex items-center gap-4 rounded-2xl border border-zinc-400 p-4 shadow-md dark:border-zinc-800">
+            <img src="{{ asset('svg/tree.svg') }}" alt="Tree SVG"
+                class="size-8 rounded-full object-cover sm:size-10 md:size-14">
+            <h1 class="text-base font-bold uppercase text-zinc-800 dark:text-white sm:text-lg md:text-xl">
+                Proyecto asignado:
+                <br>
+                <span class="bg-blue text-lg sm:text-xl md:text-2xl">
+                    {{ $project->name }}
+                </span>
+            </h1>
         </div>
         <div class="mt-4">
-            <form action="">
-                <div class="flex gap-4">
-                    <div class="flex flex-[2] flex-col">
-                        <x-input type="text" name="project" icon="folder" label="Proyecto" placeholder="Proyecto"
-                            value="{{ $proyecto->name }}" readonly />
-                    </div>
-                    <div class="relative flex flex-1 flex-col">
-                        <x-input type="text" label="Fecha de nacimiento" placeholder="Fecha" value=""
-                            icon="calendar" id="date-input" autocomplete="off" name="birthdate" />
-                        <div id="calendar"
-                            class="absolute top-20 z-50 mt-2 hidden rounded-xl border border-zinc-400 p-4 shadow-lg dark:border-zinc-800 dark:bg-zinc-950">
-                        </div>
-                    </div>
-                </div>
-                <div class="mt-4 flex gap-4">
-                    <div class="flex flex-[2] flex-col">
-                        <x-input type="text" label="Tema de la actividad"
-                            placeholder="Ingresa el tema de la actividad realizada" icon="bookmark" name="birthdate" />
-                    </div>
-                    <div class="flex flex-1 flex-col">
-                        <x-input type="text" label="Número de participantes" placeholder="Ingresa el # de participantes"
-                            icon="user-group" name="birthdate" />
-                    </div>
-                </div>
-                <div class="mt-4 flex gap-4">
-                    <div class="flex flex-1 flex-col">
-                        <x-input type="textarea" label="Descripción" placeholder="Ingresa una descripción de la actividad"
-                            name="birthdate" />
-                    </div>
-                    <div class="flex flex-1 flex-col">
-                        <x-input type="textarea" label="Obstáculos" placeholder="Ingresa los obstáculos encontrados"
-                            name="birthdate" />
-                    </div>
-                </div>
-                <div class="mt-4">
-                    <input type="file" name="report" id="image-report" class="text-sm" />
-                </div>
-            </form>
+            <h2 class="text-lg font-bold text-zinc-800 dark:text-white sm:text-xl md:text-2xl">
+                Reportes mensuales
+            </h2>
+            <div class="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
+                @foreach ($months as $month)
+                    <x-card :month="$month" :index="$loop->index" :report="$reports[$month]->first()" :send="!$reports[$month]->isEmpty()" :limitMonth="$currentMonth" />
+                @endforeach
+            </div>
         </div>
     </section>
 @endsection
