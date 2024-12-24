@@ -10,7 +10,7 @@
         </div>
         <div class="mt-4 flex flex-col gap-4 sm:flex-row">
             <div class="flex-1">
-                <x-input type="text" placeholder="Buscar comunidad" icon="search" />
+                <x-input type="text" placeholder="Buscar comunidad" icon="search" id="inputSearchCommunities" />
             </div>
             <div class="flex-3">
                 <x-button type="a" id="modalNewCommunityButton" data-modal-target="modalNewCommunity"
@@ -19,12 +19,12 @@
             </div>
         </div>
         <div class="mt-4">
-            <x-table>
+            <x-table id="tableCommunities">
                 <x-slot name="thead">
                     <x-tr>
-                        <x-th>
+                        <x-th class="w-10">
                             <input id="default-checkbox" type="checkbox" value=""
-                                class="text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 h-4 w-4 rounded border-2 border-zinc-400 bg-zinc-100 focus:ring-2 dark:border-zinc-800 dark:bg-zinc-950 dark:ring-offset-zinc-800">
+                                class="focus:ring-primary-500 dark:focus:ring-primary-600 h-4 w-4 rounded border-2 border-zinc-400 bg-blue-600 bg-zinc-100 focus:ring-2 dark:border-zinc-800 dark:bg-zinc-950 dark:ring-offset-zinc-800">
                         </x-th>
                         <x-th>Nombre</x-th>
                         <x-th last="true">Acciones</x-th>
@@ -36,7 +36,7 @@
                             <x-tr>
                                 <x-td class="w-10">
                                     <input id="default-checkbox" type="checkbox" value=""
-                                        class="text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 h-4 w-4 rounded border-2 border-zinc-400 bg-zinc-100 focus:ring-2 dark:border-zinc-800 dark:bg-zinc-950 dark:ring-offset-zinc-800">
+                                        class="focus:ring-primary-500 dark:focus:ring-primary-600 h-4 w-4 rounded border-2 border-zinc-400 bg-blue-600 bg-zinc-100 focus:ring-2 dark:border-zinc-800 dark:bg-zinc-950 dark:ring-offset-zinc-800">
                                 </x-td>
                                 <x-td>{{ $comunidad->name }}</x-td>
                                 <x-td>
@@ -141,7 +141,7 @@
                         <div class="mt-4 flex justify-end gap-4">
                             <x-button type="button" data-modal-toggle="modalEditCommunity" icon="close"
                                 typeButton="secondary" text="Cancelar" />
-                            <x-button type="submit" icon="save" typeButton="primary" text="Editar" />
+                            <x-button type="submit" icon="pencil" typeButton="primary" text="Editar" />
                         </div>
                     </form>
                 </div>
