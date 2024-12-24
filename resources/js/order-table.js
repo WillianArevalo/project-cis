@@ -4,13 +4,17 @@ $(document).ready(function () {
     const defaultTableOptions = {
         paging: false,
         info: false,
+        emptyTable: "No hay datos disponibles",
         language: {
-            emptyTable: "No data available",
+            emptyTable: "No hay datos disponibles",
         },
     };
 
     const tables = [
         { id: "#tableScholarships", searchInput: "#inputSearchScholarships" },
+        { id: "#tableProjects", searchInput: "#inputSearchProjects" },
+        { id: "#tableCommunities", searchInput: "#inputSearchCommunities" },
+        { id: "#tableUsers", searchInput: "#inputSearchUsers" },
     ];
 
     const initializedTables = {};
