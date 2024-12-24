@@ -8,6 +8,7 @@ $(document).ready(function () {
             var selectedItems = $(this).next();
             if (selectedItems) {
                 selectedItems.toggleClass("hidden");
+                $(this).toggleClass("active");
                 adjustDropdownPosition(selectedItems, $(this));
             }
         });
@@ -60,6 +61,7 @@ $(document).ready(function () {
             $(".selectOptions").addClass("hidden");
             $(".selectOptionsLabels").addClass("hidden");
             $(".selectOptionsSubCategories").addClass("hidden");
+            $(".selected").removeClass("active");
         }
     });
 });
