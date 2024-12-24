@@ -7,7 +7,7 @@
             <h1 class="text-base font-bold uppercase text-zinc-800 dark:text-white sm:text-lg md:text-xl">
                 Proyecto asignado:
                 <br>
-                <span class="bg-blue text-xl sm:text-2xl md:text-3xl">
+                <span class="bg-blue text-xl md:text-2xl">
                     {{ $user->scholarship->project->name }}
                 </span>
             </h1>
@@ -15,8 +15,8 @@
         <div class="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2">
             <div class="mt-4 flex flex-col rounded-2xl border border-zinc-400 p-4 shadow-md dark:border-zinc-800">
                 <div class="flex w-full items-center justify-center gap-2">
-                    <x-icon icon="calendar" class="bg-blue h-6 w-6" />
-                    <h2 class="text-primary-800 text-2xl font-semibold dark:text-white">
+                    <x-icon icon="calendar" class="text- h-6 w-6 text-blue-500 dark:text-blue-600" />
+                    <h2 class="text-2xl font-semibold text-blue-500 dark:text-blue-600">
                         Reportes mensuales
                     </h2>
                 </div>
@@ -67,8 +67,8 @@
             </div>
             <div class="mt-4 flex h-max flex-col rounded-2xl border border-zinc-400 p-4 shadow-md dark:border-zinc-800">
                 <div class="flex w-full items-center justify-center gap-2">
-                    <x-icon icon="users" class="text-primary-800 h-6 w-6 dark:text-white" />
-                    <h2 class="text-primary-800 text-2xl font-semibold dark:text-white">
+                    <x-icon icon="users" class="h-6 w-6 text-blue-500 dark:text-blue-600" />
+                    <h2 class="text-2xl font-semibold text-blue-500 dark:text-blue-600">
                         Integrantes
                     </h2>
                 </div>
