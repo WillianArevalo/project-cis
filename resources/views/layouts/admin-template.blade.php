@@ -40,7 +40,6 @@
     <main class="h-full w-full bg-white dark:bg-black sm:ps-64">
         @include('layouts.__partials.alert')
         @include('layouts.__partials.admin.breadcrumb')
-        <x-toggle-theme />
         @yield('content')
     </main>
 </body>
