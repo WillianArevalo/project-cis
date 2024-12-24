@@ -15,6 +15,7 @@ $(document).ready(function () {
         { id: "#tableProjects", searchInput: "#inputSearchProjects" },
         { id: "#tableCommunities", searchInput: "#inputSearchCommunities" },
         { id: "#tableUsers", searchInput: "#inputSearchUsers" },
+        { id: "#tableReports", searchInput: "#inputSearchReports" },
     ];
 
     const initializedTables = {};
