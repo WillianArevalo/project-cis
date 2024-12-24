@@ -19,7 +19,10 @@ Route::controller(LoginController::class)->group(function () {
 Route::middleware("auth")->group(function () {
     Route::get("/inicio", [HomeController::class, "index"])->name("home");
 
+    Route::get("/reportes", [ReporteController::class, "index"])->name("reporte.index");
     Route::get("/enviar-reporte", [ReporteController::class, "create"])->name("reporte.create");
+    Route::post("/reporte", [ReporteController::class, "store"])->name("reporte.store");
+    Route::get("/reporte/{mes}", [ReporteController::class, "show"])->name("reporte.show");
 });
 
 Route::middleware("role:admin")->prefix("admin")->name("admin.")->group(function () {
@@ -46,8 +49,10 @@ Route::middleware("role:admin")->prefix("admin")->name("admin.")->group(function
     Route::get("/proyectos/{id}/edit", [ProyectoController::class, "edit"])->name("proyectos.edit");
     Route::put("/proyectos/{id}", [ProyectoController::class, "update"])->name("proyectos.update");
     Route::delete("/proyectos/{id}", [ProyectoController::class, "destroy"])->name("proyectos.destroy");
-    Route::get("/proyectos/{id}/asignar", [ProyectoController::class, "assign"])->name("proyectos.asignar");
+    Route::get("/proyectos/{slug}/asignar", [ProyectoController::class, "assign"])->name("proyectos.asignar");
     Route::post("/proyectos/{id}/asignar", [ProyectoController::class, "assignStore"])->name("proyectos.asignar.store");
+    Route::get("/proyecto/reportes/{slug}", [ProyectoController::class, "reportes"])->name("proyectos.reportes");
+    Route::get("/reporte/{id}", [ProyectoController::class, "showReport"])->name("reporte.show");
 
     //Routes for users
     Route::get("/usuarios", [UserController::class, "index"])->name("usuarios.index");
