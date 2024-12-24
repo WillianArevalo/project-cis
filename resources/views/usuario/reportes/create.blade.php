@@ -58,7 +58,7 @@
                         <div>
                             <div class="flex items-center gap-2">
                                 <label
-                                    class="flex w-max cursor-pointer items-center justify-center gap-1 text-nowrap rounded-xl border border-zinc-400 bg-white px-4 py-2 text-xs text-zinc-600 transition-colors duration-300 hover:bg-zinc-200/50 disabled:cursor-not-allowed disabled:bg-zinc-100/50 dark:border-zinc-800 dark:bg-black dark:text-zinc-200 dark:hover:bg-zinc-950 sm:text-sm">
+                                    class="flex w-max cursor-pointer items-center justify-center gap-1 text-nowrap rounded-xl border border-zinc-400 bg-white px-4 py-2 text-xs text-zinc-600 transition-colors duration-300 hover:bg-zinc-200/50 disabled:cursor-not-allowed disabled:bg-zinc-100/50 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-200 dark:hover:bg-zinc-900/50 sm:text-sm">
                                     <input type="file" name="images" id="input-images" class="hidden"
                                         accept=".jpg, .jpeg, .png" multiple>
                                     <x-icon icon="photo-up" class="h-4 w-4 text-zinc-600 dark:text-zinc-300" />
