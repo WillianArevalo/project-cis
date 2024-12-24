@@ -23,32 +23,6 @@
             </ul>
         </div>
         <div class="flex gap-4">
-            <div class="ms-2 hidden rounded-full border border-zinc-400 px-2 py-1 dark:border-zinc-800 sm:block">
-                <div class="flex items-center justify-center gap-2">
-                    <button type="button" data-theme="light"
-                        class="theme-toggle theme-light flex items-center rounded-full p-2 hover:bg-zinc-200 dark:hover:bg-zinc-900">
-                        <x-icon icon="sun" class="h-4 w-4 text-zinc-700 dark:text-white" />
-                    </button>
-                    <button type="button" data-theme="dark"
-                        class="theme-toggle theme-dark flex items-center rounded-full p-2 hover:bg-zinc-200 dark:hover:bg-zinc-900">
-                        <x-icon icon="moon" class="h-4 w-4 text-zinc-700 dark:text-white" />
-                    </button>
-                </div>
-            </div>
-            <div class="mb-2 ms-4 mt-2 block sm:hidden">
-                <div class="w-max rounded-lg border border-zinc-400 px-1.5 py-0.5 dark:border-zinc-800">
-                    <div class="flex items-center justify-center gap-2">
-                        <button type="button" data-theme="light"
-                            class="theme-toggle theme-light flex items-center rounded-lg p-1.5 hover:bg-zinc-200 dark:hover:bg-zinc-900">
-                            <x-icon icon="sun" class="h-3.5 w-3.5 text-zinc-700 dark:text-white" />
-                        </button>
-                        <button type="button" data-theme="dark"
-                            class="theme-toggle theme-dark flex items-center rounded-lg p-1.5 hover:bg-zinc-200 dark:hover:bg-zinc-900">
-                            <x-icon icon="moon" class="h-3.5 w-3.5 text-zinc-700 dark:text-white" />
-                        </button>
-                    </div>
-                </div>
-            </div>
             <div class="relative">
                 <button type="button" class="flex items-center gap-2" id="profile-btn">
                     <img src="{{ Storage::url($user->scholarship->photo) }}" alt="{{ $user->name }}"
@@ -63,7 +37,7 @@
                     id="profile-dropdown">
                     <ul class="flex flex-col">
                         <li>
-                            <a href=""
+                            <a href="{{ Route('profile') }}"
                                 class="flex items-center gap-2 rounded-lg p-2 px-4 py-2 text-sm text-zinc-800 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-950">
                                 <x-icon icon="user" class="h-5 w-5" />
                                 Perfil
