@@ -160,4 +160,22 @@ class ProyectoController extends Controller
         $report = Report::findOrFail($id);
         return view("admin.proyectos.show-report", compact("report"));
     }
+
+    public function destroyReport(string $id)
+    {
+        DB::beginTransaction();
+        try {
+            $report = Report::findOrFail($id);
+            $report->delete();
+            DB::commit();
+            return redirect()->back()
+                ->with('success_title', 'Reporte eliminado')
+                ->with('success_message', 'El reporte se ha eliminado correctamente');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->back()
+                ->with('error_title', 'Error al eliminar el reporte')
+                ->with('error_message', $e->getMessage());
+        }
+    }
 }
