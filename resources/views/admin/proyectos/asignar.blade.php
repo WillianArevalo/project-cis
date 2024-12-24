@@ -2,14 +2,12 @@
 @section('title', 'Asignar becados a proyecto')
 @section('content')
     <section class="p-4">
-        <div class="flex items-center gap-2">
-            <x-icon icon="folder-symlink" class="h-8 w-8 text-white" />
-            <h1 class="text-4xl font-bold text-white">
-                Asignar becados a proyecto
-            </h1>
-        </div>
+        @include('layouts.__partials.admin.header', [
+            'title' => '                Asignar becados a proyecto',
+            'icon' => 'folder-symlink',
+        ])
         <div class="mt-4">
-            <h2 class="text-2xl font-medium dark:text-zinc-200">
+            <h2 class="text-lg font-medium dark:text-zinc-200 sm:text-xl md:text-2xl">
                 Proyecto: {{ $proyecto->name }}
             </h2>
         </div>
@@ -65,7 +63,7 @@
                     Lista de becados
                 </h3>
                 <x-input type="text" placeholder="Buscar becado" icon="search" class="mt-4" id="search" />
-                <div class="mt-4 flex max-h-[450px] flex-col gap-4 overflow-y-auto" id="scholar-list">
+                <div class="mt-4 flex max-h-[450px] flex-col gap-4 overflow-y-auto overflow-x-hidden" id="scholar-list">
                     @if ($becados->count() > 0)
                         @foreach ($becados as $becado)
                             <div class="scholar-item flex w-full flex-col justify-between gap-4 rounded-2xl border border-zinc-400 p-4 dark:border-zinc-800 md:flex-row md:items-center"
@@ -84,9 +82,8 @@
                                                     <x-icon icon="circle-check" class="size-4" />
                                                     Asignado
                                                 </span>
-
                                                 <span
-                                                    class="mt-1 flex w-max items-center gap-1 rounded-full bg-blue-100 px-2 py-1 text-xs font-semibold text-violet-500 dark:bg-blue-950/30 dark:text-violet-500">
+                                                    class="mt-1 flex w-max items-center gap-1 rounded-full bg-blue-100 px-2 py-1 text-xs font-semibold text-blue-500 dark:bg-blue-950/30 dark:text-blue-500">
                                                     <x-icon icon="folder" class="size-4" />
                                                     {{ $becado->project->name }}
                                                 </span>
@@ -125,7 +122,7 @@
                 @enderror
                 <div class="flex items-center justify-center gap-4">
                     <x-button type="a" href="{{ Route('admin.proyectos.index') }}" text="Regresar"
-                        typeButton="secondary" />
+                        typeButton="secondary" icon="corner-down-left" />
                     <x-button type="button" text="Asignar becados" icon="user-check" typeButton="primary"
                         id="assign-button" />
                 </div>
