@@ -29,10 +29,16 @@ class HomeController extends Controller
 
         if ($project_mode->value == 1) {
             $comunidades = Community::all();
-            return view('projects', compact('comunidades'));
+            $project = Project::where("sent_by", auth()->id())->first();
+            return view('projects', compact('comunidades', 'project'));
         }
 
         $user = User::with("scholarship")->find(auth()->id());
+        if ($user->scholarship->project_id == null) {
+            return redirect()->route("login")
+                ->with("error_title", "No tienes un proyecto asignado")->with("error_message", "Por favor, contacta a tu administrador para asignarte un proyecto");
+        }
+
         $proyecto = Project::find($user->scholarship->project_id);
         $reportes = Report::where("project_id", $user->scholarship->project_id)->get();
         $mes = Carbon::now()->translatedFormat("F");
