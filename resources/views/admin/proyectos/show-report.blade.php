@@ -9,7 +9,7 @@
                     Reporte de
                     {{ $report->month }}
                 </h1>
-                <x-button type="a" href="{{ Route('admin.proyectos.reportes', $report->project->slug) }}"
+                <x-button type="a" href="{{ Route('admin.reportes.index', $report->project->slug) }}"
                     typeButton="secondary" text="Regresar" icon="corner-down-left" />
             </div>
             <div class="flex items-center gap-2">
