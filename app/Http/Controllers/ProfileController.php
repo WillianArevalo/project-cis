@@ -38,9 +38,15 @@ class ProfileController extends Controller
         $user->password = Hash::make($request->password);
         $user->save();
 
-        return redirect()->route('profile')
-            ->with("success_title", "Contraseña actualizada")
-            ->with("success_message", "Tu contraseña ha sido actualizada correctamente.");
+        if ($user->role === "admin") {
+            return redirect()->route('admin.profile')
+                ->with("success_title", "Contraseña actualizada")
+                ->with("success_message", "Tu contraseña ha sido actualizada correctamente.");
+        } else {
+            return redirect()->route('profile')
+                ->with("success_title", "Contraseña actualizada")
+                ->with("success_message", "Tu contraseña ha sido actualizada correctamente.");
+        }
     }
 
     public function admin()
