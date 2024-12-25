@@ -13,7 +13,8 @@
                     Ingresa tu correo para enviarte un enlace de verificación
                 </p>
                 <div class="mt-8">
-                    <x-input type="text" icon="email" name="email" id="email" placeholder="Ingresa tu email" />
+                    <x-input type="text" label="Correo electrónico" icon="email" name="email" id="email"
+                        placeholder="Ingresa tu email" />
                 </div>
                 <div class="mt-6">
                     <x-button type="submit" icon="login" class="w-full" text="Enviar correo" typeButton="primary" />
