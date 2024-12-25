@@ -1,5 +1,5 @@
 @extends('layouts.admin-template')
-@section('title', 'Becados')
+@section('title', 'CIS | Becados')
 @section('content')
     <section class="p-4">
         @include('layouts.__partials.admin.header', [

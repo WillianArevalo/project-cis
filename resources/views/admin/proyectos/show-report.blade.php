@@ -1,5 +1,5 @@
 @extends('layouts.admin-template')
-@section('title', 'Reporte')
+@section('title', 'CIS | Reporte de ' . $report->month)
 @section('content')
     <section class="my-4 px-4">
         <div class="flex flex-col items-start justify-center gap-2">

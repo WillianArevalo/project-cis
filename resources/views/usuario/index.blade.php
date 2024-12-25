@@ -1,5 +1,5 @@
 @extends('layouts.usuario-template')
-@section('title', 'Inicio')
+@section('title', 'CIS | Inicio')
 @section('content')
     <section class="my-4">
         <div class="flex items-center gap-4 rounded-2xl border border-zinc-400 p-4 shadow-md dark:border-zinc-800">

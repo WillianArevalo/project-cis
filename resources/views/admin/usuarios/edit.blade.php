@@ -1,5 +1,5 @@
 @extends('layouts.admin-template')
-@section('title', 'Nuevo becado')
+@section('title', 'CIS | Editar usuario')
 @section('content')
     <section class="p-4">
         @include('layouts.__partials.admin.header', ['title' => 'Editar usuario', 'icon' => 'user-edit'])

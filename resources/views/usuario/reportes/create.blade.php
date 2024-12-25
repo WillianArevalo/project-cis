@@ -1,5 +1,5 @@
 @extends('layouts.usuario-template')
-@section('title', 'Enviar reporte')
+@section('title', 'CIS | Enviar reporte')
 @section('content')
     <section class="my-4">
         <div>
