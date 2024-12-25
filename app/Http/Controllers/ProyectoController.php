@@ -38,6 +38,20 @@ class ProyectoController extends Controller
 
         DB::beginTransaction();
         try {
+            $user = auth()->user();
+            $search = Project::where('name', $request->name)->first();
+            if ($search) {
+                if ($user->role === "admin") {
+                    return redirect()->route('admin.proyectos.index')
+                        ->with('error_title', 'Error al guardar el proyecto')
+                        ->with('error_message', 'El proyecto ya existe');
+                } else {
+                    return redirect()->route('home')
+                        ->with('success_title', 'Error al enviar el proyecto')
+                        ->with('success_message', 'El nombre del proyecto ya existe');
+                }
+            }
+
             $proyecto = new Project();
             $proyecto->name = $request->name;
             $proyecto->community_id = $request->community_id;
@@ -55,7 +69,7 @@ class ProyectoController extends Controller
             $proyecto->save();
             DB::commit();
 
-            if (auth()->user()->role === "admin") {
+            if ($user->role === "admin") {
                 return redirect()->route('admin.proyectos.index')
                     ->with('success_title', 'Proyecto guardado')
                     ->with('success_message', 'El proyecto se ha guardado correctamente');
@@ -68,7 +82,7 @@ class ProyectoController extends Controller
             DB::rollBack();
             return redirect()->back()
                 ->with('error_title', 'Error al guardar el proyecto')
-                ->with('error_message', 'El proyecto no se ha guardado correctamente');
+                ->with('error_message', 'El proyecto no se ha guardado correctamente' . $e->getMessage());
         }
     }
 
@@ -125,6 +139,19 @@ class ProyectoController extends Controller
         DB::beginTransaction();
         try {
             $proyecto = Project::findOrFail($id);
+            $document = $proyecto->document;
+            if ($document) {
+                $path = public_path("storage/{$document}");
+                $directory = dirname($path);
+
+                if (file_exists($path)) {
+                    unlink($path);
+                }
+
+                if (is_dir($directory) && count(scandir($directory)) == 2) {
+                    rmdir($directory);
+                }
+            }
 
             Scholarship::where('project_id', $proyecto->id)
                 ->update(['project_id' => null]);
