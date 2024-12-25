@@ -25,17 +25,17 @@ class Project extends Model
         return $this->hasMany(Report::class);
     }
 
+    public function sentBy()
+    {
+        return $this->belongsTo(User::class, 'sent_by');
+    }
+
     protected $fillable = [
         'name',
         'slug',
-        'community_id'
+        'community_id',
+        'accept',
+        'document',
+        'sent_by'
     ];
-
-    protected static function boot()
-    {
-        parent::boot();
-        static::creating(function ($project) {
-            $project->slug = Str::slug($project->name);
-        });
-    }
 }
