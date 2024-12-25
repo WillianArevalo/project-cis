@@ -20,41 +20,27 @@ class LoginController extends Controller
     public function validate(LoginRequest $request)
     {
         $credentials = $request->only('user', 'password');
-        $user = User::where("user", $credentials['user'])->first();
+        $remember = $request->has("remember");
 
-        if (!$user) {
-            return redirect()->route('login')
-                ->with('error_title', 'Error de autenticación')
-                ->with('error_message', 'Las credenciales ingresadas son incorrectas.');
-        }
+        if (auth()->attempt($credentials, $remember)) {
+            $user = auth()->user();
 
-        if (!Hash::check($credentials["password"], $user->password)) {
-            return redirect()->route('login')
-                ->with("error_title", "Error de autenticación")
-                ->with("error_message", "Las credenciales ingresadas son incorrectas.");
-        }
-
-        if (auth()->attempt($credentials)) {
-            $request->session()->regenerate();
             if ($user->role == 'admin') {
                 return redirect()->route('admin.dashboard')
                     ->with("success_title", "Bienvenido")
                     ->with("success_message", "Has iniciado sesión correctamente.");
             }
-            return redirect()->route('home');
+
+            return redirect()->route('home')
+                ->with("success_title", "Bienvenido")
+                ->with("success_message", "Has iniciado sesión correctamente.");
         }
 
-        Auth::login($user);
-        if ($user->role != "admin") {
-            return redirect()->route("home")
-                ->with("success_title", "Bienvenido")
-                ->with("success_message", "Has iniciado sesión correctamente.");
-        } else {
-            return redirect()->route("admin.dashboard')")
-                ->with("success_title", "Bienvenido")
-                ->with("success_message", "Has iniciado sesión correctamente.");
-        }
+        return redirect()->route('login')
+            ->with('error_title', 'Error de autenticación')
+            ->with('error_message', 'Las credenciales ingresadas son incorrectas.');
     }
+
 
     public function logout()
     {
