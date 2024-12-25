@@ -73,17 +73,18 @@
                                 </x-td>
                                 <x-td>
                                     <div class="flex gap-2">
-                                        <form action="{{ Route('admin.reporte.destroy', $reporte->id) }}" method="POST"
+                                        <form action="{{ Route('admin.reportes.destroy', $reporte->id) }}" method="POST"
                                             id="reporte-{{ $reporte->id }}">
                                             @csrf
                                             @method('DELETE')
                                             <x-button type="button" data-modal-target="deleteModal"
                                                 data-modal-toggle="deleteModal" onlyIcon
-                                                data-form="proyecto-{{ $reporte->id }}" class="buttonDelete" icon="trash"
+                                                data-form="reporte-{{ $reporte->id }}" class="buttonDelete" icon="trash"
                                                 typeButton="danger" />
                                         </form>
-                                        <x-button type="a" href="{{ Route('admin.reporte.show', $reporte->id) }}"
-                                            onlyIcon icon="eye" typeButton="secondary" />
+                                        <x-button type="a"
+                                            href="{{ Route('admin.reportes.show', ['id' => $reporte->id]) }}" onlyIcon
+                                            icon="eye" typeButton="secondary" />
                                     </div>
                                 </x-td>
                             </x-tr>
