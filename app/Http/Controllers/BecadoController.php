@@ -14,7 +14,7 @@ class BecadoController extends Controller
 {
     public function index()
     {
-        $becados = Scholarship::paginate(10);
+        $becados = Scholarship::paginate(30);
         return view("admin.becados.index", compact("becados"));
     }
 
