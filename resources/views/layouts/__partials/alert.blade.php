@@ -31,23 +31,25 @@
 @endphp
 
 @if ($alertType)
-    <div
-        class="alert fixed right-10 top-10 z-[100] flex w-full max-w-sm animate-fade-left overflow-hidden rounded-lg bg-white shadow-md animate-duration-300 dark:bg-zinc-950">
-        <div class="{{ $bgColor }} flex w-12 items-center justify-center px-4">
-            <x-icon icon="{{ $icon }}" class="size-6 min-w-6 max-w-6 text-white" />
-        </div>
-        <div class="-mx-3 px-4 py-2">
-            <div class="mx-3 flex items-center justify-between">
-                <div>
-                    <span class="{{ $textColor }} text-sm font-semibold sm:text-base">
-                        {{ $title }}
-                    </span>
-                    <p class="text-xs text-zinc-600 dark:text-zinc-200 sm:text-sm">
-                        {{ $message }}
-                    </p>
+    <div class="flex items-center justify-center">
+        <div
+            class="alert fixed top-10 z-[100] flex w-full max-w-sm animate-fade-left overflow-hidden rounded-lg bg-white shadow-md animate-duration-300 dark:bg-zinc-950 sm:right-10">
+            <div class="{{ $bgColor }} flex w-12 items-center justify-center px-4">
+                <x-icon icon="{{ $icon }}" class="size-6 min-w-6 max-w-6 text-white" />
+            </div>
+            <div class="-mx-3 px-4 py-2">
+                <div class="mx-3 flex items-center justify-between">
+                    <div>
+                        <span class="{{ $textColor }} text-sm font-semibold sm:text-base">
+                            {{ $title }}
+                        </span>
+                        <p class="text-xs text-zinc-600 dark:text-zinc-200 sm:text-sm">
+                            {{ $message }}
+                        </p>
+                    </div>
+                    <x-button type="button" icon="close" typeButton="secondary" onlyIcon
+                        class="alert-close {{ $textColor }} ms-4" size="small" />
                 </div>
-                <x-button type="button" icon="close" typeButton="secondary" onlyIcon
-                    class="alert-close {{ $textColor }} ms-4" size="small" />
             </div>
         </div>
     </div>
