@@ -35,9 +35,11 @@
                                             {{ $becado->name }}
                                         </h4>
                                         @if ($becado->project)
-                                            <p class="text-sm dark:text-zinc-400">
-                                                Proyecto: {{ $becado->project->name }}
-                                            </p>
+                                            <span
+                                                class="mt-1 flex w-max items-center gap-1 rounded-full bg-blue-100 px-2 py-1 text-xs font-semibold text-blue-500 dark:bg-blue-950/30 dark:text-blue-500">
+                                                <x-icon icon="folder" class="size-4" />
+                                                {{ $becado->project->name }}
+                                            </span>
                                         @else
                                             <span
                                                 class="mt-1 w-max rounded-2xl px-3 py-0.5 text-xs font-medium dark:bg-red-950 dark:bg-opacity-30 dark:text-red-500">
