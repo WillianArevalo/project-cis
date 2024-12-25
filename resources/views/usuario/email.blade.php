@@ -1,7 +1,7 @@
 @extends('layouts.template')
 @section('title', 'CIS | Verificar correo')
 @section('content')
-    <section class="bg-white dark:bg-black">
+    <section>
         <div class="container mx-auto flex min-h-screen items-center justify-center px-6">
             <form action="{{ Route('sendEmail') }}" class="w-full max-w-sm" method="POST">
                 @csrf
