@@ -33,7 +33,7 @@
 @if ($alertType)
     <div
         class="alert fixed right-10 top-10 z-[100] flex w-full max-w-sm animate-fade-left overflow-hidden rounded-lg bg-white shadow-md animate-duration-300 dark:bg-zinc-950">
-        <div class="{{ $bgColor }} flex w-12 items-center justify-center">
+        <div class="{{ $bgColor }} flex w-12 items-center justify-center px-4">
             <x-icon icon="{{ $icon }}" class="size-6 min-w-6 max-w-6 text-white" />
         </div>
         <div class="-mx-3 px-4 py-2">
