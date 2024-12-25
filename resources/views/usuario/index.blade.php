@@ -57,10 +57,10 @@
                     @endif
                 </div>
                 <div class="mt-4 flex items-center justify-center gap-4">
-                    <x-button type="a" href="{{ Route('reporte.index') }}" typeButton="secondary" icon="eye"
+                    <x-button type="a" href="{{ Route('reportes.index') }}" typeButton="secondary" icon="eye"
                         text="Ver reportes" />
                     @if (!$monthReport)
-                        <x-button type="a" href="{{ Route('reporte.create', ['mes' => $mes]) }}" icon="arrow-big-up"
+                        <x-button type="a" href="{{ Route('reportes.create', ['mes' => $mes]) }}" icon="arrow-big-up"
                             typeButton="primary" text="Subir reporte" />
                     @endif
                 </div>
