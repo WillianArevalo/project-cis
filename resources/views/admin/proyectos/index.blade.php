@@ -1,8 +1,8 @@
 @extends('layouts.admin-template')
-@section('title', 'Proyectos')
+@section('title', 'CIS | Proyectos sociales')
 @section('content')
     <section class="p-4">
-        @include('layouts.__partials.admin.header', ['title' => 'Proyectos', 'icon' => 'folders'])
+        @include('layouts.__partials.admin.header', ['title' => 'Proyectos sociales', 'icon' => 'folders'])
         <div class="mt-4 flex gap-4">
             <div class="flex-1">
                 <x-input type="text" placeholder="Buscar proyecto" icon="search" id="inputSearchProjects" />
@@ -24,6 +24,9 @@
                             Nombre
                         </x-th>
                         <x-th>
+                            Estado
+                        </x-th>
+                        <x-th>
                             Comunidad
                         </x-th>
                         <x-th>
@@ -31,6 +34,9 @@
                         </x-th>
                         <x-th>
                             Encargados
+                        </x-th>
+                        <x-th>
+                            Enviado por
                         </x-th>
                         <x-th last="true">
                             Acciones
@@ -46,6 +52,21 @@
                                 </x-td>
                                 <x-td>
                                     {{ $proyecto->name }}
+                                </x-td>
+                                <x-td>
+                                    @if ($proyecto->accept == 1)
+                                        <span
+                                            class="flex w-max items-center gap-1 rounded-full bg-emerald-100 px-2 py-1 text-xs text-emerald-500 dark:bg-emerald-950/30 dark:text-emerald-400">
+                                            <x-icon icon="circle-check" class="h-4 w-4" />
+                                            Aceptado
+                                        </span>
+                                    @else
+                                        <span
+                                            class="flex w-max items-center gap-1 rounded-full bg-red-100 px-2 py-1 text-xs text-red-500 dark:bg-red-950/30 dark:text-red-400">
+                                            <x-icon icon="clock" class="h-4 w-4" />
+                                            Pendiente
+                                        </span>
+                                    @endif
                                 </x-td>
                                 <x-td>
                                     {{ $proyecto->community->name }}
@@ -100,6 +121,18 @@
                                     </div>
                                 </x-td>
                                 <x-td>
+                                    <div class="flex -space-x-2 rtl:space-x-reverse">
+                                        <img src="{{ Storage::url($proyecto->sentBy->scholarship->photo) }}"
+                                            alt="{{ $proyecto->sentBy->user }}" class="h-8 w-8 rounded-full object-cover"
+                                            data-tooltip-target="tooltip-user-{{ $proyecto->sentBy->id }}">
+                                        <div id="tooltip-user-{{ $proyecto->sentBy->id }}" role="tooltip"
+                                            class="tooltip invisible absolute z-10 inline-block rounded-lg bg-zinc-900 px-3 py-2 text-xs font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-zinc-900">
+                                            {{ $proyecto->sentBy->scholarship->name }}
+                                            <div class="tooltip-arrow" data-popper-arrow></div>
+                                        </div>
+                                    </div>
+                                </x-td>
+                                <x-td>
                                     <div class="flex gap-2">
                                         <x-button type="button" class="btnEditProject"
                                             data-url="{{ Route('admin.proyectos.edit', $proyecto->id) }}" icon="pencil"
@@ -119,8 +152,10 @@
                                             href="{{ Route('admin.proyectos.asignar', $proyecto->slug) }}" icon="user-up"
                                             onlyIcon typeButton="secondary" />
                                         <x-button type="a"
-                                            href="{{ Route('admin.proyectos.reportes', $proyecto->slug) }}" icon="report"
+                                            href="{{ Route('admin.reportes.index', $proyecto->slug) }}" icon="report"
                                             onlyIcon typeButton="secondary" />
+                                        <x-button type="a" href="{{ Storage::url($proyecto->document) }}"
+                                            icon="download" onlyIcon typeButton="secondary" target="_blank" />
                                     </div>
                                 </x-td>
                             </x-tr>
@@ -157,7 +192,7 @@
                         </button>
                     </div>
                     <!-- Modal body -->
-                    <form action="{{ Route('admin.proyectos.store') }}" method="POST">
+                    <form action="{{ Route('proyectos.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="mt-4 flex flex-1 flex-col">
                             <x-input type="text" name="name" icon="folder" label="Nombre"
@@ -166,6 +201,33 @@
                         <div class="mt-4 flex flex-1 flex-col">
                             <x-select name="community_id" id="community_id" label="Comunidad" icon="home"
                                 :options="$comunidades->pluck('name', 'id')->toArray()" />
+                        </div>
+                        <div class="mt-4">
+                            <span
+                                class="mb-1 block text-sm font-medium text-zinc-500 after:ml-0.5 after:text-red-500 after:content-['*'] dark:text-zinc-300">
+                                Documento
+                            </span>
+                            <div
+                                class="flex flex-col items-start justify-between rounded-xl border border-dashed border-zinc-400 p-2 dark:border-zinc-800">
+                                <div class="flex w-full justify-between">
+                                    <div class="flex items-center gap-2">
+                                        <label
+                                            class="flex w-max cursor-pointer items-center justify-center gap-1 text-nowrap rounded-xl border border-zinc-400 bg-white px-4 py-2 text-xs text-zinc-600 transition-colors duration-300 hover:bg-zinc-200/50 disabled:cursor-not-allowed disabled:bg-zinc-100/50 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-200 dark:hover:bg-zinc-900/50 sm:text-xs">
+                                            <input type="file" name="document" id="input-doc" class="hidden"
+                                                accept=".pdf, .docx" />
+                                            <x-icon icon="file" class="h-4 w-4 text-zinc-600 dark:text-zinc-300" />
+                                            Adjuntar proyecto
+                                        </label>
+                                        <p id="file-name"
+                                            class="font-dine-r text-[10px] text-zinc-600 dark:text-zinc-300">
+                                            Formatos permitidos: .pdf, .docx
+                                        </p>
+                                    </div>
+                                    <button id="remove-file" class="hidden" type="button">
+                                        <x-icon icon="close" class="h-4 w-4 text-red-500" />
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                         <div class="mt-4 flex justify-end gap-4">
                             <x-button type="button" data-modal-toggle="modalNewProject" icon="close"
@@ -201,23 +263,9 @@
                         </button>
                     </div>
                     <!-- Modal body -->
-                    <form id="formEditProject" method="POST">
-                        @csrf
-                        @method('PUT')
-                        <div class="mt-4 flex flex-1 flex-col">
-                            <x-input type="text" name="name" id="name" icon="folder" label="Nombre"
-                                placeholder="Nombre del proyecto" />
-                        </div>
-                        <div class="mt-4 flex flex-1 flex-col">
-                            <x-select name="community_id" id="community_id_edit" label="Comunidad" icon="home"
-                                :options="$comunidades->pluck('name', 'id')->toArray()" />
-                        </div>
-                        <div class="mt-4 flex justify-end gap-4">
-                            <x-button type="button" data-modal-toggle="modalEditProject" icon="close"
-                                typeButton="secondary" text="Cancelar" />
-                            <x-button type="submit" icon="pencil" typeButton="primary" text="Editar" />
-                        </div>
-                    </form>
+                    <div id="form-edit-project">
+
+                    </div>
                 </div>
             </div>
         </div>
