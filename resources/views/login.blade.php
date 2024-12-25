@@ -11,16 +11,18 @@
                 </h1>
                 <div class="mt-8">
                     <x-input type="text" icon="user" name="user" id="user"
-                        placeholder="Nombre de usuario (primer nombre)" />
+                        placeholder="Nombre de usuario (primer nombre)" label="Usuario" />
                 </div>
                 <div class="mt-4">
-                    <x-input type="password" icon="lock" name="password" id="password" placeholder="Contraseña" />
+                    <x-input type="password" icon="lock" name="password" id="password" label="Contraseña"
+                        placeholder="Contraseña" />
                 </div>
                 <div class="mt-6">
                     <x-button type="submit" icon="login" class="w-full" text="Iniciar sesión" typeButton="primary" />
                 </div>
                 <div class="mt-4 text-center">
-                    <a href="#" class="text-sm font-medium text-blue-500 hover:underline dark:text-blue-400">
+                    <a href="{{ Route('forgot-password') }}"
+                        class="text-sm font-medium text-blue-500 hover:underline dark:text-blue-400">
                         ¿Olvidaste tu contraseña?
                     </a>
                 </div>
