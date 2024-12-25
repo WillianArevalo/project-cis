@@ -12,7 +12,7 @@
             <p class="mt-4 text-sm text-zinc-500 dark:text-zinc-400">
                 El sitio web se encuentra actualmente en mantenimiento programado. <br>
                 Estaremos de vuelta en breve. ¡Esperate un momento!. <br>
-                Si tienes alguna pregunta, no dudes en ponerse en contacto conmigo.
+                Si tienes alguna pregunta, no dudes en ponerte en contacto conmigo.
             </p>
             <div class="mt-4 flex items-center justify-center">
                 <x-button type="a"
