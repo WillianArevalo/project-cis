@@ -60,6 +60,12 @@
             <x-icon icon="exclamation-circle" class="h-5 w-5 text-yellow-500" />
             <span class="text-sm font-bold text-yellow-500">Modo mantenimiento activado</span>
         </div>
+    @elseif($project_mode->value == 1)
+        <div
+            class="ms-0 flex items-center gap-2 border-b border-zinc-400 bg-green-100 p-4 dark:border-zinc-800 dark:bg-green-950/30 md:ms-64">
+            <x-icon icon="info-circle" class="h-5 w-5 text-green-500" />
+            <span class="text-sm font-bold text-green-500">Modo proyecto activado</span>
+        </div>
     @endif
 
     <aside id="default-sidebar"
@@ -93,7 +99,7 @@
                 </li>
                 <li>
                     <a href="{{ Route('admin.proyectos.index') }}"
-                        class="{{ \App\Helpers\RouteHelper::isActive(['admin.proyectos.index', 'admin.proyectos.asignar', 'admin.proyectos.reportes', 'admin.reporte.show']) }} group flex items-center rounded-lg p-2 text-base font-normal text-zinc-900 hover:bg-zinc-100 dark:text-white dark:hover:bg-zinc-900">
+                        class="{{ \App\Helpers\RouteHelper::isActive(['admin.proyectos.index', 'admin.proyectos.asignar', 'admin.proyectos.reportes', 'admin.reportes.show']) }} group flex items-center rounded-lg p-2 text-base font-normal text-zinc-900 hover:bg-zinc-100 dark:text-white dark:hover:bg-zinc-900">
                         <x-icon icon="folder" class="size-5 text-current" />
                         <span class="ml-3">
                             Proyectos
