@@ -60,7 +60,7 @@
                                             class="h-8 w-8 rounded-full object-cover">
                                         <div class="flex flex-col gap-1">
                                             <span class="text-sm font-medium text-zinc-700 dark:text-zinc-400">
-                                                {{ $reporte->user->scholarship->name }}
+                                                {{ $reporte->user->user }}
                                             </span>
                                         </div>
                                     </div>
