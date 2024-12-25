@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
+use App\Mail\ResetPassword;
 use App\Mail\VerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -30,7 +31,6 @@ class User extends Authenticatable
         'password',
         'role'
     ];
-
 
     /**
      * The attributes that should be hidden for serialization.
@@ -67,6 +67,15 @@ class User extends Authenticatable
     public function sendEmailVerification($token, $name, $url, $email): void
     {
         Mail::to($email)->send(new VerifyEmail(
+            $name,
+            $url,
+            $token
+        ));
+    }
+
+    public function sendEmailResetPassword($token, $name, $url, $email): void
+    {
+        Mail::to($email)->send(new ResetPassword(
             $name,
             $url,
             $token
