@@ -123,7 +123,8 @@
                                 <x-td>
                                     <div class="flex -space-x-2 rtl:space-x-reverse">
                                         <img src="{{ Storage::url($proyecto->sentBy->scholarship->photo) }}"
-                                            alt="{{ $proyecto->sentBy->user }}" class="h-8 w-8 rounded-full object-cover"
+                                            alt="{{ $proyecto->sentBy->user }}"
+                                            class="h-8 max-h-8 min-h-8 w-8 min-w-8 max-w-8 rounded-full object-cover"
                                             data-tooltip-target="tooltip-user-{{ $proyecto->sentBy->id }}">
                                         <div id="tooltip-user-{{ $proyecto->sentBy->id }}" role="tooltip"
                                             class="tooltip invisible absolute z-10 inline-block rounded-lg bg-zinc-900 px-3 py-2 text-xs font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-zinc-900">
