@@ -29,7 +29,7 @@
                     </p>
                     @if ($monthReport)
                         <span
-                            class="mt-4 flex flex-col items-start gap-2 rounded-2xl border border-dashed border-green-500 bg-green-100 px-4 py-2 dark:border-green-700 dark:bg-green-950/20">
+                            class="mt-4 flex flex-col items-start gap-2 rounded-2xl border border-dashed border-green-500 bg-green-100 p-4 dark:border-green-700 dark:bg-green-950/20">
                             <div class="flex items-center gap-1 text-sm text-green-500 dark:text-green-500">
                                 <x-icon icon="circle-check" class="size-4 text-current" />
                                 Reporte enviado
@@ -43,10 +43,6 @@
                                     {{ $monthReport->created_at->setTimezone('America/El_Salvador')->format('M d, Y h:i A') }}
                                 </p>
                             </div>
-                            <a href="{{ Storage::url($monthReport->file) }}" target="_blank"
-                                class="ml-auto text-blue-500 dark:text-blue-500">
-                                <x-icon icon="download" class="h-6 w-6" />
-                            </a>
                         </span>
                     @else
                         <p
