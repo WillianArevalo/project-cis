@@ -16,7 +16,7 @@
             <p class="my-2 text-zinc-800 dark:text-zinc-400">
                 Datos del reporte
             </p>
-            <form action="{{ Route('reporte.store') }}" enctype="multipart/form-data" method="POST" id="form-report">
+            <form action="{{ Route('reportes.store') }}" enctype="multipart/form-data" method="POST" id="form-report">
                 @csrf
                 <input type="text" name="month" class="hidden" value="{{ $mes }}">
                 <div class="flex flex-col gap-4 sm:flex-row">
@@ -87,7 +87,7 @@
                     </div>
                 </div>
                 <div class="mt-4 flex items-center justify-center gap-2">
-                    <x-button type="a" href="{{ Route('reporte.index') }}" icon="corner-down-left"
+                    <x-button type="a" href="{{ Route('reportes.index') }}" icon="corner-down-left"
                         typeButton="secondary" text="Cancelar" />
                     <x-button type="button" id="btn-add-report" icon="send" typeButton="primary"
                         text="Enviar reporte" />
