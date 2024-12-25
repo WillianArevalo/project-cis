@@ -69,7 +69,7 @@
     @endif
 
     <aside id="default-sidebar"
-        class="fixed left-0 top-0 z-40 h-screen w-64 -translate-x-full transition-transform md:translate-x-0"
+        class="fixed left-0 top-0 z-40 h-screen w-64 -translate-x-full bg-white transition-transform dark:bg-zinc-950 md:translate-x-0"
         aria-label="Sidenav">
         <div class="h-full overflow-y-auto border-r border-zinc-400 px-3 py-5 dark:border-zinc-800">
             <div class="flex items-center gap-2 p-2">
