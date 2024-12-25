@@ -17,15 +17,21 @@
                     <x-input type="password" icon="lock" name="password" id="password" label="Contraseña"
                         placeholder="Contraseña" />
                 </div>
+                <div class="mt-4 flex items-center justify-between">
+                    <div>
+                        <x-input type="checkbox" name="remember" id="remember" label="Recuérdame" />
+                    </div>
+                    <div class="text-center">
+                        <a href="{{ Route('forgot-password') }}"
+                            class="text-sm font-medium text-blue-500 hover:underline dark:text-blue-400">
+                            ¿Olvidaste tu contraseña?
+                        </a>
+                    </div>
+                </div>
                 <div class="mt-6">
                     <x-button type="submit" icon="login" class="w-full" text="Iniciar sesión" typeButton="primary" />
                 </div>
-                <div class="mt-4 text-center">
-                    <a href="{{ Route('forgot-password') }}"
-                        class="text-sm font-medium text-blue-500 hover:underline dark:text-blue-400">
-                        ¿Olvidaste tu contraseña?
-                    </a>
-                </div>
+
             </form>
         </div>
     </section>
