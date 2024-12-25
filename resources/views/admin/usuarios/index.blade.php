@@ -3,7 +3,7 @@
 @section('content')
     <section class="p-4">
         @include('layouts.__partials.admin.header', ['title' => 'Usuarios', 'icon' => 'user'])
-        <div class="mt-4 flex gap-4">
+        <div class="mt-4 flex flex-col gap-4 sm:flex-row">
             <div class="flex-1">
                 <x-input type="text" placeholder="Buscar usuario" icon="search" id="inputSearchUsers" />
             </div>
