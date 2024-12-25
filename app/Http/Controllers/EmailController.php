@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 
 class EmailController extends Controller
 {
-    public function sendEmail(Request $request)
+    public function send(Request $request)
     {
         $request->validate([
             'email' => 'required|email'
@@ -35,7 +35,7 @@ class EmailController extends Controller
         }
     }
 
-    function verifyEmail(Request $request)
+    function verify(Request $request)
     {
         $token = $request->query('token');
         $user = auth()->user();
