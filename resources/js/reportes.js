@@ -69,7 +69,6 @@ $(document).ready(function () {
             images.length !== 0 &&
             $("#description").val().length > 90
         ) {
-            console.log("Formulario válido");
             $.ajax({
                 url: $form.attr("action"),
                 method: $form.attr("method"),
@@ -84,11 +83,11 @@ $(document).ready(function () {
                     showToast(
                         "success",
                         response.message,
-                        "Reporte creado correctamente"
+                        "Reporte enviado correctamente"
                     );
                     setTimeout(() => {
                         window.location.href = response.redirect;
-                    }, 2000);
+                    }, 1000);
                 },
                 error: function (error) {
                     console.log(error);

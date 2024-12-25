@@ -5,9 +5,7 @@ $(document).ready(function () {
         $.ajax({
             url,
             success: function (response) {
-                $("#name").val(response.name);
-                $("#community_id_edit").val(response.community_id);
-                $("#formEditProject").attr("action", action);
+                $("#form-edit-project").html(response.html);
             },
         });
     });
