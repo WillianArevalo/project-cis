@@ -33,6 +33,7 @@ class ProyectoController extends Controller
         $request->validate([
             "name" => "required|string",
             "community_id" => "required|integer|exists:communities,id",
+            "document" => "nullable|file|mimes:pdf,doc,docx",
         ]);
 
         DB::beginTransaction();
@@ -40,11 +41,29 @@ class ProyectoController extends Controller
             $proyecto = new Project();
             $proyecto->name = $request->name;
             $proyecto->community_id = $request->community_id;
+            $proyecto->slug = Str::slug($request->name);
+            $proyecto->sent_by = auth()->id();
+
+            if ($request->hasFile("document")) {
+                $document = $request->file("document");
+                $directory = "proyectos/{$proyecto->slug}";
+                $filename = $document->getClientOriginalName();
+                $path = $document->storeAs($directory, $filename, 'public');
+                $proyecto->document = $path;
+            }
+
             $proyecto->save();
             DB::commit();
-            return redirect()->route('admin.proyectos.index')
-                ->with('success_title', 'Proyecto guardado')
-                ->with('success_message', 'El proyecto se ha guardado correctamente');
+
+            if (auth()->user()->role === "admin") {
+                return redirect()->route('admin.proyectos.index')
+                    ->with('success_title', 'Proyecto guardado')
+                    ->with('success_message', 'El proyecto se ha guardado correctamente');
+            } else {
+                return redirect()->route('home')
+                    ->with('success_title', 'Proyecto guardado')
+                    ->with('success_message', 'El proyecto se ha enviado correctamente, espera a que sea aprobado');
+            }
         } catch (\Exception $e) {
             DB::rollBack();
             return redirect()->back()
@@ -56,7 +75,13 @@ class ProyectoController extends Controller
     public function edit($id)
     {
         $proyecto = Project::with("community")->findOrFail($id);
-        return response()->json($proyecto);
+        $comunidades = Community::all();
+        return response()->json([
+            "html" => view('layouts.__partials.ajax.form-edit-project', [
+                "proyecto" => $proyecto,
+                "comunidades" => $comunidades
+            ])->render()
+        ]);
     }
 
     public function update(Request $request, $id)
@@ -64,6 +89,7 @@ class ProyectoController extends Controller
         $request->validate([
             "name" => "required|string",
             "community_id" => "required|integer|exists:communities,id",
+            "accept" => "nullable|boolean",
         ]);
 
         DB::beginTransaction();
@@ -72,6 +98,15 @@ class ProyectoController extends Controller
             $proyecto->name = $request->name;
             $proyecto->slug = Str::slug($request->name);
             $proyecto->community_id = $request->community_id;
+            $proyecto->accept = $request->has("accept") ? 1 : 0;
+
+            if ($request->has("accept") && $request->accept) {
+                if ($proyecto->sentBy->role !== "admin") {
+                    $scholarship = Scholarship::where("user_id", $proyecto->sent_by)->firstOrFail();
+                    $scholarship->update(["project_id" => $proyecto->id]);
+                }
+            }
+
             $proyecto->save();
             DB::commit();
             return redirect()->route('admin.proyectos.index')
@@ -103,7 +138,7 @@ class ProyectoController extends Controller
             DB::rollBack();
             return redirect()->back()
                 ->with('error_title', 'Error al eliminar el proyecto')
-                ->with('error_message', $e->getMessage());
+                ->with('error_message', 'Verifica que no tenga becados asignados o reportes');
         }
     }
 
@@ -143,38 +178,6 @@ class ProyectoController extends Controller
             DB::rollBack();
             return redirect()->back()
                 ->with('error_title', 'Error al asignar los becados')
-                ->with('error_message', $e->getMessage());
-        }
-    }
-
-    public function reportes(string $slug)
-    {
-        $proyecto = Project::with('scholarships')->where('slug', $slug)->first();
-        $reportes = Report::where('project_id', $proyecto->id)->get();
-        return view('admin.proyectos.reportes', compact('proyecto', 'reportes'));
-    }
-
-    public function showReport(string $id)
-    {
-        $user = auth()->user();
-        $report = Report::findOrFail($id);
-        return view("admin.proyectos.show-report", compact("report"));
-    }
-
-    public function destroyReport(string $id)
-    {
-        DB::beginTransaction();
-        try {
-            $report = Report::findOrFail($id);
-            $report->delete();
-            DB::commit();
-            return redirect()->back()
-                ->with('success_title', 'Reporte eliminado')
-                ->with('success_message', 'El reporte se ha eliminado correctamente');
-        } catch (\Exception $e) {
-            DB::rollBack();
-            return redirect()->back()
-                ->with('error_title', 'Error al eliminar el reporte')
                 ->with('error_message', $e->getMessage());
         }
     }
