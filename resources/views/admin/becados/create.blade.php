@@ -12,7 +12,7 @@
                             placeholder="Nombre completo" />
                     </div>
                 </div>
-                <div class="mt-4 flex gap-4">
+                <div class="mt-4 flex flex-col gap-4 lg:flex-row">
                     <div class="flex flex-[2] flex-col">
                         <x-input type="text" name="institution" label="Institución" placeholder="Institución" />
                     </div>
@@ -30,7 +30,7 @@
                             placeholder="Año que estudia actualmente" />
                     </div>
                 </div>
-                <div class="mt-4 flex gap-4">
+                <div class="mt-4 flex flex-col gap-4 lg:flex-row">
                     <div class="flex flex-[2] flex-col">
                         <x-input type="text" name="career" label="Carrera" placeholder="Carrera que estudia" />
                     </div>
