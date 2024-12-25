@@ -17,22 +17,30 @@ Route::controller(LoginController::class)->group(function () {
     Route::get("/", "index")->name("login");
     Route::post("/validate", "validate")->name("login.validate");
     Route::post("/logout", "logout")->name("logout");
+
+    Route::get("/forgot-password", "forgotPassword")->name("forgot-password");
+    Route::post("/send-email-reset-password", "emailResetPassword")->name("send-email-reset-password");
+    Route::get("/correo-enviado", "confirmSendEmailResetPassword")->name("confirm-send-email-reset-password");
+    Route::get("/reset-password", "resetPassword")->name("reset-password");
+    Route::post("/change-password", "changePassword")->name("change-password");
 });
 
 Route::middleware("auth")->group(function () {
     Route::get("/inicio", [HomeController::class, "index"])->name("home");
 
-    Route::get("/reportes", [ReporteController::class, "index"])->name("reporte.index");
-    Route::get("/enviar-reporte", [ReporteController::class, "create"])->name("reporte.create");
-    Route::post("/reporte", [ReporteController::class, "store"])->name("reporte.store");
-    Route::get("/reporte/{mes}", [ReporteController::class, "show"])->name("reporte.show");
+    Route::get("/reportes", [ReporteController::class, "index"])->name("reportes.index");
+    Route::get("/enviar-reporte", [ReporteController::class, "create"])->name("reportes.create");
+    Route::post("/reporte", [ReporteController::class, "store"])->name("reportes.store");
+    Route::get("/reporte", [ReporteController::class, "show"])->name("reportes.show");
 
     Route::get("/perfil", [ProfileController::class, "index"])->name("profile");
     Route::get("/verificar-correo", [ProfileController::class, "verifyEmail"])->name("profile.verifyEmail");
-    Route::post("/change-password", [ProfileController::class, "changePassword"])->name("profile.change-password");
+    Route::post("/cambiar-contraseña", [ProfileController::class, "changePassword"])->name("profile.change-password");
 
-    Route::post("/enviar-correo", [EmailController::class, "sendEmail"])->name("sendEmail");
-    Route::get("/email/verified", [EmailController::class, "verifyEmail"])->name("verifyEmail");
+    Route::post("/enviar-correo", [EmailController::class, "send"])->name("sendEmail");
+    Route::get("/verify-email", [EmailController::class, "verify"])->name("verifyEmail");
+
+    Route::post("/proyectos", [ProyectoController::class, "store"])->name("proyectos.store");
 });
 
 Route::middleware("role:admin")->prefix("admin")->name("admin.")->group(function () {
@@ -55,15 +63,16 @@ Route::middleware("role:admin")->prefix("admin")->name("admin.")->group(function
 
     //Routes for projects
     Route::get("/proyectos", [ProyectoController::class, "index"])->name("proyectos.index");
-    Route::post("/proyectos", [ProyectoController::class, "store"])->name("proyectos.store");
     Route::get("/proyectos/{id}/edit", [ProyectoController::class, "edit"])->name("proyectos.edit");
     Route::put("/proyectos/{id}", [ProyectoController::class, "update"])->name("proyectos.update");
     Route::delete("/proyectos/{id}", [ProyectoController::class, "destroy"])->name("proyectos.destroy");
     Route::get("/proyectos/{slug}/asignar", [ProyectoController::class, "assign"])->name("proyectos.asignar");
     Route::post("/proyectos/{id}/asignar", [ProyectoController::class, "assignStore"])->name("proyectos.asignar.store");
-    Route::get("/proyecto/reportes/{slug}", [ProyectoController::class, "reportes"])->name("proyectos.reportes");
-    Route::get("/reporte/{id}", [ProyectoController::class, "showReport"])->name("reporte.show");
-    Route::delete("/reporte/{id}", [ProyectoController::class, "destroyReport"])->name("reporte.destroy");
+    Route::get("/proyecto/reportes/{slug}", [ReporteController::class, "index"])->name("reportes.index");
+
+    //Routes for reports
+    Route::get("/reporte/{id}", [ReporteController::class, "show"])->name("reportes.show");
+    Route::delete("/reporte/{id}", [ReporteController::class, "destroy"])->name("reportes.destroy");
 
     //Routes for users
     Route::get("/usuarios", [UserController::class, "index"])->name("usuarios.index");
