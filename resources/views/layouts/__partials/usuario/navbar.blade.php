@@ -14,8 +14,8 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ Route('reporte.index') }}"
-                        class="{{ Route::is('reporte.index') ? 'bg-blue-500 text-white' : '' }} hover:bg-blue flex items-center gap-2 rounded-full px-3 py-1 hover:underline">
+                    <a href="{{ Route('reportes.index') }}"
+                        class="{{ Route::is('reportes.index') ? 'bg-blue-500 text-white' : '' }} hover:bg-blue flex items-center gap-2 rounded-full px-3 py-1 hover:underline">
                         <x-icon icon="report" class="h-5 w-5" />
                         Reportes
                     </a>
