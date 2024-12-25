@@ -13,7 +13,7 @@
                             placeholder="Nombre completo" value="{{ $becado->name }}" />
                     </div>
                 </div>
-                <div class="mt-4 flex gap-4">
+                <div class="mt-4 flex flex-col gap-4 lg:flex-row">
                     <div class="flex flex-[2] flex-col">
                         <x-input type="text" name="institution" label="Institución" placeholder="Institución"
                             value="{{ $becado->institution }}" />
@@ -33,7 +33,7 @@
                             placeholder="Año que estudia actualmente" value="{{ $becado->academic_level }}" />
                     </div>
                 </div>
-                <div class="mt-4 flex gap-4">
+                <div class="mt-4 flex flex-col gap-4 lg:flex-row">
                     <div class="flex flex-[2] flex-col">
                         <x-input type="text" name="career" label="Carrera" placeholder="Carrera que estudia"
                             value="{{ $becado->career }}" />
