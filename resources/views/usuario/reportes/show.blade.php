@@ -3,7 +3,7 @@
 @section('content')
     <section class="my-4 px-4">
         <div class="flex flex-col items-start justify-center gap-2">
-            <div class="flex w-full justify-between">
+            <div class="flex w-full flex-col-reverse justify-between gap-y-4 sm:flex-row">
                 <h1
                     class="flex items-center gap-2 text-lg font-bold uppercase text-zinc-800 dark:text-white sm:text-xl md:text-2xl lg:text-3xl">
                     Reporte de
