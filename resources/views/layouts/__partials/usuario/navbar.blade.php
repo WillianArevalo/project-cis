@@ -4,7 +4,9 @@
 <header class="p-4">
     <nav class="flex justify-between">
         <div class="flex">
-            <img src="{{ asset('images/cis-logo.webp') }}" alt="Logo CIS" class="h-10 w-10 rounded-full object-cover">
+            <a href="{{ Route('home') }}" class="flex items-center justify-center">
+                <img src="{{ asset('images/cis-logo.webp') }}" alt="Logo CIS" class="h-10 w-10 rounded-full object-cover">
+            </a>
             <ul class="ms-14 hidden items-center gap-10 dark:text-white sm:flex">
                 <li>
                     <a href="{{ Route('home') }}"
