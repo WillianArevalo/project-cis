@@ -88,14 +88,14 @@
     </div>
     <div class="{{ $style[$cardStyle] }} border-t p-4 text-center">
         @if ($send)
-            <x-button type="a" href="{{ Route('reporte.show', $month) }}" typeButton="success" text="Ver reporte"
-                icon="eye" />
+            <x-button type="a" href="{{ Route('reportes.show', ['mes' => $month]) }}" typeButton="success"
+                text="Ver reporte" icon="eye" />
         @else
             @if ($disabled)
                 <x-button type="button" typeButton="secondary" text="Enviar reporte" icon="send"
                     class="w-full cursor-not-allowed" />
             @else
-                <x-button type="a" href="{{ Route('reporte.create', ['mes' => $month]) }}" typeButton="primary"
+                <x-button type="a" href="{{ Route('reportes.create', ['mes' => $month]) }}" typeButton="primary"
                     text="Enviar reporte" icon="send" :disabled="$disabled" />
             @endif
         @endif
