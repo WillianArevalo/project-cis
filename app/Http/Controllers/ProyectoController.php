@@ -30,6 +30,7 @@ class ProyectoController extends Controller
 
     public function store(Request $request)
     {
+        dd($request->all());
         $request->validate([
             "name" => "required|string",
             "community_id" => "required|integer|exists:communities,id",
