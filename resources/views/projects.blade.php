@@ -13,10 +13,10 @@
                         Envia tu proyecto para que sea revisado y aprobado por el comité.
                     </p>
                 </div>
-                <form action="{{ Route('proyectos.store') }}" class="w-full sm:w-[60%]" method="POST"
-                    enctype="multipart/form-data">
+                <form action="{{ Route('proyectos.store') }}" class="w-full sm:w-[90%] md:w-[80%] lg:w-[75%] xl:w-[60%]"
+                    method="POST" enctype="multipart/form-data">
                     @csrf
-                    <div class="mt-4 flex items-center gap-4">
+                    <div class="mt-4 flex flex-col gap-4 sm:flex-row">
                         <div class="flex-[2]">
                             <x-input type="text" icon="folder" name="name" id="name" required
                                 placeholder="Ingresa el nombre del proyecto" label="Proyecto" />
@@ -37,13 +37,13 @@
                                 placeholder="Ingresa el objetivo general del proyecto social" label="Objetivo general" />
                         </div>
                     </div>
-                    <div class="mt-4 flex items-center gap-4">
+                    <div class="mt-4 flex flex-col gap-4 sm:flex-row sm:items-center">
                         <div class="flex-[2]">
                             <x-input type="text" name="specific_objectives" required
                                 placeholder="Ingresa el objetivo específico del proyecto social"
                                 label="Objetivo específico" />
                         </div>
-                        <div class="mt-6">
+                        <div class="sm:mt-6">
                             <x-button type="button" icon="plus" class="w-full" typeButton="primary" text="Agregar" />
                         </div>
                     </div>
@@ -80,16 +80,35 @@
                             placeholder="Ingresa los desafíos del proyecto" label="Desafíos" />
                     </div>
                     <div class="mt-4">
-                        <div id="map" style="height: 500px; width: 100%;" class="rounded-xl"></div>
-                        <img id="preview-map" />
-                        <div class="controls mt-4 flex items-center gap-4">
-                            <x-button type="button" id="get-link" text="Obtener enlace de ubicación" icon="link"
-                                typeButton="primary" />
-                            <x-button type="button" id="capture-map" text="Capturar mapa" icon="camera"
-                                typeButton="primary" />
-                            <input type="file" id="map-capture" name="map_image" style="display: none;" />
+                        <label
+                            class="mb-2 block text-sm font-medium text-zinc-500 after:ml-0.5 after:text-red-500 after:content-['*'] dark:text-zinc-300">
+                            Mapa
+                        </label>
+                        <div id="map" class="-z-0 h-80 w-full rounded-xl sm:h-[400px] md:h-[500px]"></div>
+                        <div id="preview-container" class="mt-4 hidden"></div>
+
+                        <div id="capture-map-msg" class="mt-4 hidden">
+                            <div
+                                class="flex items-center justify-center gap-2 rounded-xl border border-dashed border-green-400 bg-green-100 p-4 text-center text-sm text-green-500 dark:border-green-800 dark:bg-green-950/20">
+                                <x-icon icon="info-circle" class="h-4 w-4 text-green-500" />
+                                Captura del mapa guardada
+                            </div>
+                        </div>
+
+                        <div class="controls mt-4 flex w-full flex-col items-center gap-4 sm:flex-row">
+                            <x-button type="button" id="capture-map" text="Capturar mapa" icon="capture"
+                                typeButton="primary" class="w-full sm:w-max" />
+                            <x-button type="button" id="remove-map" text="Eliminar captura" icon="trash"
+                                typeButton="danger" class="hidden w-full sm:w-max" />
+                            <input type="file" id="map-image" name="map_image" style="display: none;" />
                         </div>
                     </div>
+
+                    <div class="mt-4">
+                        <x-input type="text" name="location" required placeholder="Ingresa la ubicación del proyecto"
+                            label="Ubicación" icon="map-pin" id="location" readonly />
+                    </div>
+
 
                     <div class="mt-4">
                         <span
