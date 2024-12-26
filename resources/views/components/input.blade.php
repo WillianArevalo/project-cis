@@ -10,6 +10,7 @@
     'required' => false,
     'icon' => '',
     'error' => true,
+    'legend' => '',
 ])
 
 @php
@@ -34,10 +35,15 @@
 @endphp
 
 @if ($label && $type !== 'checkbox' && $type !== 'radio' && $type !== 'file')
-    <label for="{{ $id }}"
-        class="{{ $labelClass }} mb-1 block text-sm font-medium text-zinc-500 dark:text-zinc-300">
-        {{ $label }}
-    </label>
+    <div class="mb-1 flex flex-col gap-1">
+        <label for="{{ $id }}"
+            class="{{ $labelClass }} block text-sm font-medium text-zinc-500 dark:text-zinc-300">
+            {{ $label }}
+        </label>
+        @if ($legend ?? false)
+            <span class="ms-1 text-xs text-zinc-400 dark:text-zinc-500">({{ $legend }})</span>
+        @endif
+    </div>
 @endif
 
 <div class="relative w-full">
@@ -61,6 +67,9 @@
         <label for="{{ $id }}"
             class="{{ $labelClass }} ms-1 inline-block text-sm font-medium text-zinc-500 dark:text-zinc-300">
             {{ $label }}
+            @if ($legend ?? false)
+                <span class="ms-1 text-xs text-zinc-400 dark:text-zinc-500">({{ $legend }})</span>
+            @endif
         </label>
     @elseif ($type === 'password')
         <div class="relative w-full">
