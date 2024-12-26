@@ -36,6 +36,16 @@ class Project extends Model
         'community_id',
         'accept',
         'document',
-        'sent_by'
+        'sent_by',
+        'benefited_population',
+        'general_objective',
+        'justification',
+        'location',
+        'map',
+        'contextualization',
+        'description_activities',
+        'projections',
+        'challenges',
+        'schedule',
     ];
 }
