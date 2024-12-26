@@ -73,8 +73,48 @@ class ReporteController extends Controller
     public function create(Request $request)
     {
         $mes = $request->input("mes");
+        $currentMonth = Carbon::now()->translatedFormat("F");
+
+        if (!$mes) {
+            return redirect()->route("reportes.index")
+                ->with("error_title", "Mes no especificado")
+                ->with("error_message", "No se ha especificado el mes del reporte");
+        }
+
+        //Obtener el indice del mes actual
+        $monthIndex = $this->getIndexMonth($currentMonth);
+        //Obtener el indice del mes solicitado
+        $monthIndexRequest = $this->getIndexMonth($mes);
+
+        //Si el mes solicitado es menor al mes actual, redirigir al index
+        if ($monthIndexRequest > $monthIndex) {
+            return redirect()->route("reportes.index")
+                ->with("error_title", "Mes no válido")
+                ->with("error_message", "No puedes enviar un reporte para un mes futuro");
+        }
+
         $proyecto = Project::find(auth()->user()->scholarship->project_id);
         return view("usuario.reportes.create", compact("proyecto", "mes"));
+    }
+
+    function getIndexMonth($month)
+    {
+        $months = [
+            "enero",
+            "febrero",
+            "marzo",
+            "abril",
+            "mayo",
+            "junio",
+            "julio",
+            "agosto",
+            "septiembre",
+            "octubre",
+            "noviembre",
+            "diciembre"
+        ];
+
+        return array_search($month, $months);
     }
 
     public function store(Request $request)
