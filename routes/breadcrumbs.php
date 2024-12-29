@@ -41,10 +41,28 @@ Breadcrumbs::for("admin.proyectos.index", function (BreadcrumbTrail $trail) {
     $trail->push($icon . "Proyectos", route("admin.proyectos.index"));
 });
 
-Breadcrumbs::for("admin.proyectos.asignar", function (BreadcrumbTrail $trail, $id) {
+Breadcrumbs::for("admin.proyectos.create", function (BreadcrumbTrail $trail) {
+    $icon = Blade::render("<x-icon icon='folder-plus' class='w-4 h-4'/>");
+    $trail->parent("admin.proyectos.index");
+    $trail->push($icon . "Nuevo proyecto", route("admin.proyectos.create"));
+});
+
+Breadcrumbs::for("admin.proyectos.show", function (BreadcrumbTrail $trail, $slug) {
+    $icon = Blade::render("<x-icon icon='folder' class='w-4 h-4'/>");
+    $trail->parent("admin.proyectos.index");
+    $trail->push($icon . "Detalles del proyecto", route("admin.proyectos.show", $slug));
+});
+
+Breadcrumbs::for("admin.proyectos.edit", function (BreadcrumbTrail $trail, $slug) {
+    $icon = Blade::render("<x-icon icon='pencil' class='w-4 h-4'/>");
+    $trail->parent("admin.proyectos.index");
+    $trail->push($icon . "Editar proyecto", route("admin.proyectos.edit", $slug));
+});
+
+Breadcrumbs::for("admin.proyectos.asignar", function (BreadcrumbTrail $trail, $slug) {
     $icon = Blade::render("<x-icon icon='user-up' class='w-4 h-4'/>");
     $trail->parent("admin.proyectos.index");
-    $trail->push($icon . "Asignar becados", route("admin.proyectos.asignar", $id));
+    $trail->push($icon . "Asignar becados", route("admin.proyectos.asignar", $slug));
 });
 
 Breadcrumbs::for("admin.reportes.index", function (BreadcrumbTrail $trail, $slug) {
