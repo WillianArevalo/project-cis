@@ -21,7 +21,7 @@
                         <img src="{{ Storage::url($user->scholarship->photo) }}" alt="{{ $user->name }}"
                             class="h-10 w-10 rounded-full object-cover">
                         <div class="hidden flex-col items-start sm:flex">
-                            <span class="text-xs font-medium text-blue-500">Hola,</span>
+                            <span class="text-xs font-medium text-orange-500">Hola,</span>
                             <span class="text-sm font-bold text-zinc-700 dark:text-white">{{ $user->user }}</span>
                         </div>
                         <x-icon icon="arrow-down" class="h-4 w-4 text-zinc-700 dark:text-zinc-400" />
@@ -81,7 +81,7 @@
             <ul class="relative mt-2 flex flex-col gap-2">
                 <li>
                     <a href="{{ Route('admin.dashboard') }}"
-                        class="{{ \App\Helpers\RouteHelper::isActive(['admin.dashboard']) }} group flex items-center rounded-lg p-2 text-base font-normal text-zinc-900 hover:bg-zinc-100 dark:text-white dark:hover:bg-zinc-900">
+                        class="{{ \App\Helpers\RouteHelper::isActive(['admin.dashboard']) }} group flex items-center rounded-lg p-2 text-base font-normal text-zinc-900 hover:bg-orange-100 hover:text-orange-500 dark:text-white dark:hover:bg-orange-950/30 dark:hover:text-orange-500">
                         <x-icon icon="dashboard" class="size-5 text-current" />
                         <span class="ml-3">
                             Dashboard
@@ -90,7 +90,7 @@
                 </li>
                 <li>
                     <a href="{{ Route('admin.becados.index') }}"
-                        class="{{ \App\Helpers\RouteHelper::isActive(['admin.becados.index', 'admin.becados.create', 'admin.becados.edit']) }} group flex items-center rounded-lg p-2 text-base font-normal text-zinc-900 hover:bg-zinc-100 dark:text-white dark:hover:bg-zinc-900">
+                        class="{{ \App\Helpers\RouteHelper::isActive(['admin.becados.index', 'admin.becados.create', 'admin.becados.edit']) }} group flex items-center rounded-lg p-2 text-base font-normal text-zinc-900 hover:bg-orange-100 hover:text-orange-500 dark:text-white dark:hover:bg-orange-950/30 dark:hover:text-orange-500">
                         <x-icon icon="school" class="size-5 text-current" />
                         <span class="ml-3">
                             Becados
@@ -99,7 +99,7 @@
                 </li>
                 <li>
                     <a href="{{ Route('admin.proyectos.index') }}"
-                        class="{{ \App\Helpers\RouteHelper::isActive(['admin.proyectos.index', 'admin.proyectos.asignar', 'admin.proyectos.reportes', 'admin.reportes.show']) }} group flex items-center rounded-lg p-2 text-base font-normal text-zinc-900 hover:bg-zinc-100 dark:text-white dark:hover:bg-zinc-900">
+                        class="{{ \App\Helpers\RouteHelper::isActive(['admin.proyectos.index', 'admin.proyectos.asignar', 'admin.proyectos.reportes', 'admin.reportes.show']) }} group flex items-center rounded-lg p-2 text-base font-normal text-zinc-900 hover:bg-orange-100 hover:text-orange-500 dark:text-white dark:hover:bg-orange-950/30 dark:hover:text-orange-500">
                         <x-icon icon="folder" class="size-5 text-current" />
                         <span class="ml-3">
                             Proyectos
@@ -108,7 +108,7 @@
                 </li>
                 <li>
                     <a href="{{ Route('admin.comunidades.index') }}"
-                        class="{{ \App\Helpers\RouteHelper::isActive(['admin.comunidades.index']) }} group flex items-center rounded-lg p-2 text-base font-normal text-zinc-900 hover:bg-zinc-100 dark:text-white dark:hover:bg-zinc-900">
+                        class="{{ \App\Helpers\RouteHelper::isActive(['admin.comunidades.index']) }} group flex items-center rounded-lg p-2 text-base font-normal text-zinc-900 hover:bg-orange-100 hover:text-orange-500 dark:text-white dark:hover:bg-orange-950/30 dark:hover:text-orange-500">
                         <x-icon icon="home" class="size-5 text-current" />
                         <span class="ml-3">
                             Comunidades
@@ -117,7 +117,7 @@
                 </li>
                 <li>
                     <a href="{{ Route('admin.usuarios.index') }}"
-                        class="{{ \App\Helpers\RouteHelper::isActive(['admin.usuarios.index', 'admin.usuarios.edit', 'admin.usuarios.create']) }} flex items-center rounded-lg p-2 text-base font-normal text-zinc-900 hover:bg-zinc-100 dark:text-white dark:hover:bg-zinc-900">
+                        class="{{ \App\Helpers\RouteHelper::isActive(['admin.usuarios.index', 'admin.usuarios.edit', 'admin.usuarios.create']) }} flex items-center rounded-lg p-2 text-base font-normal text-zinc-900 hover:bg-orange-100 hover:text-orange-500 dark:text-white dark:hover:bg-orange-950/30 dark:hover:text-orange-500">
                         <x-icon icon="users" class="size-5 text-current" />
                         <span class="ml-3">
                             Usuarios
