@@ -67,10 +67,10 @@ $(document).ready(function () {
         $("#assign-form").submit();
     });
 
-    // Projects
-    const $file = $("#input-doc");
-    const $fileName = $("#file-name");
-    const $btnRemoveFile = $("#remove-file");
+    /*   // Projects
+    const $file = $("#input-schedule");
+    const $fileName = $("#file-name-schedule");
+    const $btnRemoveFile = $("#remove-file-schedule");
 
     $file.on("change", function () {
         const file = this.files[0];
@@ -90,5 +90,5 @@ $(document).ready(function () {
             $fileName.text("Formatos permitidos: .pdf, .docx");
             $btnRemoveFile.addClass("hidden");
         });
-    });
+    }); */
 });
