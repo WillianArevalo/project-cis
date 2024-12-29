@@ -62,7 +62,7 @@
     @elseif ($type === 'checkbox' || $type === 'radio')
         <input type="checkbox" value="{{ $value }}" name="{{ $name }}" id="{{ $id }}"
             {{ $attributes }} {{ $checked ? 'checked' : '' }}
-            class="{{ $class }} focus:ring-primary-500 dark:focus:ring-primary-600 h-4 w-4 rounded border-2 border-zinc-400 bg-zinc-100 focus:ring-2 dark:border-zinc-800 dark:bg-zinc-950 dark:ring-offset-zinc-800"
+            class="{{ $class }} h-4 w-4 rounded border-2 border-zinc-400 bg-zinc-100 text-orange-500 focus:ring-2 focus:ring-orange-500 dark:border-zinc-800 dark:bg-zinc-950 dark:ring-offset-zinc-800 dark:focus:ring-orange-600"
             @if ($required) required @endif>
         <label for="{{ $id }}"
             class="{{ $labelClass }} ms-1 inline-block text-sm font-medium text-zinc-500 dark:text-zinc-300">
