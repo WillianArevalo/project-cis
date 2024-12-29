@@ -93,6 +93,12 @@ class ProyectoController extends Controller
                 }
             }
 
+            $scholarships = explode(",", $request->scholarship_id);
+            foreach ($scholarships as $scholarship) {
+                Scholarship::where('id', $scholarship)
+                    ->update(['project_id' => $proyecto->id]);
+            }
+
             DB::commit();
 
             if ($user->role === "admin") {
@@ -138,7 +144,7 @@ class ProyectoController extends Controller
             $proyecto->slug = $newSlug;
             $proyecto->accept = $request->has("accept") ? 1 : 0;
 
-            if ($request->has("accept") && $request->accept) {
+            if ($request->has("accept")) {
                 if ($proyecto->sentBy->role !== "admin") {
                     $scholarship = Scholarship::where("user_id", $proyecto->sent_by)->firstOrFail();
                     $scholarship->update(["project_id" => $proyecto->id]);
@@ -216,15 +222,8 @@ class ProyectoController extends Controller
             $proyecto = Project::findOrFail($id);
             $document = $proyecto->document;
             if ($document) {
-                $path = public_path("storage/{$document}");
-                $directory = dirname($path);
-
-                if (file_exists($path)) {
-                    unlink($path);
-                }
-
-                if (is_dir($directory) && count(scandir($directory)) == 2) {
-                    rmdir($directory);
+                if (Storage::disk('public')->exists($document)) {
+                    Storage::disk('public')->delete($document);
                 }
             }
 
