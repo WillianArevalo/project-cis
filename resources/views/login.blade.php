@@ -23,7 +23,7 @@
                     </div>
                     <div class="text-center">
                         <a href="{{ Route('forgot-password') }}"
-                            class="text-sm font-medium text-blue-500 hover:underline dark:text-blue-400">
+                            class="text-sm font-medium text-zinc-500 hover:text-orange-400 hover:underline dark:text-zinc-400 dark:hover:text-orange-500">
                             ¿Olvidaste tu contraseña?
                         </a>
                     </div>
