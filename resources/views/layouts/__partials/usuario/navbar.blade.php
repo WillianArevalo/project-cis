@@ -10,14 +10,14 @@
             <ul class="ms-14 hidden items-center gap-10 dark:text-white sm:flex">
                 <li>
                     <a href="{{ Route('home') }}"
-                        class="{{ Route::is('home') ? 'bg-blue-500 text-white' : '' }} hover:bg-blue flex items-center gap-2 rounded-full px-3 py-1 hover:underline">
+                        class="{{ Route::is('home') ? 'bg-orange-500 text-white' : '' }} hover:bg-orange flex items-center gap-2 rounded-full px-3 py-1 hover:underline">
                         <x-icon icon="home" class="h-5 w-5" />
                         Inicio
                     </a>
                 </li>
                 <li>
                     <a href="{{ Route('reportes.index') }}"
-                        class="{{ Route::is('reportes.index') ? 'bg-blue-500 text-white' : '' }} hover:bg-blue flex items-center gap-2 rounded-full px-3 py-1 hover:underline">
+                        class="{{ Route::is('reportes.index') ? 'bg-orange-500 text-white' : '' }} hover:bg-orange flex items-center gap-2 rounded-full px-3 py-1 hover:underline">
                         <x-icon icon="report" class="h-5 w-5" />
                         Reportes
                     </a>
@@ -30,7 +30,7 @@
                     <img src="{{ Storage::url($user->scholarship->photo) }}" alt="{{ $user->name }}"
                         class="h-10 w-10 rounded-full object-cover">
                     <div class="flex flex-col">
-                        <span class="text-xs font-medium text-blue-500">Hola,</span>
+                        <span class="text-xs font-medium text-orange-500">Hola,</span>
                         <span class="text-sm font-bold text-zinc-700 dark:text-white">{{ $user->user }}</span>
                     </div>
                     <x-icon icon="arrow-down" class="h-4 w-4 text-zinc-700 dark:text-zinc-400" />
