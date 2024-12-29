@@ -4,8 +4,8 @@
     <section class="my-4">
         <div>
             <div class="flex items-center gap-2">
-                <span class="rounded-xl bg-blue-100 p-2 dark:bg-blue-950/30">
-                    <x-icon icon="file-upload" class="h-8 w-8 text-blue-500 dark:text-blue-500" />
+                <span class="rounded-xl bg-orange-100 p-2 dark:bg-orange-950/30">
+                    <x-icon icon="file-upload" class="h-8 w-8 text-orange-500 dark:text-orange-500" />
                 </span>
                 <h1 class="text-4xl font-bold text-zinc-800 dark:text-white">
                     Enviar reporte
