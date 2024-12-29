@@ -30,6 +30,11 @@ class Project extends Model
         return $this->belongsTo(User::class, 'sent_by');
     }
 
+    public function specificObjetives()
+    {
+        return $this->hasMany(ProjectSpecificObjetive::class, 'project_id');
+    }
+
     protected $fillable = [
         'name',
         'slug',
