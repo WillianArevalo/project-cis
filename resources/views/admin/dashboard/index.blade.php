@@ -9,7 +9,7 @@
         <div class="mt-4 grid grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-3">
             <div class="h-full rounded-3xl border border-zinc-400 p-4 dark:border-zinc-800 dark:bg-zinc-950">
                 <div class="flex items-center justify-center gap-2">
-                    <span class="rounded-xl bg-blue-100 p-2 text-blue-500">
+                    <span class="rounded-xl bg-orange-100 p-2 text-orange-500">
                         <x-icon icon="school" class="size-6 text-current" />
                     </span>
                     <h2 class="text-2xl font-bold text-black dark:text-white">
@@ -27,7 +27,7 @@
             </div>
             <div class="rounded-3xl border border-zinc-400 p-4 dark:border-zinc-800 dark:bg-zinc-950">
                 <div class="flex items-center justify-center gap-2">
-                    <span class="rounded-xl bg-blue-100 p-2 text-blue-500">
+                    <span class="rounded-xl bg-orange-100 p-2 text-orange-500">
                         <x-icon icon="folders" class="size-6 text-current" />
                     </span>
                     <h2 class="text-2xl font-bold text-black dark:text-white">
@@ -45,7 +45,7 @@
             </div>
             <div class="rounded-3xl border border-zinc-400 p-4 dark:border-zinc-800 dark:bg-zinc-950">
                 <div class="flex items-center justify-center gap-2">
-                    <span class="rounded-xl bg-blue-100 p-2 text-blue-500">
+                    <span class="rounded-xl bg-orange-100 p-2 text-orange-500">
                         <x-icon icon="home" class="size-6 text-current" />
                     </span>
                     <h2 class="text-2xl font-bold text-black dark:text-white">
@@ -63,7 +63,7 @@
             </div>
             <div class="rounded-3xl border border-zinc-400 p-4 dark:border-zinc-800 dark:bg-zinc-950">
                 <div class="flex items-center justify-center gap-2">
-                    <span class="rounded-xl bg-blue-100 p-2 text-blue-500">
+                    <span class="rounded-xl bg-orange-100 p-2 text-orange-500">
                         <x-icon icon="users" class="size-6 text-current" />
                     </span>
                     <h2 class="text-2xl font-bold text-black dark:text-white">
@@ -88,6 +88,9 @@
                 <x-table id="tableProjects">
                     <x-slot name="thead">
                         <x-tr>
+                            <x-th class="w-10">
+                                <x-icon icon="hash" class="size-4" />
+                            </x-th>
                             <x-th>
                                 Proyecto
                             </x-th>
@@ -106,6 +109,9 @@
                         @if ($proyectos->count() > 0)
                             @foreach ($proyectos as $proyecto)
                                 <x-tr>
+                                    <x-td>
+                                        {{ $loop->iteration }}
+                                    </x-td>
                                     <x-td>
                                         {{ $proyecto->name }}
                                     </x-td>
