@@ -147,10 +147,11 @@ html.dark .dt-container.dt-empty-footer table.dataTable {
 
 html.dark .dot-spinner {
     --uib-color: #fff;
+    --color: #f3ba96;
 }
 
 .active-link-admin {
-    @apply bg-blue-500 hover:bg-blue-600 text-white !important;
+    @apply bg-orange-500 hover:bg-orange-600 text-white !important;
 }
 
 .active {
