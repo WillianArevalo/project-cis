@@ -26,7 +26,7 @@
             </div>
             <div class="h-full flex-[2]">
                 <div class="rounded-2xl border border-zinc-400 p-4 shadow-md dark:border-zinc-800">
-                    <h1 class="text-lg font-bold text-blue-600 dark:text-blue-500 sm:text-xl md:text-2xl lg:text-3xl">
+                    <h1 class="text-lg font-bold text-orange-500 dark:text-orange-500 sm:text-xl md:text-2xl lg:text-3xl">
                         {{ $user->scholarship->name }}
                     </h1>
                     <p class="mt-2 text-sm text-zinc-800 dark:text-zinc-300">
