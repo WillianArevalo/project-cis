@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Community;
 use App\Models\Project;
 use App\Models\Report;
+use App\Models\Scholarship;
 use App\Models\Setting;
 use App\Models\User;
 use Carbon\Carbon;
@@ -30,7 +31,8 @@ class HomeController extends Controller
         if ($project_mode->value == 1) {
             $comunidades = Community::all();
             $project = Project::where("sent_by", auth()->id())->first();
-            return view('projects', compact('comunidades', 'project'));
+            $becados = Scholarship::all();
+            return view('projects', compact('comunidades', 'project', 'becados'));
         }
 
         $user = User::with("scholarship")->find(auth()->id());
