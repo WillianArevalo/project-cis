@@ -40,7 +40,8 @@
 
     // Tipos de botones
     $buttonTypes = [
-        'primary' => 'bg-blue-500 text-white hover:bg-blue-600 dark:bg-blue-700 dark:text-white dark:hover:bg-blue-600',
+        'primary' =>
+            'bg-orange-500 text-white hover:bg-orange-600 dark:bg-orange-500 dark:text-white dark:hover:bg-orange-600',
         'secondary' =>
             'border text-zinc-600 hover:bg-zinc-100 border-zinc-400 dark:border-zinc-800 dark:text-white dark:hover:bg-zinc-900',
         'danger' =>
