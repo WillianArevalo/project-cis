@@ -49,7 +49,7 @@
                 </div>
                 <div class="mt-4">
                     <label
-                        class="flex w-max cursor-pointer items-center justify-center gap-2 rounded-lg border border-zinc-400 px-5 py-2.5 text-sm font-medium text-zinc-600 transition-colors duration-300 hover:bg-zinc-100 dark:border-zinc-800 dark:text-white dark:hover:bg-zinc-900">
+                        class="flex w-max cursor-pointer items-center justify-center gap-2 rounded-xl border border-zinc-400 px-5 py-2.5 text-sm font-medium text-zinc-600 transition-colors duration-300 hover:bg-zinc-100 dark:border-zinc-800 dark:text-white dark:hover:bg-zinc-900">
                         <x-icon icon="camera-plus" class="h-5 w-5" />
                         Seleccionar foto
                         <input type="file" name="photo" class="mt-2 hidden" id="photo"
