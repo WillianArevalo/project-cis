@@ -8,8 +8,7 @@
                 <x-input type="text" placeholder="Buscar proyecto" icon="search" id="inputSearchProjects" />
             </div>
             <div class="flex-3">
-                <x-button type="a" id="modalNewProjectButton" data-modal-target="modalNewProject"
-                    data-modal-toggle="modalNewProject" href="#" icon="folder-plus" typeButton="primary"
+                <x-button type="a" href="{{ Route('admin.proyectos.create') }}" icon="folder-plus" typeButton="primary"
                     text="Nuevo proyecto" />
             </div>
         </div>
@@ -135,11 +134,9 @@
                                 </x-td>
                                 <x-td>
                                     <div class="flex gap-2">
-                                        <x-button type="button" class="btnEditProject"
-                                            data-url="{{ Route('admin.proyectos.edit', $proyecto->id) }}" icon="pencil"
-                                            onlyIcon typeButton="success" data-modal-target="modalEditProject"
-                                            data-action="{{ Route('admin.proyectos.update', $proyecto->id) }}"
-                                            data-modal-toggle="modalEditProject" />
+                                        <x-button type="a"
+                                            href="{{ Route('admin.proyectos.edit', $proyecto->slug) }}" icon="pencil"
+                                            onlyIcon typeButton="success" />
                                         <form action="{{ Route('admin.proyectos.destroy', $proyecto->id) }}" method="POST"
                                             id="proyecto-{{ $proyecto->id }}">
                                             @csrf
@@ -150,13 +147,26 @@
                                                 icon="trash" typeButton="danger" />
                                         </form>
                                         <x-button type="a"
-                                            href="{{ Route('admin.proyectos.asignar', $proyecto->slug) }}" icon="user-up"
+                                            href="{{ Route('admin.proyectos.show', $proyecto->slug) }}" icon="eye"
                                             onlyIcon typeButton="secondary" />
                                         <x-button type="a"
+                                            href="{{ Route('admin.proyectos.asignar', $proyecto->slug) }}" icon="user-up"
+                                            onlyIcon typeButton="secondary"
+                                            data-tooltip-target="tooltip-assigned-{{ $proyecto->id }}" />
+                                        <div id="tooltip-assigned-{{ $proyecto->id }}" role="tooltip"
+                                            class="tooltip invisible absolute z-10 inline-block rounded-lg bg-zinc-950 px-2 py-1 text-xs font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-zinc-100 dark:text-zinc-900">
+                                            Asignar becados al proyecto
+                                            <div class="tooltip-arrow" data-popper-arrow></div>
+                                        </div>
+                                        <x-button type="a"
                                             href="{{ Route('admin.reportes.index', $proyecto->slug) }}" icon="report"
-                                            onlyIcon typeButton="secondary" />
-                                        <x-button type="a" href="{{ Storage::url($proyecto->document) }}"
-                                            icon="download" onlyIcon typeButton="secondary" target="_blank" />
+                                            onlyIcon typeButton="secondary"
+                                            data-tooltip-target="tooltip-reports-{{ $proyecto->id }}" />
+                                        <div id="tooltip-reports-{{ $proyecto->id }}" role="tooltip"
+                                            class="tooltip invisible absolute z-10 inline-block rounded-lg bg-zinc-950 px-2 py-1 text-xs font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-zinc-100 dark:text-zinc-900">
+                                            Reportes
+                                            <div class="tooltip-arrow" data-popper-arrow></div>
+                                        </div>
                                     </div>
                                 </x-td>
                             </x-tr>
