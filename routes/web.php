@@ -63,6 +63,8 @@ Route::middleware("role:admin")->prefix("admin")->name("admin.")->group(function
 
     //Routes for projects
     Route::get("/proyectos", [ProyectoController::class, "index"])->name("proyectos.index");
+    Route::get("/proyectos/create", [ProyectoController::class, "create"])->name("proyectos.create");
+    Route::get("/proyectos/{slug}", [ProyectoController::class, "show"])->name("proyectos.show");
     Route::get("/proyectos/{id}/edit", [ProyectoController::class, "edit"])->name("proyectos.edit");
     Route::put("/proyectos/{id}", [ProyectoController::class, "update"])->name("proyectos.update");
     Route::delete("/proyectos/{id}", [ProyectoController::class, "destroy"])->name("proyectos.destroy");
