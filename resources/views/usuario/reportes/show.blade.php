@@ -21,7 +21,7 @@
         </div>
         <div class="mx-auto mt-4">
             <div>
-                <h3 class="text-lg font-bold text-blue-500 dark:text-blue-500 sm:text-xl">
+                <h3 class="text-lg font-bold text-orange-500 dark:text-orange-500 sm:text-xl">
                     {{ $report->theme }}
                 </h3>
                 <div class="mt-2 flex justify-between">
