@@ -9,8 +9,9 @@ $(document).ready(function () {
 
     $("#add-objective").on("click", function () {
         const value = $specificObjective.val();
-        $("#no-objectives").addClass("hidden");
         if (value !== "") {
+            $("#no-objectives").addClass("hidden");
+            $specificObjective.removeClass("is-invalid");
             if (!objectives.includes(value)) {
                 objectives.push(value);
                 const $li = $("<li>")
@@ -86,9 +87,10 @@ $(document).ready(function () {
 
         $("#capture-map").on("click", function () {
             $("#loader").removeClass("hidden");
+            $("body").addClass("overflow-hidden");
             leafletImage(map, function (err, canvas) {
                 $("#loader").addClass("hidden");
-
+                $("body").removeClass("overflow-hidden");
                 if (err) {
                     alert("Ocurrió un error al capturar el mapa");
                     console.error(err);
