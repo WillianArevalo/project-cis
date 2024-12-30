@@ -205,17 +205,17 @@ $(document).ready(function () {
         }
         scholarships.push(value);
         $listScholarships.append(html);
-        console.log(scholarships);
     });
 
     $(document).on("click", ".btn-remove-scholarship", function () {
         const $btn = $(this);
         const value = $btn.parent().data("id");
         scholarships = scholarships.filter(
-            (scholarship) => scholarship !== value
+            (scholarship) => scholarship != value
         );
+
         $btn.parent().remove();
-        if (scholarships.length === 0) {
+        if (scholarships.length == 0) {
             $("#no-scholarships").removeClass("hidden");
         }
     });
