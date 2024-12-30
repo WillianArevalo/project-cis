@@ -33,17 +33,17 @@
 @if ($alertType)
     <div class="flex items-center justify-center">
         <div
-            class="alert fixed top-10 z-[100] flex w-max animate-fade-left overflow-hidden rounded-lg bg-white shadow-md animate-duration-300 dark:bg-zinc-950 sm:right-10">
+            class="alert fixed top-10 z-[100] flex w-96 animate-fade-left overflow-hidden rounded-lg bg-white shadow-md animate-duration-300 dark:bg-zinc-950 sm:right-10">
             <div class="{{ $bgColor }} flex w-12 items-center justify-center px-4">
                 <x-icon icon="{{ $icon }}" class="size-6 min-w-6 max-w-6 text-white" />
             </div>
             <div class="-mx-3 px-4 py-2">
-                <div class="mx-3 flex items-center justify-between">
+                <div class="mx-3 flex w-full items-center justify-between">
                     <div>
                         <span class="{{ $textColor }} text-sm font-semibold sm:text-base">
                             {{ $title }}
                         </span>
-                        <p class="w-96 text-wrap text-xs text-zinc-600 dark:text-zinc-200 sm:text-sm">
+                        <p class="w-full text-wrap text-xs text-zinc-600 dark:text-zinc-200 sm:text-sm">
                             {{ $message }}
                         </p>
                     </div>
