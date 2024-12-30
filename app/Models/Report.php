@@ -26,6 +26,11 @@ class Report extends Model
         return $this->belongsTo(User::class, 'sent_by');
     }
 
+    public function assits()
+    {
+        return $this->hasMany(ReportAssist::class, 'report_id');
+    }
+
     protected $casts = [
         'date' => 'datetime',
     ];
