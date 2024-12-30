@@ -41,6 +41,12 @@ class HomeController extends Controller
                 ->with("error_title", "No tienes un proyecto asignado")->with("error_message", "Por favor, contacta a tu administrador para asignarte un proyecto");
         }
 
+        if ($user->scholarship->project->accept === 0) {
+            return redirect()->route("login")
+                ->with("error_title", "Proyecto no aceptado")
+                ->with("error_message", "Tu proyecto todavía no ha sido aceptado por el cómite");
+        }
+
         $proyecto = Project::find($user->scholarship->project_id);
         $reportes = Report::where("project_id", $user->scholarship->project_id)->get();
         $mes = Carbon::now()->translatedFormat("F");
