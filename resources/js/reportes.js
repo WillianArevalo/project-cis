@@ -46,7 +46,7 @@ $(document).ready(function () {
         }
     });
 
-    $("#btn-add-report").on("click", function (event) {
+    $("#btn-add-report").on("click", function () {
         const $form = $("#form-report");
         const formData = new FormData($form[0]);
 
@@ -56,6 +56,15 @@ $(document).ready(function () {
         } else {
             $("#container-file").removeClass("is-invalid");
             $("#container-error-file").removeClass("flex").addClass("hidden");
+        }
+
+        if ($("input[name='scholarships[]']:checked").length === 0) {
+            showToast(
+                "error",
+                "Ooops!",
+                "Debes seleccionar al menos un becado para la asistencia"
+            );
+            return;
         }
 
         images.forEach((image) => {
@@ -77,9 +86,11 @@ $(document).ready(function () {
                 contentType: false,
                 beforeSend: function () {
                     $("#loader").removeClass("hidden");
+                    $("body").addClass("overflow-hidden");
                 },
                 success: function (response) {
                     $("#loader").hide();
+                    $("body").removeClass("overflow-hidden");
                     showToast(
                         "success",
                         response.message,
@@ -87,7 +98,8 @@ $(document).ready(function () {
                     );
                     setTimeout(() => {
                         window.location.href = response.redirect;
-                    }, 1000);
+                    }, 700);
+                    console.log(response);
                 },
                 error: function (error) {
                     console.log(error);
@@ -95,12 +107,13 @@ $(document).ready(function () {
                 },
                 complete: function () {
                     $("#loader").hide();
+                    $("body").removeClass("overflow-hidden");
                 },
             });
         } else {
             if (!isValid) {
                 showToast(
-                    "info",
+                    "warning",
                     "Información incompleta",
                     "Por favor, complete los campos requeridos"
                 );
@@ -160,4 +173,12 @@ $(document).ready(function () {
             });
         return isValid;
     }
+
+    $("#check-all").on("click", function () {
+        if ($(this).is(":checked")) {
+            $("input[name='scholarships[]']").prop("checked", true);
+        } else {
+            $("input[name='scholarships[]']").prop("checked", false);
+        }
+    });
 });
