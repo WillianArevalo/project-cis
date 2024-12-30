@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Mail\ReportsCompleted;
 use App\Models\Project;
 use App\Models\Report;
+use App\Models\ReportAssist;
 use App\Models\ReportImages;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -125,6 +126,17 @@ class ReporteController extends Controller
             $project = Project::find($user->scholarship->project_id);
             $currentMonth = Carbon::now()->translatedFormat("F");
 
+            $exists = Report::where("project_id", $project->id)
+                ->where("month", $request->month)
+                ->first();
+
+            if ($exists) {
+                return response()->json([
+                    "message" => "Ya has enviado un reporte para este mes",
+                    "redirect" => route("reportes.index")
+                ], 400);
+            }
+
             $report = Report::create([
                 "project_id" => $project->id,
                 "month" => $request->month,
@@ -148,8 +160,17 @@ class ReporteController extends Controller
                 }
             }
 
-            DB::commit();
+            $assistences = [];
+            if ($request->scholarships) {
+                foreach ($request->scholarships as $scholarship) {
+                    $assistences[] = new ReportAssist([
+                        "scholarship_id" => $scholarship,
+                    ]);
+                }
+                $report->assits()->saveMany($assistences);
+            }
 
+            DB::commit();
             $countProjects = Project::where("accept", 1)->count();
             $reportsCurrentsMonth = Report::where("month", $currentMonth)->count();
 
@@ -172,14 +193,15 @@ class ReporteController extends Controller
         $user = auth()->user();
         if ($user->role === "admin") {
             if ($id) {
-                $report = Report::findOrFail($id);
-
+                $report
+                    = Report::with(
+                        ['assits.scholarship', 'project.scholarships']
+                    )->find($id);
                 if (!$report) {
                     return redirect()->route("admin.proyectos.index")
                         ->with('error_title', 'Reporte no encontrado')
                         ->with('error_message', "No se ha encontrado el reporte solicitado");
                 }
-
                 return view("admin.proyectos.show-report", compact("report"));
             } else {
                 return redirect()->route("admin.proyectos.index")
@@ -194,7 +216,11 @@ class ReporteController extends Controller
                     ->with("error_message", "No se ha especificado el mes del reporte");
             }
             $project = Project::find($user->scholarship->project_id);
-            $report = Report::where("project_id", $project->id)->where("month", $mes)->first();
+            $report = Report::with(
+                ['assits.scholarship', 'project.scholarships']
+            )->where("project_id", $project->id)
+                ->where("month", $mes)
+                ->first();
             if (!$report) {
                 return redirect()->route("reportes.index")
                     ->with("error_title", "Reporte no encontrado")
