@@ -301,7 +301,8 @@
                                         <li class="itemOption cursor-default truncate rounded-xl px-4 py-3 text-sm text-zinc-900 hover:bg-zinc-100 dark:text-white dark:hover:bg-zinc-900/50"
                                             title="{{ $becado->name }}" data-value="{{ $becado->id }}"
                                             data-input="#scholarship_id">
-                                            <div class="option-scholarship flex items-center">
+                                            <div
+                                                class="option-scholarship flex items-center text-zinc-600 dark:text-zinc-300">
                                                 <img src="{{ Storage::url($becado->photo) }}" alt="{{ $becado->name }}"
                                                     class="size-8 rounded-full object-cover">
                                                 <span class="ml-2 text-sm">{{ $becado->name }}</span>
