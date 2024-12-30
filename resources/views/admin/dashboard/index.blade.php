@@ -75,7 +75,7 @@
                     <img src="{{ asset('svg/users.svg') }}" alt="becados" class="mx-auto h-60 w-full">
                 </div>
                 <div class="mt-6 flex items-center justify-center">
-                    <x-button type="a" href="{{ route('admin.comunidades.index') }}" typeButton="primary"
+                    <x-button type="a" href="{{ route('admin.usuarios.index') }}" typeButton="primary"
                         text="Ver usuarios" icon="users" />
                 </div>
             </div>
