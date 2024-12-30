@@ -35,20 +35,56 @@
                     </span>
                 </div>
             </div>
-            <p class="mt-4 text-sm text-zinc-700 dark:text-zinc-400 sm:text-base">
+            <p class="mt-4 w-full text-sm text-zinc-700 dark:text-zinc-400 sm:text-base lg:w-1/2">
                 {{ $report->description }}
             </p>
-            <p class="mt-4 text-sm text-red-500 dark:text-red-500 sm:text-base">
+            <p class="mt-4 w-full text-sm text-red-500 dark:text-red-500 sm:text-base lg:w-1/2">
                 {{ $report->obstacles }}
             </p>
         </div>
+
+        <div class="mt-4">
+            <h3 class="mx-auto text-base font-bold uppercase text-zinc-800 dark:text-white sm:text-lg md:text-xl">
+                Asistencia
+            </h3>
+            <div class="mt-2 flex flex-col flex-wrap gap-4">
+                @foreach ($report->project->scholarships as $scholarship)
+                    @php
+                        $assisted = $report->assits->firstWhere('scholarship_id', $scholarship->id);
+                    @endphp
+                    <div class="flex items-center gap-2">
+                        <img src="{{ Storage::url($scholarship->photo) }}" alt="User SVG"
+                            class="size-10 rounded-full object-cover">
+                        <div class="flex flex-col gap-1">
+                            <span class="text-sm font-bold text-zinc-700 dark:text-zinc-400">
+                                {{ $scholarship->name }}
+                            </span>
+                            @if ($assisted)
+                                <span
+                                    class="flex w-max items-center gap-1 rounded-full bg-green-100 px-2 py-1 text-xs text-green-500 dark:bg-green-950/30 dark:text-green-400">
+                                    <x-icon icon="circle-check" class="size-4" />
+                                    Asistió
+                                </span>
+                            @else
+                                <span
+                                    class="flex w-max items-center gap-1 rounded-full bg-red-100 px-2 py-1 text-xs text-red-500 dark:bg-red-950/30 dark:text-red-400">
+                                    <x-icon icon="circle-x" class="size-4" />
+                                    No asistió
+                                </span>
+                            @endif
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+
         <div class="mt-4">
             <h3 class="text-base text-zinc-800 dark:text-white">
                 Enviado por
             </h3>
             <div class="mt-2 flex items-center gap-2">
                 <img src="{{ Storage::url($report->user->scholarship->photo) }}" alt="User SVG"
-                    class="h-8 w-8 rounded-full object-cover">
+                    class="size-10 rounded-full object-cover">
                 <div class="flex flex-col gap-1">
                     <span class="text-sm font-bold text-zinc-700 dark:text-zinc-400">
                         {{ $report->user->scholarship->name }}
