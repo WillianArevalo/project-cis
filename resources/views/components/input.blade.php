@@ -111,7 +111,7 @@
 
 @if ($error === true)
     @error($name)
-        <span class="mt-2 flex items-center gap-1 text-sm text-red-500">
+        <span class="mt-1 flex items-center gap-1 text-sm text-red-500">
             <x-icon icon="exclamation-circle" class="h-4 w-4" />
             <span class="error-msg text-red-500">
                 {{ $message }}
