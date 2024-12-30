@@ -32,6 +32,34 @@
                         </div>
                     </div>
                 </div>
+                <div class="mt-4">
+                    <p class="block text-sm font-medium text-zinc-500 dark:text-zinc-300">
+                        Asistencia
+                    </p>
+                    <div class="mt-4 flex flex-col gap-2">
+                        @if ($proyecto->scholarships->count() > 2)
+                            <div class="mb-2 flex items-center gap-2">
+                                <input type="checkbox" id="check-all"
+                                    class="h-4 w-4 rounded border-2 border-zinc-400 bg-zinc-100 text-orange-500 focus:ring-2 focus:ring-orange-500 dark:border-zinc-800 dark:bg-zinc-950 dark:ring-offset-zinc-800 dark:focus:ring-orange-600">
+                                <label for="check-all"
+                                    class="inline-block text-sm font-medium text-zinc-500 dark:text-zinc-300">
+                                    Seleccionar todos
+                                </label>
+                            </div>
+                        @endif
+                        @foreach ($proyecto->scholarships as $scholarship)
+                            <div class="flex items-center gap-2">
+                                <input type="checkbox" name="scholarships[]" id="scholarship-{{ $scholarship->id }}"
+                                    value="{{ $scholarship->id }}"
+                                    class="h-4 w-4 rounded border-2 border-zinc-400 bg-zinc-100 text-orange-500 focus:ring-2 focus:ring-orange-500 dark:border-zinc-800 dark:bg-zinc-950 dark:ring-offset-zinc-800 dark:focus:ring-orange-600">
+                                <label for="scholarship-{{ $scholarship->id }}"
+                                    class="inline-block text-sm font-medium text-zinc-500 dark:text-zinc-300">
+                                    {{ $scholarship->name }}
+                                </label>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
                 <div class="mt-4 flex flex-col gap-4 sm:flex-row">
                     <div class="flex flex-[2] flex-col">
                         <x-input type="text" label="Tema de la actividad" required
@@ -53,6 +81,9 @@
                     </div>
                 </div>
                 <div class="mt-4">
+                    <p class="mb-1 block text-sm font-medium text-zinc-500 dark:text-zinc-300">
+                        Fotografías
+                    </p>
                     <div class="flex flex-col items-start justify-between rounded-xl border border-dashed border-zinc-400 p-2 dark:border-zinc-800"
                         id="container-file">
                         <div>
