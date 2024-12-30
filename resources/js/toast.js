@@ -45,7 +45,7 @@ export function showToast(type, title, message) {
                 </div>
             </div>
              <button type="button"
-                class="ms-auto me-2 bg-white text-zinc-400 hover:text-zinc-900 rounded-xl focus:ring-2 focus:ring-zinc-300  hover:bg-zinc-100 inline-flex items-center justify-center h-8 min-w-8"
+                class="ms-auto me-2 bg-white text-zinc-400 hover:text-zinc-900 rounded-xl focus:ring-2 focus:ring-zinc-300  hover:bg-zinc-100 inline-flex items-center justify-center h-8 min-w-8 dark:bg-zinc-900 dark:text-zinc-200 dark:hover:bg-zinc-800 dark:hover:text-zinc-100"
                 data-dismiss-target="#${currentToastId}" aria-label="Close">
                 <span class="sr-only">Close</span>
                 <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
