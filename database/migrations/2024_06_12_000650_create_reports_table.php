@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string("theme");
             $table->integer("number_participants");
             $table->text("description");
-            $table->string("obstacles");
+            $table->text("obstacles");
             $table->string("sent_by");
             $table->date("date");
             $table->foreignId("project_id")->constrained();
