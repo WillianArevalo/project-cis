@@ -54,10 +54,12 @@ class ProfileController extends Controller
         $user = auth()->user();
         $maintenance = Setting::where('key', 'maintenance')->first();
         $project_mode = Setting::where('key', 'project_mode')->first();
+        $question_mode = Setting::where('key', 'question_mode')->first();
         return view('admin.profile', [
             'user' => $user,
             'maintenance' => $maintenance,
-            'project_mode' => $project_mode
+            'project_mode' => $project_mode,
+            'question_mode' => $question_mode,
         ]);
     }
 }
