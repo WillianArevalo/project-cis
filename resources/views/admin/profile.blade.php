@@ -114,6 +114,27 @@
                         </form>
                     </div>
                 </div>
+                <div class="w-full rounded-2xl border border-zinc-400 p-4 shadow-md dark:border-zinc-800 md:w-max">
+                    <div>
+                        <h3 class="text-zinc-700 dark:text-zinc-300">Modo preguntas</h3>
+                        <p class="text-sm text-zinc-600 dark:text-zinc-400">
+                            Activa o desactiva el preguntas
+                        </p>
+                        <form action="{{ Route('admin.configuracion.update') }}" method="POST">
+                            @csrf
+                            <input type="text" name="key" value="question_mode" class="hidden">
+                            <div class="mt-4 flex items-center justify-center">
+                                @if ($question_mode->value == 1)
+                                    <x-button type="submit" icon="toggle-left" typeButton="danger"
+                                        text="Desactivar modo preguntas" />
+                                @else
+                                    <x-button type="submit" icon="help-hexagon" typeButton="primary"
+                                        text="Activar modo preguntas" />
+                                @endif
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
     </section>
 @endsection
