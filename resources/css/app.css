@@ -158,6 +158,10 @@ html.dark .dot-spinner {
     @apply focus:border-zinc-600 dark:border-zinc-500 ring-4 ring-zinc-200 dark:ring-zinc-950 !important;
 }
 
+div[drawer-backdrop] {
+    @apply bg-zinc-200/50 dark:bg-zinc-900/50 z-30 !important;
+}
+
 .dot-spinner {
     --uib-size: 2.8rem;
     --uib-speed: 0.9s;
