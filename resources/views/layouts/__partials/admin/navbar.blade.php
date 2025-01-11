@@ -69,7 +69,7 @@
     @endif
 
     <aside id="default-sidebar"
-        class="fixed left-0 top-0 z-40 h-screen w-64 -translate-x-full bg-white transition-transform dark:bg-zinc-950 md:translate-x-0"
+        class="z-35 fixed left-0 top-0 h-screen w-64 -translate-x-full bg-transparent transition-transform dark:bg-transparent md:translate-x-0"
         aria-label="Sidenav">
         <div class="h-full overflow-y-auto border-r border-zinc-400 px-3 py-5 dark:border-zinc-800">
             <div class="flex items-center gap-2 p-2">
@@ -121,6 +121,15 @@
                         <x-icon icon="users" class="size-5 text-current" />
                         <span class="ml-3">
                             Usuarios
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ Route('admin.preguntas.index') }}"
+                        class="{{ \App\Helpers\RouteHelper::isActive(['admin.preguntas.index']) }} flex items-center rounded-lg p-2 text-base font-normal text-zinc-900 hover:bg-orange-100 hover:text-orange-500 dark:text-white dark:hover:bg-orange-950/30 dark:hover:text-orange-500">
+                        <x-icon icon="question-mark" class="size-5 text-current" />
+                        <span class="ml-3">
+                            Preguntas
                         </span>
                     </a>
                 </li>
