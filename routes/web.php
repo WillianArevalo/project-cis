@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AskController;
 use App\Http\Controllers\BecadoController;
 use App\Http\Controllers\ComunidadController;
 use App\Http\Controllers\ConfigurationController;
@@ -84,7 +85,15 @@ Route::middleware("role:admin")->prefix("admin")->name("admin.")->group(function
     Route::put("/usuarios/{id}", [UserController::class, "update"])->name("usuarios.update");
     Route::delete("/usuarios/{id}", [UserController::class, "destroy"])->name("usuarios.destroy");
 
-    Route::get("/perfil", [ProfileController::class, "admin"])->name("profile");
+    //Routes for ask's
+    Route::get("/preguntas", [AskController::class, "index"])->name("preguntas.index");
+    Route::post("/preguntas", [AskController::class, "store"])->name("preguntas.store");
+    Route::get("/preguntas/{id}/edit", [AskController::class, "edit"])->name("preguntas.edit");
+    Route::put("/preguntas/{id}", [AskController::class, "update"])->name("preguntas.update");
+    Route::delete("/preguntas/{id}", [AskController::class, "destroy"])->name("preguntas.destroy");
 
+    //Routes for answers
+
+    Route::get("/perfil", [ProfileController::class, "admin"])->name("profile");
     Route::post("/configuracion", [ConfigurationController::class, "update"])->name("configuracion.update");
 });
