@@ -101,3 +101,9 @@ Breadcrumbs::for("admin.profile", function (BreadcrumbTrail $trail) {
     $trail->parent("admin.dashboard");
     $trail->push($icon . "Perfil", route("admin.profile"));
 });
+
+Breadcrumbs::for("admin.preguntas.index", function (BreadcrumbTrail $trail) {
+    $icon = Blade::render("<x-icon icon='question-mark' class='w-4 h-4'/>");
+    $trail->parent("admin.dashboard");
+    $trail->push($icon . "Preguntas", route("admin.preguntas.index"));
+});
