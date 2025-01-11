@@ -119,7 +119,6 @@
                     @enderror
                 </div>
 
-
                 <div class="mt-4 flex-1">
                     <span
                         class="mb-1 block text-sm font-medium text-zinc-500 after:ml-0.5 after:text-red-500 after:content-['*'] dark:text-zinc-300">
