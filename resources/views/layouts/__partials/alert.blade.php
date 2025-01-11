@@ -39,15 +39,15 @@
             </div>
             <div class="-mx-3 px-4 py-2">
                 <div class="mx-3 flex w-full items-center justify-between">
-                    <div class="flex-[2]">
+                    <div class="w-[60%]">
                         <span class="{{ $textColor }} text-sm font-semibold sm:text-base">
                             {{ $title }}
                         </span>
-                        <p class="line-clamp-2 w-max text-wrap text-xs text-zinc-600 dark:text-zinc-200 sm:text-sm">
+                        <p class="line-clamp-2 w-80 text-wrap text-xs text-zinc-600 dark:text-zinc-200 sm:text-sm">
                             {{ $message }}
                         </p>
                     </div>
-                    <div class="flex-1">
+                    <div class="w-[40%] pe-4">
                         <x-button type="button" icon="close" typeButton="secondary" onlyIcon
                             class="alert-close {{ $textColor }}" size="small" />
                     </div>
