@@ -45,11 +45,17 @@ class ConfigurationController extends Controller
 
             // Mensajes dinámicos
             $status = $config->value == 1 ? 'activado' : 'desactivado';
-            $modeName = ucwords(str_replace('_', ' ', $request->key));
+            $modeName = [
+                'maintenance' => 'mantenimiento',
+                'project_mode' => 'proyecto',
+                'question_mode' => 'pregunta',
+            ];
+
+            $name = $modeName[$request->key];
 
             return redirect()->route('admin.profile')
                 ->with("success_title", "Configuración actualizada")
-                ->with("success_message", "Modo {$modeName} {$status} correctamente.");
+                ->with("success_message", "Modo {$name} {$status} correctamente.");
         } catch (\Exception $e) {
             DB::rollBack();
 
