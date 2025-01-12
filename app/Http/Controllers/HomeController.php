@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AskLevel;
 use App\Models\Community;
 use App\Models\Project;
 use App\Models\Report;
@@ -23,6 +24,7 @@ class HomeController extends Controller
     {
         $maintenance = Setting::where('key', 'maintenance')->first();
         $project_mode = Setting::where('key', 'project_mode')->first();
+        $question_mode = Setting::where('key', 'question_mode')->first();
 
         if ($maintenance->value == 1) {
             return view('maintenance');
@@ -33,6 +35,17 @@ class HomeController extends Controller
             $project = Project::where("sent_by", auth()->id())->first();
             $becados = Scholarship::all();
             return view('projects', compact('comunidades', 'project', 'becados'));
+        }
+
+        if ($question_mode->value == 1) {
+
+            $scholarship = Scholarship::where("user_id", auth()->id())->first();
+            $asks = AskLevel::with("ask")
+                ->where("level", $scholarship->study_level)
+                ->where("type", $scholarship->type)
+                ->get()->pluck("ask");
+
+            return view('questions', compact('asks'));
         }
 
         $user = User::with("scholarship")->find(auth()->id());
