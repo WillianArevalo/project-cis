@@ -12,6 +12,7 @@
     'error' => true,
     'legend' => '',
     'className' => '',
+    'readonly' => false,
 ])
 
 @php
@@ -60,7 +61,8 @@
         @if ($type === 'textarea')
             <textarea id="{{ $id }}" {{ $attributes }} name="{{ $name }}" rows="8"
                 class="{{ $classes }} {{ $icon ? 'ps-10' : '' }}" data-container=".error-{{ $name }}"
-                placeholder="{{ $placeholder }}" @if ($required) required @endif>{{ $value }}</textarea>
+                placeholder="{{ $placeholder }}" @if ($required) required @endif
+                @if ($readonly) readonly @endif>{{ $value }}</textarea>
         @elseif ($type === 'checkbox' || $type === 'radio')
             <div class="flex items-center gap-1">
                 <input type="checkbox" value="{{ $value }}" name="{{ $name }}"
