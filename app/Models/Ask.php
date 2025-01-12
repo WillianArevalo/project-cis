@@ -11,7 +11,6 @@ class Ask extends Model
 
     protected $fillable = [
         'title',
-        'level',
         'description',
         'max_characters',
     ];
@@ -19,5 +18,10 @@ class Ask extends Model
     public function answers()
     {
         return $this->hasMany(Answer::class);
+    }
+
+    public function levels()
+    {
+        return $this->hasMany(AskLevel::class);
     }
 }
