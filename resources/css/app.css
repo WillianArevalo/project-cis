@@ -162,6 +162,10 @@ div[drawer-backdrop] {
     @apply bg-zinc-200/50 dark:bg-zinc-900/50 z-30 !important;
 }
 
+textarea {
+    field-sizing: content;
+}
+
 .dot-spinner {
     --uib-size: 2.8rem;
     --uib-speed: 0.9s;
