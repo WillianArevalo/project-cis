@@ -24,12 +24,14 @@ class BecadoRequest extends FormRequest
         return [
             "name" => "required|string",
             "photo" => "nullable|image",
-            "institution" => "required|string",
-            "academic_level" => "required|string",
-            "career" => "required|string",
-            "study_level" => "required|string",
+            "institution" => "nullable|string",
+            "academic_level" => "nullable|string",
+            "career" => "nullable|string",
+            "study_level" => "nullable|string",
             "community_id" => "required|exists:communities,id",
-            "user_id" => "required|exists:users,id",
+            "user_id" => "nullable|exists:users,id",
+            "user" => "nullable|string",
+            "phone" => "nullable|string",
         ];
     }
 }
