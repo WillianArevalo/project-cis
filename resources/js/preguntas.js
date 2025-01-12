@@ -15,11 +15,10 @@ $(document).ready(function () {
 
     $(".input-question").on("input", function () {
         let isValid = true;
-        const minleght = $(this).attr("minleght");
+        const minleght = $(this).attr("minlength");
         const input = $(this);
-        const container = $(input.data("container"));
-        container.removeClass("hidden").addClass("flex");
-        const erroMsg = input.closest("div").next().find(".error-msg");
+        const erroMsg = $($(this).data("error"));
+        erroMsg.removeClass("hidden");
 
         if ($(this).val().length < minleght) {
             $(this).addClass("is-invalid");
@@ -31,6 +30,14 @@ $(document).ready(function () {
             );
             input.addClass("is-invalid");
             isValid = false;
+        } else {
+            erroMsg.addClass("hidden");
+            input.removeClass("is-invalid");
         }
+    });
+
+    $(".btn-add-note").on("click", function () {
+        const id = $(this).data("id");
+        $("#answer_id").val(id);
     });
 });
