@@ -2,7 +2,7 @@
 @section('title', 'CIS | Responder preguntas')
 @section('content')
     <section>
-        <div class="container mx-auto flex min-h-screen flex-col items-center justify-center p-6">
+        <div class="container mx-auto flex min-h-screen flex-col items-center justify-center p-4">
             <img class="mx-auto size-14 w-auto sm:size-20" src="{{ asset('images/cis-logo.webp') }}" alt="Logo CIS">
             @if ($asks)
                 <div class="flex w-full flex-col items-center justify-center sm:w-[90%] md:w-[80%] lg:w-[75%] xl:w-[60%]">
@@ -15,7 +15,6 @@
                             validar si cada pregunta esta bien respondida.
                         </p>
                     </div>
-
 
                     @if ($scholarship->answers->count() > 0 && $scholarship->answers->every(fn($answer) => $answer->status === 'approved'))
                         <div class="mt-4 w-full">
