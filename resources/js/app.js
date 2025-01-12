@@ -11,3 +11,4 @@ import "./reportes";
 import "./order-table";
 import "./profile";
 import "./new-project";
+import "./preguntas";
