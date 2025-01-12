@@ -19,7 +19,7 @@
             </h2>
             <div class="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
                 @foreach ($months as $month)
-                    <x-card :month="$month" :index="$loop->index" :report="$reports[$month]->first()" :send="!$reports[$month]->isEmpty()" :limitMonth="$currentMonth" />
+                    <x-card :month="$month" :index="$loop->index" :reports="$reports[$month]" :send="$reports[$month]->count() > 0" :limitMonth="$currentMonth" />
                 @endforeach
             </div>
         </div>
