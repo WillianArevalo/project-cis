@@ -14,11 +14,12 @@ return new class extends Migration
         Schema::create('scholarships', function (Blueprint $table) {
             $table->id();
             $table->string("name");
-            $table->string("photo");
-            $table->string("institution");
-            $table->string("academic_level");
-            $table->string("career");
-            $table->string("study_level");
+            $table->string("photo")->nullable();
+            $table->string("institution")->nullable();
+            $table->string("academic_level")->nullable();
+            $table->string("career")->nullable();
+            $table->string("study_level")->nullable();
+            $table->string("phone")->nullable();
             $table->foreignId("community_id")->constrained();
             $table->foreignId("project_id")->nullable()->constrained();
             $table->foreignId("user_id")->constrained();
