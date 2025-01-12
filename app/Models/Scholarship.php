@@ -33,6 +33,7 @@ class Scholarship extends Model
         'study_level',
         'community_id',
         'project_id',
-        'user_id'
+        'user_id',
+        'type'
     ];
 }
