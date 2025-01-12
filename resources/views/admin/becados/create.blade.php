@@ -6,10 +6,17 @@
         <div class="mt-4">
             <form action="{{ Route('admin.becados.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                <div class="flex gap-4">
+                <div class="flex flex-col gap-4 md:flex-row">
                     <div class="flex flex-[2] flex-col">
                         <x-input type="text" name="name" icon="user" label="Nombre del becado"
                             placeholder="Nombre completo" />
+                    </div>
+                    <div class="flex-1">
+                        <x-input label="Usuario" name="user" type="text" placeholder="Usuario" icon="user" />
+                    </div>
+                    <div class="flex-1">
+                        <x-input type="text" name="phone" icon="phone" label="Teléfono"
+                            placeholder="Número de teléfono" value="{{ old('phone') }}" />
                     </div>
                 </div>
                 <div class="mt-4 flex flex-col gap-4 lg:flex-row">
