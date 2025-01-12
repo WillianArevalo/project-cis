@@ -54,7 +54,8 @@
                                         name="answers[{{ $loop->index }}][content]" required
                                         data-error="#error-question-{{ $loop->iteration }}"
                                         value="{{ old('answers.' . $loop->index . '.content', $ask->answers->first()?->content) }}"
-                                        placeholder="Escribe tu respuesta..." class="input-question" minlength="10" />
+                                        placeholder="Escribe tu respuesta..." class="input-question"
+                                        minlength="{{ $ask->max_characters }}" />
                                     <span id="error-question-{{ $loop->iteration }}"
                                         class="mt-2 hidden items-center gap-1 text-sm text-red-500">
                                         <x-icon icon="exclamation-circle" class="h-4 w-4" />
