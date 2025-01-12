@@ -107,3 +107,16 @@ Breadcrumbs::for("admin.preguntas.index", function (BreadcrumbTrail $trail) {
     $trail->parent("admin.dashboard");
     $trail->push($icon . "Preguntas", route("admin.preguntas.index"));
 });
+
+Breadcrumbs::for("admin.respuestas.index", function (BreadcrumbTrail $trail) {
+    $icon = Blade::render("<x-icon icon='message-reply' class='w-4 h-4'/>");
+    $trail->parent("admin.preguntas.index");
+    $trail->push($icon . "Respuestas", route("admin.respuestas.index"));
+});
+
+
+Breadcrumbs::for("admin.respuestas.show", function (BreadcrumbTrail $trail, $id) {
+    $icon = Blade::render("<x-icon icon='message-reply' class='w-4 h-4'/>");
+    $trail->parent("admin.respuestas.index");
+    $trail->push($icon . "Respuestas de becado", route("admin.respuestas.show", $id));
+});
