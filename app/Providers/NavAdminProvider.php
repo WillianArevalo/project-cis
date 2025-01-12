@@ -25,10 +25,12 @@ class NavAdminProvider extends ServiceProvider
             $user = auth()->user();
             $maintenance = Setting::where('key', 'maintenance')->first();
             $project_mode = Setting::where('key', 'project_mode')->first();
+            $question_mode = Setting::where('key', 'question_mode')->first();
             $view->with([
                 'user' => $user,
                 'maintenance' => $maintenance,
                 'project_mode' => $project_mode,
+                'question_mode' => $question_mode,
             ]);
         });
     }
