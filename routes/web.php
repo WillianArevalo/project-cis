@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\AskController;
 use App\Http\Controllers\BecadoController;
 use App\Http\Controllers\ComunidadController;
@@ -8,6 +9,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EmailController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\NoteController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProyectoController;
 use App\Http\Controllers\ReporteController;
@@ -42,6 +44,9 @@ Route::middleware("auth")->group(function () {
     Route::get("/verify-email", [EmailController::class, "verify"])->name("verifyEmail");
 
     Route::post("/proyectos", [ProyectoController::class, "store"])->name("proyectos.store");
+
+    Route::post("/answers", [AnswerController::class, "store"])->name("answers.store");
+    Route::put("/answers", [AnswerController::class, "update"])->name("answers.update");
 });
 
 Route::middleware("role:admin")->prefix("admin")->name("admin.")->group(function () {
@@ -92,7 +97,14 @@ Route::middleware("role:admin")->prefix("admin")->name("admin.")->group(function
     Route::put("/preguntas/{id}", [AskController::class, "update"])->name("preguntas.update");
     Route::delete("/preguntas/{id}", [AskController::class, "destroy"])->name("preguntas.destroy");
 
+    Route::get("/respuestas", [AnswerController::class, "index"])->name("respuestas.index");
+
     //Routes for answers
+    Route::get("/respuestas/{id}", [AnswerController::class, "show"])->name("respuestas.show");
+    Route::post("/respuesta/cambiar-estado/{id}", [AnswerController::class, "changeStatus"])->name("respuestas.change-status");
+
+    //Routes for notes
+    Route::resource("/notas", NoteController::class);
 
     Route::get("/perfil", [ProfileController::class, "admin"])->name("profile");
     Route::post("/configuracion", [ConfigurationController::class, "update"])->name("configuracion.update");
