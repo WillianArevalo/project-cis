@@ -24,6 +24,23 @@ class Scholarship extends Model
         return $this->belongsTo(Community::class, "community_id");
     }
 
+    public function asks()
+    {
+        return $this->hasManyThrough(
+            Ask::class,
+            AskLevel::class,
+            "level",
+            "id",
+            "study_level",
+            "ask_id"
+        )->where("ask_levels.type", $this->type);
+    }
+
+    public function answers()
+    {
+        return $this->hasMany(Answer::class);
+    }
+
     protected $fillable = [
         'name',
         'photo',
@@ -34,6 +51,7 @@ class Scholarship extends Model
         'community_id',
         'project_id',
         'user_id',
-        'type'
+        'type',
+        'phone'
     ];
 }
