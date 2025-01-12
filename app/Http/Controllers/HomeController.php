@@ -38,14 +38,11 @@ class HomeController extends Controller
         }
 
         if ($question_mode->value == 1) {
-
             $scholarship = Scholarship::where("user_id", auth()->id())->first();
-            $asks = AskLevel::with("ask")
-                ->where("level", $scholarship->study_level)
-                ->where("type", $scholarship->type)
-                ->get()->pluck("ask");
-
-            return view('questions', compact('asks'));
+            $asks = $scholarship->asks()->with(['answers' => function ($query) use ($scholarship) {
+                $query->where('scholarship_id', $scholarship->id);
+            }])->get();
+            return view('questions', compact('asks', 'scholarship'));
         }
 
         $user = User::with("scholarship")->find(auth()->id());
