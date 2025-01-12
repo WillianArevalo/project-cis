@@ -28,7 +28,7 @@
 
                     <div class="mt-4">
                         <form
-                            action="{{ $scholarship->answers->count() > 0 ? Route('answers.update') : Route('answers.store') }}"
+                            action="{{ $scholarship->answers && $scholarship->answers->count() > 0 ? Route('answers.update') : Route('answers.store') }}"
                             class="flex flex-col gap-6" id="form-questions" method="POST">
                             @csrf
 
@@ -107,7 +107,8 @@
                                     @endif
                                 </div>
                             @endforeach
-                            <input type="hidden" name="id" value="{{ $scholarship->answers->first()->id }}">
+                            <input type="hidden" name="id"
+                                value="{{ $scholarship->answers->count() > 0 ? $scholarship->answers->first()->id : '' }}">
                             @if (!$scholarship->answers->every(fn($answer) => $answer->status === 'approved'))
                                 <div class="flex items-center justify-center gap-4">
                                     <x-button type="submit" typeButton="primary" text="Enviar preguntas" icon="send" />
