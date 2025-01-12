@@ -23,7 +23,9 @@ class AskRequest extends FormRequest
     {
         return [
             "title" => "required|string|max:255",
-            "level" => "required|string|max:255",
+            "level" => "required|array",
+            "level.*" => "required|string",
+            "type" => "required|string",
             "description" => "required|string",
             "max_characters" => "required|integer",
         ];
