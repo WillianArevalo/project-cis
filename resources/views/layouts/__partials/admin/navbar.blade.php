@@ -66,6 +66,12 @@
             <x-icon icon="info-circle" class="h-5 w-5 text-green-500" />
             <span class="text-sm font-bold text-green-500">Modo proyecto activado</span>
         </div>
+    @elseif($question_mode->value == 1)
+        <div
+            class="ms-0 flex items-center gap-2 border-b border-zinc-400 bg-green-100 p-4 dark:border-zinc-800 dark:bg-green-950/30 md:ms-64">
+            <x-icon icon="info-circle" class="h-5 w-5 text-green-500" />
+            <span class="text-sm font-bold text-green-500">Modo preguntas activado</span>
+        </div>
     @endif
 
     <aside id="default-sidebar"
@@ -148,7 +154,8 @@
             class="absolute bottom-0 left-0 z-20 flex w-full flex-col items-center justify-center gap-4 space-x-4 border-r border-t border-zinc-400 bg-white p-4 dark:border-zinc-800 dark:bg-zinc-950">
             <form action="{{ Route('logout') }}" method="POST" class="flex items-center justify-center">
                 @csrf
-                <x-button type="submit" icon="login" typeButton="secondary" text="Cerrar sesión" size="small" />
+                <x-button type="submit" icon="login" typeButton="secondary" text="Cerrar sesión"
+                    size="small" />
             </form>
         </div>
     </aside>
