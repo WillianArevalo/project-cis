@@ -8,6 +8,7 @@ use App\Models\Scholarship;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 class BecadoController extends Controller
@@ -30,13 +31,26 @@ class BecadoController extends Controller
         $validated = $request->validated();
         DB::beginTransaction();
         try {
+
+            if ($request->has("user") && !$request->user_id) {
+                $user = User::create([
+                    "user" => $validated["user"],
+                    "email" => null,
+                    "password" => Hash::make("nuevobecado"),
+                    "role" => "user"
+                ]);
+                $validated["user_id"] = $user->id;
+            }
+
             if ($request->hasFile("photo")) {
                 $name = $request->file("photo")->getClientOriginalName();
                 $path = $request->file("photo")->storeAs("images/becados", $name, "public");
                 $validated["photo"] = $path;
             }
+
             $validated["project_id"] = null;
             Scholarship::create($validated);
+
             DB::commit();
             return redirect()->route("admin.becados.index")
                 ->with("success_title", "Becado creado")
@@ -87,7 +101,9 @@ class BecadoController extends Controller
         DB::beginTransaction();
         try {
             $becado = Scholarship::find($id);
-            Storage::disk("public")->delete($becado->photo);
+            if ($becado->photo) {
+                Storage::disk("public")->delete($becado->photo);
+            }
             $becado->delete();
             DB::commit();
             return redirect()->route("admin.becados.index")
