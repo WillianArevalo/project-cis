@@ -110,7 +110,9 @@
                             @endforeach
                             <input type="hidden" name="id"
                                 value="{{ $scholarship->answers->count() > 0 ? $scholarship->answers->first()->id : '' }}">
-                            @if (!$scholarship->answers->every(fn($answer) => $answer->status === 'approved'))
+                            @if (
+                                !$scholarship->answers->every(fn($answer) => $answer->status === 'approved') ||
+                                    $scholarship->answers->count() === 0)
                                 <div class="flex items-center justify-center gap-4">
                                     <x-button type="submit" typeButton="primary" text="Enviar preguntas" icon="send" />
                                 </div>
