@@ -37,7 +37,7 @@
                     </p>
                 </div>
                 <div class="mt-4 rounded-2xl border border-zinc-400 p-4 shadow-md dark:border-zinc-800">
-                    <h2 class="text-lg font-medium text-zinc-700 dark:text-white">
+                    <h2 class="text-lg font-bold text-zinc-700 dark:text-white">
                         Cambiar contraseña
                     </h2>
                     @if (!$user->email_verified_at)
@@ -47,7 +47,7 @@
                             Debes verificar tu correo para cambiar tu contraseña
                         </p>
                     @else
-                        <form action="{{ Route('profile.change-password') }}" class="mt-4" method="POST">
+                        <form action="{{ Route('profile.change-password') }}" class="mt-2" method="POST">
                             @csrf
                             <div>
                                 <x-input type="password" name="password" id="new-password" label="Contraseña actual"
@@ -56,7 +56,7 @@
                             <div class="mt-4">
                                 <x-input type="password" name="confirm_password" id="confirm-password"
                                     label="Confirmar contraseña" placeholder="Confirma tu nueva contraseña"
-                                    icon="lock" />
+                                    icon="lock-check" />
                             </div>
                             <div class="mt-4 flex items-center justify-center">
                                 <x-button type="submit" typeButton="primary" icon="password-user"
@@ -68,13 +68,13 @@
             </div>
         </div>
         <div class="mt-4">
-            <h2 class="text-lg font-medium text-zinc-700 dark:text-white">
+            <h2 class="text-lg font-bold text-zinc-700 dark:text-white">
                 Configuraciones
             </h2>
             <div class="mt-2 flex flex-col items-center gap-4 md:flex-row">
                 <div class="w-full rounded-2xl border border-zinc-400 p-4 shadow-md dark:border-zinc-800 md:w-max">
                     <div>
-                        <h3 class="text-zinc-700 dark:text-zinc-300">Modo mantenimiento</h3>
+                        <h3 class="font-medium text-zinc-700 dark:text-zinc-300">Modo mantenimiento</h3>
                         <p class="text-sm text-zinc-600 dark:text-zinc-400">
                             Activa o desactiva el modo mantenimiento
                         </p>
@@ -95,7 +95,7 @@
                 </div>
                 <div class="w-full rounded-2xl border border-zinc-400 p-4 shadow-md dark:border-zinc-800 md:w-max">
                     <div>
-                        <h3 class="text-zinc-700 dark:text-zinc-300">Modo proyectos</h3>
+                        <h3 class="font-medium text-zinc-700 dark:text-zinc-300">Modo proyectos</h3>
                         <p class="text-sm text-zinc-600 dark:text-zinc-400">
                             Activa o desactiva el modo proyectos
                         </p>
@@ -116,7 +116,7 @@
                 </div>
                 <div class="w-full rounded-2xl border border-zinc-400 p-4 shadow-md dark:border-zinc-800 md:w-max">
                     <div>
-                        <h3 class="text-zinc-700 dark:text-zinc-300">Modo preguntas</h3>
+                        <h3 class="font-medium text-zinc-700 dark:text-zinc-300">Modo preguntas</h3>
                         <p class="text-sm text-zinc-600 dark:text-zinc-400">
                             Activa o desactiva el preguntas
                         </p>
