@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->text('content');
             $table->foreignId('ask_id')->constrained()->onDelete('cascade');
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->boolean('validated');
+            $table->foreignId('scholarship_id')->constrained()->onDelete('cascade');
+            $table->enum("status", ["pending", "approved", "rejected"])->default("pending");
             $table->timestamps();
         });
     }
