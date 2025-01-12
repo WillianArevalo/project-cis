@@ -16,7 +16,8 @@
                         </p>
                     </div>
 
-                    @if ($scholarship->answers->every(fn($answer) => $answer->status === 'approved'))
+
+                    @if ($scholarship->answers->count() > 0 && $scholarship->answers->every(fn($answer) => $answer->status === 'approved'))
                         <div class="mt-4 w-full">
                             <span
                                 class="flex w-full items-center justify-center gap-1 rounded-xl border border-dashed border-green-500 bg-green-100 p-4 text-sm font-semibold uppercase text-green-500 dark:bg-green-950/30">
