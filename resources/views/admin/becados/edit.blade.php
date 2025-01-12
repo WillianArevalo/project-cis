@@ -7,10 +7,14 @@
             <form action="{{ Route('admin.becados.update', $becado->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
-                <div class="flex gap-4">
+                <div class="flex flex-col gap-4 sm:flex-row">
                     <div class="flex flex-[2] flex-col">
                         <x-input type="text" name="name" icon="user" label="Nombre del becado"
                             placeholder="Nombre completo" value="{{ $becado->name }}" />
+                    </div>
+                    <div class="flex-1">
+                        <x-input type="text" name="phone" icon="phone" label="Teléfono"
+                            placeholder="Número de teléfono" value="{{ $becado->phone }}" />
                     </div>
                 </div>
                 <div class="mt-4 flex flex-col gap-4 lg:flex-row">
