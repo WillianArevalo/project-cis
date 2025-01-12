@@ -12,8 +12,8 @@ class Answer extends Model
     protected $fillable = [
         'content',
         'ask_id',
-        'user_id',
-        'validated',
+        'scholarship_id',
+        'status',
     ];
 
     public function ask()
@@ -21,9 +21,9 @@ class Answer extends Model
         return $this->belongsTo(Ask::class);
     }
 
-    public function user()
+    public function scholarship()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Scholarship::class);
     }
 
     public function notes()
