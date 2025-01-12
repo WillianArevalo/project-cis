@@ -133,7 +133,15 @@
                         </span>
                     </a>
                 </li>
-
+                <li>
+                    <a href="{{ Route('admin.respuestas.index') }}"
+                        class="{{ \App\Helpers\RouteHelper::isActive(['admin.respuestas.index']) }} flex items-center rounded-lg p-2 text-base font-normal text-zinc-900 hover:bg-orange-100 hover:text-orange-500 dark:text-white dark:hover:bg-orange-950/30 dark:hover:text-orange-500">
+                        <x-icon icon="message-reply" class="size-5 text-current" />
+                        <span class="ml-3">
+                            Respuestas
+                        </span>
+                    </a>
+                </li>
             </ul>
         </div>
         <div
