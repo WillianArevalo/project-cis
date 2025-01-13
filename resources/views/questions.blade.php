@@ -11,7 +11,7 @@
                     </h1>
                     <div class="w-full">
                         <p class="mt-4 text-center text-base text-zinc-700 dark:text-zinc-300">
-                            Responde las siguientes preguntas. Cuando las envies antento a la respuesta del cómite para
+                            Responde las siguientes preguntas. Cuando las envies atento a la respuesta del cómite para
                             validar si cada pregunta esta bien respondida.
                         </p>
                     </div>
@@ -123,4 +123,10 @@
             @endif
         </div>
     </section>
+    <div class="fixed bottom-0 left-0 z-50 p-4">
+        <a href="https://wa.me/50375456642" class="flex items-center gap-1 text-sm text-blue-500">
+            <x-icon icon="whatsapp" class="size-4" />
+            ¿Tienes alguna duda?
+        </a>
+    </div>
 @endsection
