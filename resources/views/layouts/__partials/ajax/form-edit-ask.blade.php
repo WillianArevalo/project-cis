@@ -36,6 +36,6 @@
     <x-input type="text" label="Máximo de caracteres" placeholder="#" icon="number" name="max_characters" required
         className="mt-4" value="{{ $ask->max_characters }}" />
     <div class="mt-6 flex items-center justify-center gap-4">
-        <x-button type="submit" text="Editar" icon="pencil" typeButton="primary" />
+        <x-button type="submit" text="Editar" icon="pencil" class="w-full sm:w-auto" typeButton="primary" />
     </div>
 </form>
