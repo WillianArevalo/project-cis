@@ -13,7 +13,7 @@
             <div class="flex-3">
                 <x-button type="button" icon="plus" typeButton="primary" text="Nueva pregunta"
                     data-drawer-target="drawer-new-question" data-drawer-show="drawer-new-question"
-                    data-drawer-placement="right" aria-controls="drawer-new-question" />
+                    data-drawer-placement="right" aria-controls="drawer-new-question" class="w-full sm:w-auto" />
             </div>
         </div>
         <div class="mt-4">
@@ -110,11 +110,11 @@
             </x-table>
         </div>
 
-        <x-delete-modal modalId="deleteModal" title="¿Estás seguro de eliminar el becado?"
+        <x-delete-modal modalId="deleteModal" title="¿Estás seguro de eliminar la pregunta?"
             message="No podrás recuperar este registro" />
 
         <div id="drawer-new-question"
-            class="fixed right-0 top-0 z-40 h-screen w-[500px] translate-x-full overflow-y-auto bg-white p-4 transition-transform dark:bg-zinc-950"
+            class="fixed right-0 top-0 z-40 h-screen w-full translate-x-full overflow-y-auto bg-white p-4 transition-transform dark:bg-zinc-950 sm:w-[500px]"
             tabindex="-1" aria-labelledby="drawer-right-label">
             <h5 id="drawer-right-label"
                 class="mb-4 inline-flex items-center text-base font-semibold text-zinc-500 dark:text-zinc-400">Nueva
@@ -162,17 +162,19 @@
                         <x-input type="text" label="Máximo de caracteres" placeholder="#" icon="number"
                             name="max_characters" required />
                     </div>
-                    <div class="mt-6 flex items-center justify-center gap-4">
+                    <div class="mt-6 flex flex-col items-center justify-center gap-4 sm:flex-row">
                         <x-button type="button" text="Cancelar" typeButton="secondary" icon="close"
-                            data-drawer-hide="drawer-new-question" aria-controls="drawer-new-question" />
-                        <x-button type="submit" text="Guardar" icon="save" typeButton="primary" />
+                            class="w-full sm:w-auto" data-drawer-hide="drawer-new-question"
+                            aria-controls="drawer-new-question" />
+                        <x-button type="submit" text="Guardar" icon="save" typeButton="primary"
+                            class="w-full sm:w-auto" />
                     </div>
                 </form>
             </div>
         </div>
 
         <div id="drawer-edit-question"
-            class="fixed right-0 top-0 z-40 h-screen w-[500px] translate-x-full overflow-y-auto bg-white p-4 transition-transform dark:bg-zinc-950"
+            class="fixed right-0 top-0 z-40 h-screen w-full translate-x-full overflow-y-auto bg-white p-4 transition-transform dark:bg-zinc-950 sm:w-[500px]"
             tabindex="-1" aria-labelledby="drawer-right-label">
             <h5 id="drawer-right-label"
                 class="mb-4 inline-flex items-center text-base font-semibold text-zinc-500 dark:text-zinc-400">
