@@ -3,7 +3,7 @@
       <div class="relative flex h-full w-full max-w-md items-center justify-center p-4 md:h-auto">
           <!-- Modal content -->
           <div
-              class="relative w-full animate-jump-in rounded-lg bg-white text-center shadow animate-duration-300 animate-once dark:bg-zinc-950">
+              class="relative w-full animate-fade-down rounded-lg bg-white text-center shadow animate-duration-300 animate-once dark:bg-zinc-950">
               <div class="p-4">
                   <button type="button"
                       class="closeModal absolute right-2.5 top-2.5 ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-zinc-400 hover:bg-zinc-200 hover:text-zinc-900 dark:hover:bg-zinc-900 dark:hover:text-white"
