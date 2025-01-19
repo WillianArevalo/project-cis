@@ -1,31 +1,52 @@
 $(document).ready(function () {
+    var select = $(".selected");
     var items = $(".selectOptions .itemOption");
 
-    $(document).on("click", ".selected", function () {
-        closeSelects(this);
-        var selectedItems = $(this).next();
-        if (selectedItems) {
-            selectedItems.toggleClass("hidden");
-            $(this).toggleClass("active");
-            adjustDropdownPosition(selectedItems, $(this));
-        }
+    $(select).each(function () {
+        $(this).on("click", function () {
+            const svg = $(this).find("svg");
+            closeSelects(this, svg);
+
+            if (svg.hasClass("is-rotated")) {
+                svg.removeClass("is-rotated").addClass("not-rotated");
+            } else {
+                svg.removeClass("not-rotated").addClass("is-rotated");
+            }
+
+            var selectedItems = $(this).next();
+
+            if (selectedItems) {
+                selectedItems.toggleClass("hidden");
+                $(this).toggleClass("active");
+                //adjustDropdownPosition(selectedItems, $(this));
+            }
+        });
     });
 
-    $(document).on("click", ".selectOptions .itemOption", function () {
-        let item = $(this).html();
-        let value = $(this).data("value");
-        let input = $(this).data("input");
-        $(this)
-            .closest(".selectOptions")
-            .prev(".selected")
-            .find(".itemSelected")
-            .html(item);
-        $(input).val(value).trigger("Changed");
-        $(this).parent().addClass("hidden");
+    $(items).each(function () {
+        $(this).on("click", function () {
+            let item = $(this).html();
+            let value = $(this).data("value");
+            let input = $(this).data("input");
+            $(this)
+                .closest(".selectOptions")
+                .prev(".selected")
+                .find(".itemSelected")
+                .html(item);
+            $(input).val(value).trigger("Changed");
+            $(this).parent().addClass("hidden");
+            $(".arrow-down-select")
+                .removeClass("is-rotated")
+                .addClass("not-rotated");
+        });
     });
 
-    function closeSelects(thisSelect) {
+    function closeSelects(thisSelect, svg) {
         $(".selectOptions").not($(thisSelect).next()).addClass("hidden");
+        $(".arrow-down-select")
+            .not(svg)
+            .removeClass("is-rotated")
+            .addClass("not-rotated");
     }
 
     function adjustDropdownPosition(dropdown, select) {
@@ -54,9 +75,10 @@ $(document).ready(function () {
     $(document).on("click", function (e) {
         if (!$(e.target).closest(".selected").length) {
             $(".selectOptions").addClass("hidden");
-            $(".selectOptionsLabels").addClass("hidden");
-            $(".selectOptionsSubCategories").addClass("hidden");
             $(".selected").removeClass("active");
+            $(".arrow-down-select")
+                .removeClass("is-rotated")
+                .addClass("not-rotated");
         }
     });
 });
