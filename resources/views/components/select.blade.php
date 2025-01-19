@@ -12,7 +12,8 @@
             <span class="itemSelected truncate" id="{{ $id }}_selected">
                 {{ $selected && isset($options[$selected]) ? $options[$selected] : ($text ?: 'Seleccionar') }}
             </span>
-            <x-icon icon="arrow-down" class="h-5 w-5 text-zinc-500 dark:text-white" />
+            <x-icon icon="arrow-down"
+                class="arrow-down-select arrow-down-select h-5 w-5 text-zinc-500 dark:text-white" />
         </div>
         <ul
             class="selectOptions {{ count($options) > 6 ? 'h-64 overflow-auto' : '' }} absolute z-10 mb-8 mt-2 hidden w-full rounded-xl border border-zinc-400 bg-white p-2 shadow-lg dark:border-zinc-800 dark:bg-zinc-950">
