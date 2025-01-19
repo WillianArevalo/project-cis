@@ -162,9 +162,9 @@ div[drawer-backdrop] {
     @apply bg-zinc-200/50 dark:bg-zinc-900/50 z-30 !important;
 }
 
-/* textarea {
+.field-sizing {
     field-sizing: content;
-} */
+}
 
 .dot-spinner {
     --uib-size: 2.8rem;
@@ -268,4 +268,12 @@ div[drawer-backdrop] {
         transform: scale(1);
         opacity: 1;
     }
+}
+
+.is-rotated {
+    @apply transform transition-transform duration-300 ease-in-out rotate-180;
+}
+
+.not-rotated {
+    @apply transform transition-transform duration-300 ease-in-out rotate-0;
 }
