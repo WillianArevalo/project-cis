@@ -75,7 +75,7 @@
                     <div class="flex w-full justify-between">
                         <div class="flex items-center">
                             <label
-                                class="flex cursor-pointer items-center gap-1 border-e border-dashed border-zinc-400 p-3 px-5 text-xs text-zinc-600 hover:bg-zinc-200/50 dark:text-zinc-300">
+                                class="flex cursor-pointer items-center gap-1 border-e border-dashed border-zinc-400 p-3 px-5 text-xs text-zinc-600 hover:bg-zinc-200/50 dark:border-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-900/50">
                                 <input type="file" name="{{ $name }}e" id="input-{{ $id }}"
                                     class="input-doc hidden" accept="{{ $accept }}"
                                     data-name="#file-name-{{ $id }}" {{ $attributes }}
