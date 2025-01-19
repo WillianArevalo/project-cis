@@ -11,6 +11,9 @@
                     </h1>
                     <div class="w-full">
                         <p class="mt-4 text-center text-sm text-zinc-700 dark:text-zinc-300 sm:text-base">
+                            {{ $scholarship->name }}
+                        </p>
+                        <p class="mt-4 text-center text-sm text-zinc-700 dark:text-zinc-300 sm:text-base">
                             Responde las siguientes preguntas. Cuando las envies atento a la respuesta del cómite para
                             validar si cada pregunta esta bien respondida.
                         </p>
