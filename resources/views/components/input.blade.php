@@ -13,6 +13,7 @@
     'legend' => '',
     'className' => '',
     'readonly' => false,
+    'accept' => '',
 ])
 
 @php
@@ -24,7 +25,7 @@
 
     // Construir clases dinámicas para el input
     $classes = collect([
-        'bg-zinc-50 border border-zinc-400 text-zinc-900 text-sm rounded-xl  block w-full p-2.5 px-5',
+        'bg-zinc-50 border border-zinc-400 text-zinc-900 text-sm rounded-xl block w-full p-2.5 px-5',
         'focus:ring-4 focus:ring-zinc-200 focus:border-zinc-600',
         'dark:bg-transparent dark:border-zinc-800 dark:placeholder-zinc-400 dark:text-white',
         'dark:focus:ring-zinc-950 dark:focus:border-zinc-500',
@@ -40,7 +41,7 @@
     @if ($label && $type !== 'checkbox' && $type !== 'radio' && $type !== 'file')
         <div class="mb-1 flex flex-col gap-1">
             <label for="{{ $id }}"
-                class="{{ $labelClass }} mb-1 block text-sm font-semibold text-zinc-600 dark:text-zinc-300">
+                class="{{ $labelClass }} block text-sm font-semibold text-zinc-600 dark:text-zinc-300">
                 {{ $label }}
             </label>
             @if ($legend ?? false)
@@ -50,7 +51,7 @@
     @endif
 
     <div class="relative w-full">
-        @if ($icon)
+        @if ($icon && $type !== 'file')
             <div class="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-3.5">
                 <span class="font-medium text-zinc-500 dark:text-zinc-400">
                     <x-icon icon="{{ $icon }}" class="h-5 w-5 text-current" />
@@ -63,6 +64,37 @@
                 class="{{ $classes }} {{ $icon ? 'ps-10' : '' }}" data-container=".error-{{ $name }}"
                 placeholder="{{ $placeholder }}" @if ($required) required @endif
                 @if ($readonly) readonly @endif>{{ $value }}</textarea>
+        @elseif($type === 'file')
+            <div>
+                <span
+                    class="{{ $required ? 'after:content-["*"] after:text-red-500' : '' }} mb-1 block text-sm font-medium text-zinc-500 after:ml-0.5 dark:text-zinc-300">
+                    {{ $label }}
+                </span>
+                <div
+                    class="flex flex-col items-start justify-between overflow-hidden rounded-xl border border-dashed border-zinc-400 dark:border-zinc-800">
+                    <div class="flex w-full justify-between">
+                        <div class="flex items-center">
+                            <label
+                                class="flex cursor-pointer items-center gap-1 border-e border-dashed border-zinc-400 p-3 px-5 text-xs text-zinc-600 hover:bg-zinc-200/50 dark:text-zinc-300">
+                                <input type="file" name="{{ $name }}e" id="input-{{ $id }}"
+                                    class="input-doc hidden" accept="{{ $accept }}"
+                                    data-name="#file-name-{{ $id }}" {{ $attributes }}
+                                    data-button-remove="#remove-file-{{ $id }}" />
+                                <x-icon icon="{{ $icon }}" class="h-4 w-4 text-zinc-600 dark:text-zinc-300" />
+                                {{ $placeholder }}
+                            </label>
+                            <p id="file-name-{{ $id }}"
+                                class="font-dine-r px-5 text-[10px] text-zinc-600 dark:text-zinc-300">
+                                Formatos permitidos: {{ $accept ?? '' }}
+                            </p>
+                        </div>
+                        <button class="remove-file hidden pe-2" id="remove-file-{{ $id }}" type="button"
+                            data-input="#input-{{ $id }}">
+                            <x-icon icon="close" class="h-4 w-4 text-red-500" />
+                        </button>
+                    </div>
+                </div>
+            </div>
         @elseif ($type === 'checkbox' || $type === 'radio')
             <div class="flex items-center gap-1">
                 <input type="checkbox" value="{{ $value }}" name="{{ $name }}"
