@@ -18,17 +18,17 @@ class AnswerController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'answers' => 'required|array',
-            'answers.*.ask_id' => 'required|exists:asks,id',
-            'answers.*.content' => 'required|string|min:1',
-            'phone' => 'required|string|min:1',
+            'answers' => 'nullable|array',
+            'answers.*.ask_id' => 'nullable|exists:asks,id',
+            'answers.*.content' => 'nullable|string|min:1',
         ]);
 
         try {
             DB::beginTransaction();
             $scholarship = Scholarship::where('user_id', auth()->id())->firstOrFail();
+
             if ($request->has("phone")) {
-                $scholarship->phone = $validated['phone'];
+                $scholarship->phone = $request->phone;
                 $scholarship->save();
             }
 
@@ -56,9 +56,9 @@ class AnswerController extends Controller
     public function update(Request $request)
     {
         $validated = $request->validate([
-            'answers' => 'required|array',
-            'answers.*.ask_id' => 'required|exists:asks,id',
-            'answers.*.content' => 'required|string|min:1',
+            'answers' => 'nullable|array',
+            'answers.*.ask_id' => 'nullable|exists:asks,id',
+            'answers.*.content' => 'nullable|string|min:1',
         ]);
 
         try {
