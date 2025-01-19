@@ -1,7 +1,7 @@
 @extends('layouts.template')
 @section('title', 'CIS | Responder preguntas')
 @section('content')
-    <section>
+    <section class="pb-10">
         <div class="container mx-auto flex min-h-screen flex-col items-center justify-center p-4">
             <img class="mx-auto size-14 w-auto sm:size-20" src="{{ asset('images/cis-logo.webp') }}" alt="Logo CIS">
             @if ($asks)
@@ -10,11 +10,30 @@
                         Responder tus preguntas ({{ $asks->count() }})
                     </h1>
                     <div class="w-full">
-                        <p class="mt-4 text-center text-base text-zinc-700 dark:text-zinc-300">
+                        <p class="mt-4 text-center text-sm text-zinc-700 dark:text-zinc-300 sm:text-base">
                             Responde las siguientes preguntas. Cuando las envies atento a la respuesta del cómite para
                             validar si cada pregunta esta bien respondida.
                         </p>
                     </div>
+
+                    @if ($errors->any())
+                        <div class="mt-4 w-full">
+                            <span
+                                class="flex w-full flex-col items-center justify-center gap-4 rounded-xl border border-dashed border-red-500 bg-red-100 p-4 text-sm font-semibold text-red-500 dark:bg-red-950/30">
+                                <div class="flex items-center gap-1 uppercase">
+                                    Corrige los errores en el formulario
+                                </div>
+                                <div class="flex flex-col gap-4">
+                                    @foreach ($errors->all() as $error)
+                                        <span class="flex items-center gap-1 text-sm text-red-500 dark:text-red-400">
+                                            <x-icon icon="circle-x" class="h-5 w-5" />
+                                            {{ $error }}
+                                        </span>
+                                    @endforeach
+                                </div>
+                            </span>
+                        </div>
+                    @endif
 
                     @if ($scholarship->answers->count() > 0 && $scholarship->answers->every(fn($answer) => $answer->status === 'approved'))
                         <div class="mt-4 w-full">
@@ -38,8 +57,8 @@
 
                             @if (!$scholarship->phone)
                                 <x-input type="text" label="Teléfono" legend="Ingresa tu teléfono sin espacios."
-                                    name="phone" required value="{{ old('phone') }}" placeholder="XXXXXXXX"
-                                    class="input-question" icon="phone" />
+                                    name="phone" required value="{{ old('phone', $scholarship->phone) }}"
+                                    placeholder="XXXXXXXX" class="input-question" icon="phone" />
                             @endif
 
                             @foreach ($asks as $ask)
@@ -51,10 +70,10 @@
                                         value="{{ $ask->id }}" />
                                     <x-input type="textarea" legend="{{ $ask->description }}"
                                         label="{{ $loop->iteration . '. ' . $ask->title }}" :readonly="$read"
-                                        name="answers[{{ $loop->index }}][content]" required
+                                        name="answers[{{ $loop->index }}][content]"
                                         data-error="#error-question-{{ $loop->iteration }}"
                                         value="{{ old('answers.' . $loop->index . '.content', $ask->answers->first()?->content) }}"
-                                        placeholder="Escribe tu respuesta..." class="input-question"
+                                        placeholder="Escribe tu respuesta..." class="input-question field-sizing"
                                         minlength="{{ $ask->max_characters }}" />
                                     <span id="error-question-{{ $loop->iteration }}"
                                         class="mt-2 hidden items-center gap-1 text-sm text-red-500">
@@ -114,7 +133,8 @@
                                 !$scholarship->answers->every(fn($answer) => $answer->status === 'approved') ||
                                     $scholarship->answers->count() === 0)
                                 <div class="flex items-center justify-center gap-4">
-                                    <x-button type="submit" typeButton="primary" text="Enviar preguntas" icon="send" />
+                                    <x-button type="submit" typeButton="primary" text="Enviar preguntas" icon="send"
+                                        class="w-full sm:w-auto" />
                                 </div>
                             @endif
                         </form>
@@ -122,11 +142,14 @@
                 </div>
             @endif
         </div>
+
+        <div class="fixed bottom-0 left-0 z-50 p-4">
+            <a href="https://wa.me/50375456642" class="flex items-center gap-1 text-sm text-blue-500">
+                <x-icon icon="whatsapp" class="size-4" />
+                ¿Tienes alguna duda?
+            </a>
+        </div>
+
     </section>
-    <div class="fixed bottom-0 left-0 z-50 p-4">
-        <a href="https://wa.me/50375456642" class="flex items-center gap-1 text-sm text-blue-500">
-            <x-icon icon="whatsapp" class="size-4" />
-            ¿Tienes alguna duda?
-        </a>
-    </div>
+
 @endsection
