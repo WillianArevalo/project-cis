@@ -26,7 +26,7 @@
                         </div>
                         <x-icon icon="arrow-down" class="h-4 w-4 text-zinc-700 dark:text-zinc-400" />
                     </button>
-                    <div class="absolute right-0 top-12 hidden w-44 rounded-xl border border-zinc-400 bg-white p-2 shadow-md dark:border-zinc-900 dark:bg-zinc-950"
+                    <div class="absolute right-0 top-12 hidden w-44 animate-fade-down rounded-xl border border-zinc-400 bg-white p-2 shadow-md animate-duration-300 dark:border-zinc-900 dark:bg-zinc-950"
                         id="profile-dropdown">
                         <ul class="flex flex-col">
                             <li>
