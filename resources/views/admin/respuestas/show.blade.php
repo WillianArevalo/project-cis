@@ -1,5 +1,5 @@
 @extends('layouts.admin-template')
-@section('title', 'CIS | Becados')
+@section('title', 'CIS | Ver respuestas')
 @section('content')
     <section class="p-4">
         @include('layouts.__partials.admin.header', [
@@ -98,7 +98,7 @@
         <div class="relative h-auto w-full max-w-md p-4">
             <!-- Modal content -->
             <div
-                class="relative animate-jump-in rounded-lg bg-white p-4 shadow animate-duration-300 dark:bg-zinc-950 sm:p-5">
+                class="relative animate-fade-down rounded-lg bg-white p-4 shadow animate-duration-300 dark:bg-zinc-950 sm:p-5">
                 <!-- Modal header -->
                 <div class="mb-4 flex items-center justify-between">
                     <h3 class="text-lg font-semibold text-zinc-900 dark:text-white">
