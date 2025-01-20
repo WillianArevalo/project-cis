@@ -38,14 +38,13 @@ body {
     font-family: "Plus Jakarta Sans Variable", sans-serif, system-ui;
 }
 
-input,
 select,
 p,
 small,
 a,
-button,
 textarea,
-label,
+input,
+button,
 span {
     font-family: "Plus Jakarta Sans Variable", sans-serif, system-ui;
 }
@@ -59,7 +58,8 @@ h2,
 h3,
 h4,
 h5,
-h6 {
+h6,
+label {
     font-family: "Rubik Variable", sans-serif, system-ui;
 }
 
