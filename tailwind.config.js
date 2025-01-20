@@ -7,6 +7,11 @@ export default {
         "./resources/**/*.vue",
         "./node_modules/flowbite/**/*.js",
     ],
-    theme: {},
+    theme: {
+        fontFamily: {
+            rubik: ["Rubik Variable", "sans-serif"],
+            plus: ["Plus Jakarta Sans Variable"],
+        },
+    },
     plugins: [require("flowbite/plugin"), require("tailwindcss-animated")],
 };
