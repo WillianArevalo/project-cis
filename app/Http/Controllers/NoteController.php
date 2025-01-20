@@ -12,7 +12,7 @@ class NoteController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'answer_id' => 'required|exists:asks,id',
+            'answer_id' => 'required|exists:answers,id',
             'content' => 'required|string|min:1',
         ]);
 
