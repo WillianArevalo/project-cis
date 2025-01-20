@@ -35,8 +35,7 @@
 
     // Clases base
     $baseClasses =
-        'font-medium rounded-xl flex items-center justify-center gap-2 transition-colors transition duration-300 ' .
-        $padding;
+        'rounded-xl flex items-center justify-center gap-2 transition-colors transition duration-300 ' . $padding;
 
     // Tipos de botones
     $buttonTypes = [
@@ -74,7 +73,7 @@
                 <x-icon :icon="$icon" class="{{ $sizes[$size]['icon'] }} text-current" />
             @endif
             @if (!$onlyIcon)
-                <span class="{{ $sizes[$size]['text'] }}">{{ $text }}</span>
+                <span class="{{ $sizes[$size]['text'] }} font-semibold">{{ $text }}</span>
             @endif
             @if ($iconAlign === 'right' && !$onlyIcon)
                 <x-icon :icon="$icon" class="{{ $sizes[$size]['icon'] }} text-current" />
@@ -95,7 +94,7 @@
                 <x-icon :icon="$icon" class="{{ $sizes[$size]['icon'] }} text-current" />
             @endif
             @if (!$onlyIcon)
-                <span class="{{ $sizes[$size]['text'] }}">{{ $text }}</span>
+                <span class="{{ $sizes[$size]['text'] }} font-semibold">{{ $text }}</span>
             @endif
             @if ($iconAlign === 'right' && !$onlyIcon)
                 <x-icon :icon="$icon" class="{{ $sizes[$size]['icon'] }} text-current" />
