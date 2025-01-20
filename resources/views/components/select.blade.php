@@ -1,7 +1,7 @@
 <div class="w-full">
     @if (!empty($label))
         <label for="{{ $id }}"
-            class="{{ $required ? "after:content-['*'] after:ml-0.5 after:text-red-500" : '' }} mb-1 block text-sm font-semibold text-zinc-600 dark:text-zinc-300">
+            class="{{ $required ? "after:content-['*'] after:ml-0.5 after:text-red-500" : '' }} mb-1 block font-rubik text-sm font-semibold text-zinc-600 dark:text-zinc-300 sm:text-base">
             {{ ucfirst($label) }}
         </label>
     @endif
