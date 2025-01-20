@@ -41,7 +41,7 @@
     @if ($label && $type !== 'checkbox' && $type !== 'radio' && $type !== 'file')
         <div class="mb-1 flex flex-col gap-1">
             <label for="{{ $id }}"
-                class="{{ $labelClass }} block text-sm font-semibold text-zinc-600 dark:text-zinc-300">
+                class="{{ $labelClass }} block font-rubik text-sm font-semibold text-zinc-600 dark:text-zinc-300 sm:text-base">
                 {{ $label }}
             </label>
             @if ($legend ?? false)
@@ -67,7 +67,7 @@
         @elseif($type === 'file')
             <div>
                 <span
-                    class="{{ $required ? 'after:content-["*"] after:text-red-500' : '' }} mb-1 block text-sm font-medium text-zinc-500 after:ml-0.5 dark:text-zinc-300">
+                    class="{{ $required ? 'after:content-["*"] after:text-red-500' : '' }} mb-1 font-rubik text-sm font-semibold text-zinc-600 dark:text-zinc-300 sm:text-base">
                     {{ $label }}
                 </span>
                 <div
@@ -102,7 +102,7 @@
                     class="{{ $class }} h-4 w-4 rounded border-2 border-zinc-400 bg-zinc-100 text-orange-500 focus:ring-2 focus:ring-orange-500 dark:border-zinc-800 dark:bg-zinc-950 dark:ring-offset-zinc-800 dark:focus:ring-orange-600"
                     @if ($required) required @endif>
                 <label for="{{ $id }}"
-                    class="{{ $labelClass }} ms-1 inline-block text-sm font-medium text-zinc-500 dark:text-zinc-300">
+                    class="{{ $labelClass }} ms-1 inline-block font-rubik text-sm font-semibold text-zinc-600 dark:text-zinc-300 sm:text-base">
                     {{ $label }}
                     @if ($legend ?? false)
                         <span class="text-xs text-zinc-400 dark:text-zinc-500">({{ $legend }})</span>
