@@ -85,7 +85,7 @@
                                         @if ($becado->phone)
                                             <x-button type="a"
                                                 href="https://wa.me/503{{ $becado->phone }}?text={{ urlencode('Hola ' . $becado->name . ',tus preguntas han sido revisadas, por favor dales un vistazo: ') . urlencode(Route('home')) }}"
-                                                typeButton="secondary" icon="whatsapp" onlyIcon />
+                                                target="_blank" typeButton="secondary" icon="whatsapp" onlyIcon />
                                         @endif
                                     </div>
                                 </x-td>
