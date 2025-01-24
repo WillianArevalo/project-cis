@@ -22,7 +22,10 @@
                             Becado
                         </x-th>
                         <x-th>
-                            Repuestas
+                            Respuestas validadas
+                        </x-th>
+                        <x-th>
+                            Respuestas enviadas
                         </x-th>
                         <x-th last="true">
                             Acciones
@@ -75,6 +78,21 @@
                                             class="bg-{{ $color }}-100 text-{{ $color }}-500 dark:bg-{{ $color }}-950/30 dark:text-{{ $color }}-400 flex w-max items-center gap-1 rounded-full px-2 py-1 text-xs">
                                             <x-icon icon="info-circle" class="h-4 w-4" />
                                             Faltan {{ $remaining }} {{ $remaining === 1 ? 'respuesta' : 'respuestas' }}
+                                        </span>
+                                    @endif
+                                </x-td>
+                                <x-td>
+                                    @if ($becado->answers->count() > 0)
+                                        <span
+                                            class="flex w-max items-center gap-1 rounded-full bg-green-100 px-2 py-1 text-xs text-green-500 dark:bg-green-950/30 dark:text-green-400">
+                                            <x-icon icon="circle-check" class="h-4 w-4" />
+                                            {{ $becado->answers->count() }} enviadas
+                                        </span>
+                                    @else
+                                        <span
+                                            class="flex w-max items-center gap-1 rounded-full bg-yellow-100 px-2 py-1 text-xs text-yellow-500 dark:bg-yellow-950/30 dark:text-yellow-400">
+                                            <x-icon icon="info-circle" class="h-4 w-4" />
+                                            Pendientes
                                         </span>
                                     @endif
                                 </x-td>
