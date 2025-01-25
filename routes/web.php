@@ -99,9 +99,11 @@ Route::middleware("role:admin")->prefix("admin")->name("admin.")->group(function
 
     Route::get("/respuestas", [AnswerController::class, "index"])->name("respuestas.index");
 
+
     //Routes for answers
     Route::get("/respuestas/{id}", [AnswerController::class, "show"])->name("respuestas.show");
-    Route::post("/respuesta/cambiar-estado/{id}", [AnswerController::class, "changeStatus"])->name("respuestas.change-status");
+    Route::get("/respuesta/cambiar-estado/{id}", [AnswerController::class, "changeStatus"])->name("respuestas.change-status");
+    Route::put("/answers", [AnswerController::class, "update"])->name("answers.update");
 
     //Routes for notes
     Route::resource("/notas", NoteController::class);
