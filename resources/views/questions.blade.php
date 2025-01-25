@@ -53,7 +53,7 @@
                             action="{{ $scholarship->answers && $scholarship->answers->count() > 0 ? Route('answers.update') : Route('answers.store') }}"
                             class="flex flex-col gap-6" id="form-questions" method="POST">
                             @csrf
-
+                            <input type="hidden" name="scholarship_id" value="{{ $scholarship->id }}">
                             @if ($scholarship->answers->count() > 0)
                                 @method('PUT')
                             @endif

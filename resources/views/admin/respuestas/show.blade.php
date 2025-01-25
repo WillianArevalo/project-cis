@@ -43,7 +43,8 @@
                             method="POST">
                             @csrf
                             @method('PUT')
-                            <input type="hidden" name="id" value="{{ $scholarship->answers->first()->id }}">
+                            <input type="hidden" name="id"
+                                value="{{ $scholarship->answers ? $scholarship->answers->first()->id : null }}">
                             <input type="hidden" name="scholarship_id" value="{{ $scholarship->id }}">
                             @foreach ($asks as $ask)
                                 <div class="flex flex-col gap-2">
