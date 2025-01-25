@@ -8,87 +8,129 @@
         ])
         <div class="mt-4">
             <div class="flex flex-col gap-6">
-                @foreach ($asks as $ask)
-                    <div class="flex w-full flex-col gap-2 md:w-3/4">
-                        <div class="flex items-start gap-2">
-                            @if ($ask->answers->first()?->status === 'approved')
-                                <x-icon icon="circle-check" class="mt-1 size-5 text-green-500 dark:text-green-400" />
-                            @endif
-                            @if ($ask->answers->first()?->status === 'pending')
-                                <x-icon icon="clock"
-                                    class="mt-1 size-5 max-h-5 min-h-5 min-w-5 max-w-5 text-yellow-500 dark:text-yellow-400" />
-                            @endif
-                            @if ($ask->answers->first()?->status === 'rejected')
-                                <x-icon icon="circle-x"
-                                    class="mt-1 size-5 max-h-5 min-h-5 min-w-5 max-w-5 text-red-500 dark:text-red-400" />
-                            @endif
-                            <h2 class="text-base font-semibold text-zinc-800 dark:text-zinc-200 sm:text-lg">
-                                {{ $loop->iteration . '. ' . $ask->title }}
-                            </h2>
-                        </div>
-                        <p class="text-wrap text-xs text-zinc-500 dark:text-zinc-400">
-                            {{ $ask->description }}
-                        </p>
-                        @if ($ask->answers->first()?->content)
-                            <p class="text-wrap text-sm text-zinc-500 dark:text-zinc-400">
-                                {{ $ask->answers->first()?->content }}
-                            </p>
-                            <div class="mt-4 flex gap-4">
-                                <form action="{{ Route('admin.respuestas.change-status', $ask->answers->first()?->id) }}"
-                                    method="POST">
-                                    @csrf
-                                    <input type="hidden" name="status" value="approved">
-                                    <x-button type="submit" typeButton="primary" size="small" text="Aprobada"
-                                        icon="circle-check" />
-                                </form>
-                                @if ($ask->answers->first()?->status !== 'rejected')
-                                    <form
-                                        action="{{ Route('admin.respuestas.change-status', $ask->answers->first()?->id) }}"
-                                        method="POST">
-                                        @csrf
-                                        <input type="hidden" name="status" value="rejected">
-                                        <x-button type="submit" typeButton="secondary" size="small" text="Rechazada"
-                                            icon="close" />
-                                    </form>
-                                @else
-                                    <x-button type="button" typeButton="secondary" class="btn-add-note" size="small"
-                                        data-modal-target="modal-new-note" data-modal-toggle="modal-new-note"
-                                        text="Agregar nota" icon="plus" data-id="{{ $ask->answers->first()?->id }}" />
-                                @endif
-                            </div>
-                        @else
-                            <p
-                                class="text-wrap rounded-xl border border-dashed border-red-500 p-4 text-center text-sm text-red-500 dark:border-red-500 dark:text-red-500">
-                                Sin respuesta
-                            </p>
-                        @endif
 
-                        @if ($ask->answers->first()?->notes->count() > 0)
-                            <div class="mt-4">
-                                <h3 class="text-base font-semibold text-zinc-800 dark:text-zinc-200">
-                                    Notas
-                                </h3>
-                                <div class="mt-2 flex flex-col gap-4">
-                                    @foreach ($ask->answers->first()?->notes as $note)
-                                        <div class="ms-4 flex items-center gap-2">
-                                            <p class="text-wrap text-sm text-zinc-500 dark:text-zinc-400">
-                                                {{ $note->content }}
-                                            </p>
-                                            <div>
-                                                <form action="{{ Route('admin.notas.destroy', $note->id) }}" method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <x-button type="submit" typeButton="secondary" size="small" onlyIcon
-                                                        icon="trash" />
-                                                </form>
-                                            </div>
-                                        </div>
+                @if ($asks)
+                    @if ($errors->any())
+                        <div class="mt-4 w-full">
+                            <span
+                                class="flex w-full flex-col items-center justify-center gap-4 rounded-xl border border-dashed border-red-500 bg-red-100 p-4 text-sm font-semibold text-red-500 dark:bg-red-950/30">
+                                <div class="flex items-center gap-1 uppercase">
+                                    Corrige los errores en el formulario
+                                </div>
+                                <div class="flex flex-col gap-4">
+                                    @foreach ($errors->all() as $error)
+                                        <span class="flex items-center gap-1 text-sm text-red-500 dark:text-red-400">
+                                            <x-icon icon="circle-x" class="h-5 w-5" />
+                                            {{ $error }}
+                                        </span>
                                     @endforeach
                                 </div>
-                            </div>
-                        @endif
+                            </span>
+                        </div>
+                    @endif
+
+                    @if ($scholarship->answers->count() > 0 && $scholarship->answers->every(fn($answer) => $answer->status === 'approved'))
+                        <div class="mt-4 w-full">
+                            <span
+                                class="flex w-full items-center justify-center gap-1 rounded-xl border border-dashed border-green-500 bg-green-100 p-4 text-sm font-semibold uppercase text-green-500 dark:bg-green-950/30">
+                                <x-icon icon="circle-check" class="h-5 w-5" />
+                                Preguntas completadas
+                            </span>
+                        </div>
+                    @endif
+                    <div class="mt-4">
+                        <form action="{{ Route('admin.answers.update') }}" class="flex flex-col gap-6" id="form-questions"
+                            method="POST">
+                            @csrf
+                            @method('PUT')
+                            <input type="hidden" name="id" value="{{ $scholarship->answers->first()->id }}">
+                            <input type="hidden" name="scholarship_id" value="{{ $scholarship->id }}">
+                            @foreach ($asks as $ask)
+                                <div class="flex flex-col gap-2">
+                                    <x-input type="hidden" name="answers[{{ $loop->index }}][ask_id]"
+                                        value="{{ $ask->id }}" />
+                                    <x-input type="textarea" legend="{{ $ask->description }}"
+                                        label="{{ $loop->iteration . '. ' . $ask->title }}"
+                                        name="answers[{{ $loop->index }}][content]"
+                                        data-error="#error-question-{{ $loop->iteration }}"
+                                        value="{{ old('answers.' . $loop->index . '.content', $ask->answers->first()?->content) }}"
+                                        placeholder="Escribe tu respuesta..." class="input-question field-sizing"
+                                        minlength="{{ $ask->max_characters }}" />
+                                    <span id="error-question-{{ $loop->iteration }}"
+                                        class="mt-2 hidden items-center gap-1 text-sm text-red-500">
+                                        <x-icon icon="exclamation-circle" class="h-4 w-4" />
+                                        <span class="error-msg text-red-500">Este campo es obligatorio</span>
+                                    </span>
+                                    @if ($ask->answers->count() > 0)
+                                        @if ($ask->answers->first()->status === 'approved')
+                                            <span
+                                                class="mt-2 flex w-max items-center gap-1 rounded-full bg-green-100 px-2 py-1 text-sm text-green-500 dark:bg-green-950/30">
+                                                <x-icon icon="circle-check" class="h-4 w-4" />
+                                                Aprobada
+                                            </span>
+                                        @endif
+                                        @if ($ask->answers->first()->status === 'pending')
+                                            <span
+                                                class="mt-2 flex w-max items-center gap-1 rounded-full bg-yellow-100 px-2 py-1 text-sm text-yellow-500 dark:bg-yellow-950/30">
+                                                <x-icon icon="clock" class="h-4 w-4" />
+                                                Pendiente
+                                            </span>
+                                        @endif
+                                        @if ($ask->answers->first()->status === 'rejected')
+                                            <span
+                                                class="mt-2 flex w-max items-center gap-1 rounded-full bg-red-100 px-2 py-1 text-sm text-red-500 dark:bg-red-950/30">
+                                                <x-icon icon="circle-x" class="h-4 w-4" />
+                                                Rechazada
+                                            </span>
+                                        @endif
+                                    @else
+                                        <span
+                                            class="mt-2 flex w-max items-center gap-1 rounded-full bg-yellow-100 px-2 py-1 text-sm text-yellow-500 dark:bg-yellow-950/30">
+                                            <x-icon icon="clock" class="h-4 w-4" />
+                                            Pendiente
+                                        </span>
+                                    @endif
+                                    @if ($ask->answers->first()?->notes->count() > 0)
+                                        <div class="mt-4">
+                                            <h3 class="text-base font-semibold text-zinc-800 dark:text-zinc-200">
+                                                Notas
+                                            </h3>
+                                            <div class="mt-2 flex flex-col gap-2">
+                                                @foreach ($ask->answers->first()?->notes as $note)
+                                                    <div class="flex items-start gap-2">
+                                                        <p class="ms-4 text-wrap text-sm text-zinc-500 dark:text-zinc-400">
+                                                            {{ $note->content }}
+                                                        </p>
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                    @endif
+                                </div>
+                                @if ($ask->answers->first()?->content)
+                                    <div class="flex gap-4">
+                                        <x-button type="button" typeButton="primary" size="small" text="Aprobada"
+                                            icon="circle-check" class="btn-change-status"
+                                            data-action="{{ Route('admin.respuestas.change-status', $ask->answers->first()?->id) }}"
+                                            data-value="approved" />
+                                        <x-button type="button"
+                                            data-action="{{ Route('admin.respuestas.change-status', $ask->answers->first()?->id) }}"
+                                            class="btn-change-status" typeButton="secondary" size="small"
+                                            data-value="rejected" text="Rechazada" icon="close" />
+                                    </div>
+                                @endif
+                            @endforeach
+                            @if (
+                                !$scholarship->answers->every(fn($answer) => $answer->status === 'approved') ||
+                                    $scholarship->answers->count() === 0)
+                                <div class="flex items-center justify-center gap-4">
+                                    <x-button type="submit" typeButton="primary" text="Enviar preguntas" icon="send"
+                                        class="w-full sm:w-auto" />
+                                </div>
+                            @endif
+                        </form>
                     </div>
-                @endforeach
+                @endif
             </div>
         </div>
     </section>
@@ -124,8 +166,8 @@
                         <x-input type="textarea" name="content" placeholder="Ingresa la nota" required />
                     </div>
                     <div class="mt-4 flex justify-end gap-4">
-                        <x-button type="button" data-modal-toggle="modal-new-note" icon="close" typeButton="secondary"
-                            text="Cancelar" />
+                        <x-button type="button" data-modal-toggle="modal-new-note" icon="close"
+                            typeButton="secondary" text="Cancelar" />
                         <x-button type="submit" icon="save" typeButton="primary" text="Guardar" />
                     </div>
                 </form>
