@@ -59,11 +59,12 @@ class AnswerController extends Controller
             'answers' => 'nullable|array',
             'answers.*.ask_id' => 'nullable|exists:asks,id',
             'answers.*.content' => 'nullable|string|min:1',
+            'scholarship_id' => 'required|exists:scholarships,id',
         ]);
 
         try {
             DB::beginTransaction();
-            $scholarship = Scholarship::where('user_id', auth()->id())->firstOrFail();
+            $scholarship = Scholarship::where('id', $validated['scholarship_id'])->firstOrFail();
 
             foreach ($validated['answers'] as $answer) {
                 $answerModel = Answer::where('ask_id', $answer['ask_id'])
@@ -74,19 +75,16 @@ class AnswerController extends Controller
             }
 
             DB::commit();
-            return redirect()->route('home')
+            return redirect()->route("admin.respuestas.show", $scholarship->id)
                 ->with('success_title', 'Respuestas actualizadas')
                 ->with('success_message', 'Las respuestas han sido actualizadas correctamente.');
         } catch (\Exception $e) {
             DB::rollBack();
-
-            return redirect()->route('home')
+            return redirect()->route('admin.respuestas.show', $validated['scholarship_id'])
                 ->with('error_title', 'Error al actualizar las respuestas')
                 ->with('error_message', 'Ha ocurrido un error al actualizar las respuestas.');
         }
     }
-
-
 
     public function show(string $id)
     {
@@ -106,8 +104,6 @@ class AnswerController extends Controller
         $answer = Answer::where('id', $id)->firstOrFail();
         $answer->status = $validated['status'];
         $answer->save();
-        return redirect()->route("admin.respuestas.show", $answer->scholarship_id)
-            ->with("success_title", "Estado de respuesta actualizado")
-            ->with("success_message", "El estado de la respuesta ha sido actualizado correctamente");
+        return response()->json(['message' => 'Estado actualizado correctamente']);
     }
 }
