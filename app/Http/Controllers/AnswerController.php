@@ -62,6 +62,8 @@ class AnswerController extends Controller
             'scholarship_id' => 'required|exists:scholarships,id',
         ]);
 
+        $user = auth()->user();
+
         try {
             DB::beginTransaction();
             $scholarship = Scholarship::where('id', $validated['scholarship_id'])->firstOrFail();
@@ -73,16 +75,28 @@ class AnswerController extends Controller
                 $answerModel->content = $answer['content'];
                 $answerModel->save();
             }
-
             DB::commit();
-            return redirect()->route("admin.respuestas.show", $scholarship->id)
-                ->with('success_title', 'Respuestas actualizadas')
-                ->with('success_message', 'Las respuestas han sido actualizadas correctamente.');
+
+            if ($user->rol == 'admin') {
+                return redirect()->route("admin.respuestas.show", $scholarship->id)
+                    ->with('success_title', 'Respuestas actualizadas')
+                    ->with('success_message', 'Las respuestas han sido actualizadas correctamente.');
+            } else {
+                return redirect()->route("home")
+                    ->with('success_title', 'Respuestas actualizadas')
+                    ->with('success_message', 'Las respuestas han sido actualizadas correctamente.');
+            }
         } catch (\Exception $e) {
             DB::rollBack();
-            return redirect()->route('admin.respuestas.show', $validated['scholarship_id'])
-                ->with('error_title', 'Error al actualizar las respuestas')
-                ->with('error_message', 'Ha ocurrido un error al actualizar las respuestas.');
+            if ($user->rol == 'admin') {
+                return redirect()->route("admin.respuestas.show", $scholarship->id)
+                    ->with('error_title', 'Error al actualizar las respuestas')
+                    ->with('error_message', 'Ha ocurrido un error al actualizar las respuestas.');
+            } else {
+                return redirect()->route("home")
+                    ->with('error_title', 'Error al actualizar las respuestas')
+                    ->with('error_message', 'Ha ocurrido un error al actualizar las respuestas.');
+            }
         }
     }
 
