@@ -77,7 +77,7 @@ class AnswerController extends Controller
             }
             DB::commit();
 
-            if ($user->rol == 'admin') {
+            if ($user->role == 'admin') {
                 return redirect()->route("admin.respuestas.show", $scholarship->id)
                     ->with('success_title', 'Respuestas actualizadas')
                     ->with('success_message', 'Las respuestas han sido actualizadas correctamente.');
