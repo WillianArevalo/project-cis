@@ -121,14 +121,10 @@
                                     </div>
                                 @endif
                             @endforeach
-                            @if (
-                                !$scholarship->answers->every(fn($answer) => $answer->status === 'approved') ||
-                                    $scholarship->answers->count() === 0)
-                                <div class="flex items-center justify-center gap-4">
-                                    <x-button type="submit" typeButton="primary" text="Editar respuestas" icon="send"
-                                        class="w-full sm:w-auto" />
-                                </div>
-                            @endif
+                            <div class="flex items-center justify-center gap-4">
+                                <x-button type="submit" typeButton="primary" text="Editar respuestas" icon="send"
+                                    class="w-full sm:w-auto" />
+                            </div>
                         </form>
                     </div>
                 @endif
