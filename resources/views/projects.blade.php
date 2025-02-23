@@ -303,8 +303,14 @@
                                             data-input="#scholarship_id">
                                             <div
                                                 class="option-scholarship flex items-center text-zinc-600 dark:text-zinc-300">
-                                                <img src="{{ Storage::url($becado->photo) }}" alt="{{ $becado->name }}"
-                                                    class="size-8 rounded-full object-cover">
+                                                @if ($becado->photo)
+                                                    <img src="{{ Storage::url($becado->photo) }}"
+                                                        alt="{{ $becado->name }}"
+                                                        class="size-8 rounded-full object-cover">
+                                                @else
+                                                    <img src="https://avatar.iran.liara.run/public" alt="Foto del becado"
+                                                        class="h-10 w-10 min-w-10 max-w-10 rounded-full object-cover">
+                                                @endif
                                                 <span class="ml-2 text-sm">{{ $becado->name }}</span>
                                             </div>
                                         </li>

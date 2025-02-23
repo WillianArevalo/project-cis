@@ -18,8 +18,13 @@
             <div>
                 <div class="relative">
                     <button type="button" class="flex items-center gap-2" id="profile-btn">
-                        <img src="{{ Storage::url($user->scholarship->photo) }}" alt="{{ $user->name }}"
-                            class="h-10 w-10 rounded-full object-cover">
+                        @if ($user->scholarship && $user->scholarship->photo)
+                            <img src="{{ Storage::url($user->scholarship->photo) }}" alt="{{ $user->name }}"
+                                class="h-10 w-10 rounded-full object-cover">
+                        @else
+                            <img src="https://avatar.iran.liara.run/public" alt="Foto del becado"
+                                class="h-10 w-10 min-w-10 max-w-10 rounded-full object-cover">
+                        @endif
                         <div class="hidden flex-col items-start sm:flex">
                             <span class="text-xs font-medium text-orange-500">Hola,</span>
                             <span class="text-sm font-bold text-zinc-700 dark:text-white">{{ $user->user }}</span>
