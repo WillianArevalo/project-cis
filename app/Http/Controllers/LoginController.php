@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
+use App\Models\Setting;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,7 +16,8 @@ class LoginController extends Controller
     public function index()
     {
         $user = auth()->user();
-        if ($user) {
+        $maintenance = Setting::where('key', 'maintenance')->first();
+        if ($user && $maintenance->value === 0) {
             if ($user->role == 'admin') {
                 return redirect()->route('admin.dashboard');
             }
