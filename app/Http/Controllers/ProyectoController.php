@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
 class ProyectoController extends Controller
@@ -84,7 +85,7 @@ class ProyectoController extends Controller
 
             $proyecto->save();
 
-            if ($request->has("specific_objectives")) {
+            if ($request->has("specific_objectives") && is_array($request->specific_objectives)) {
                 $specificObjectives = $request->specific_objectives;
                 foreach ($specificObjectives as $objective) {
                     $proyecto->specificObjetives()->create([
