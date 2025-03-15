@@ -5,7 +5,7 @@
         <div class="flex flex-col gap-4 md:flex-row">
             <div class="flex flex-1 flex-col rounded-2xl border border-zinc-400 p-4 shadow-md dark:border-zinc-800">
                 <div class="flex items-center justify-center">
-                    @if ($user->scholarship->photo)
+                    @if ($user->scholarship && $user->scholarship->photo)
                         <img src="{{ Storage::url($user->scholarship->photo) }}" alt="Profile {{ $user->user }}"
                             class="size-36 rounded-full object-cover">
                     @else
