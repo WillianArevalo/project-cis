@@ -35,7 +35,7 @@ class ProjectRequest extends FormRequest
             "projections" => "nullable|string",
             "challenges" => "nullable|string",
             "schedule" => "nullable|file|mimes:pdf,doc,docx",
-            "specific_objectives" => "nullable|array|min:3",
+            "specific_objectives" => "nullable|array|min:1",
             "scholarship_id" => "nullable|string"
         ];
     }
