@@ -158,11 +158,11 @@
                 </div>
             </div>
         </div>
-        <div class="mt-6 flex items-center justify-center gap-4">
-            <x-button type="submit" icon="pencil" class="w-full sm:w-max" text="Editar proyecto"
-                typeButton="primary" />
+        <div class="mt-6 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <x-button type="submit" icon="pencil" class="w-full sm:w-max" text="Editar proyecto" typeButton="primary"
+                class="w-full sm:w-max" />
             <x-button type="a" href="{{ Route('admin.proyectos.index') }}" icon="corner-down-left"
-                class="w-full sm:w-max" text="Regresar" typeButton="secondary" />
+                class="w-full sm:w-max" text="Regresar" class="w-full sm:w-max" typeButton="secondary" />
         </div>
     </form>
 @endsection
