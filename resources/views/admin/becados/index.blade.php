@@ -32,9 +32,6 @@
                             Nivel académico
                         </x-th>
                         <x-th>
-                            Estudiando
-                        </x-th>
-                        <x-th>
                             Comunidad
                         </x-th>
                         <x-th last="true">
@@ -59,11 +56,26 @@
                                     <div class="flex flex-col gap-1">
                                         {{ $becado->name }}
                                         @if ($becado->user->role === 'becado')
-                                            <span
-                                                class="flex w-max items-center gap-1 rounded-full bg-green-200 px-2 py-1 text-xs font-medium text-green-700 dark:bg-green-950/30 dark:text-green-500">
-                                                <x-icon icon="school" class="h-4 w-4" />
-                                                Becado
-                                            </span>
+                                            <div class="flex-items-center-gap-1">
+                                                <span
+                                                    class="flex w-max items-center gap-1 rounded-full bg-green-200 px-2 py-1 text-xs font-medium text-green-700 dark:bg-green-950/30 dark:text-green-500">
+                                                    <x-icon icon="school" class="h-4 w-4" />
+                                                    Becado
+                                                </span>
+                                                @if ($becado->project)
+                                                    <span
+                                                        class="mt-1 flex w-max items-center gap-1 rounded-full bg-blue-100 px-2 py-1 text-xs font-semibold text-blue-500 dark:bg-blue-950/30 dark:text-blue-500">
+                                                        <x-icon icon="folder" class="size-4" />
+                                                        {{ $becado->project->name }}
+                                                    </span>
+                                                @else
+                                                    <span
+                                                        class="mt-1 w-max rounded-2xl px-3 py-0.5 text-xs font-medium dark:bg-red-950 dark:bg-opacity-30 dark:text-red-500">
+                                                        <x-icon icon="user-off" class="h-4 w-4" />
+                                                        Sin asignar
+                                                    </span>
+                                                @endif
+                                            </div>
                                         @else
                                             <span
                                                 class="flex w-max items-center gap-1 rounded-full bg-blue-200 px-2 py-1 text-xs font-medium text-blue-700 dark:bg-blue-950/30 dark:text-blue-500">
@@ -78,9 +90,6 @@
                                 </x-td>
                                 <x-td>
                                     {{ $becado->study_level }}
-                                </x-td>
-                                <x-td>
-                                    {{ $becado->academic_level }}
                                 </x-td>
                                 <x-td>
                                     {{ $becado->community->name }}
