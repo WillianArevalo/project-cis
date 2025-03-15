@@ -24,19 +24,19 @@ class ProjectRequest extends FormRequest
         return [
             "name" => "required|string",
             "community_id" => "required|integer|exists:communities,id",
-            "document" => "required|file|mimes:pdf,doc,docx",
-            "benefited_population" => "required|string",
-            "general_objective" => "required|string",
-            "justification" => "required|string",
-            "location" => "required|string",
-            "map" => "required|image",
-            "contextualization" => "required|string",
-            "description_activities" => "required|string",
-            "projections" => "required|string",
-            "challenges" => "required|string",
-            "schedule" => "required|file|mimes:pdf,doc,docx",
-            "specific_objectives" => "required|array|min:3",
-            "scholarship_id" => "required|string"
+            "document" => "nullable|file|mimes:pdf,doc,docx",
+            "benefited_population" => "nullable|string",
+            "general_objective" => "nullable|string",
+            "justification" => "nullable|string",
+            "location" => "nullable|string",
+            "map" => "nullable|image",
+            "contextualization" => "nullable|string",
+            "description_activities" => "nullable|string",
+            "projections" => "nullable|string",
+            "challenges" => "nullable|string",
+            "schedule" => "nullable|file|mimes:pdf,doc,docx",
+            "specific_objectives" => "nullable|array|min:3",
+            "scholarship_id" => "nullable|string"
         ];
     }
 }
