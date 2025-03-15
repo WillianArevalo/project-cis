@@ -70,7 +70,7 @@
                                                     </span>
                                                 @else
                                                     <span
-                                                        class="mt-1 w-max rounded-2xl px-3 py-0.5 text-xs font-medium dark:bg-red-950 dark:bg-opacity-30 dark:text-red-500">
+                                                        class="mt-1 w-max rounded-2xl px-3 py-0.5 text-xs font-medium dark:bg-red-950 dark:bg-opacity-30 dark:text-red-500 flex items-center gap-1">
                                                         <x-icon icon="user-off" class="h-4 w-4" />
                                                         Sin asignar
                                                     </span>
