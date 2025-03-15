@@ -73,13 +73,13 @@
             @if ($disabled)
                 <span
                     class="flex h-full w-full items-center justify-center gap-2 px-2 py-1 text-xs text-gray-500 dark:text-gray-300">
-                    Todavía no puedes enviar reportes para este mes
+                    Todavía no puedes enviar el reporte de este mes
                 </span>
             @else
                 <span
                     class="flex h-full w-full items-center justify-center gap-2 px-2 py-1 text-sm text-red-500 dark:text-red-300">
                     <x-icon icon="calendar-clock" class="size-4 text-red-500" />
-                    Reportes pendientes
+                    Reporte pendiente
                 </span>
             @endif
         @endif
