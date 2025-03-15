@@ -14,6 +14,13 @@ class LoginController extends Controller
 {
     public function index()
     {
+        $user = auth()->user();
+        if ($user) {
+            if ($user->role == 'admin') {
+                return redirect()->route('admin.dashboard');
+            }
+            return redirect()->route('home');
+        }
         return view('login');
     }
 
