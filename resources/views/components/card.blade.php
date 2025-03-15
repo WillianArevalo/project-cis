@@ -58,8 +58,7 @@
                 <span
                     class="flex items-center gap-1 rounded-full bg-green-100 px-2 py-1 text-sm text-green-500 dark:bg-green-950/30 dark:text-green-300">
                     <x-icon icon="circle-check" class="size-4 text-green-500" />
-                    {{ $reportCount }} reporte{{ $reportCount > 1 ? 's' : '' }}
-                    enviado{{ $reportCount > 1 ? 's' : '' }}
+                    Reporte enviado
                 </span>
                 <ul class="list-none text-left text-sm text-zinc-800 dark:text-zinc-300">
                     @foreach ($reports as $report)
@@ -90,7 +89,7 @@
             <x-button type="button" typeButton="secondary" text="Enviar reporte" icon="send"
                 class="w-full cursor-not-allowed" />
         @else
-            @if ($reportCount === 1)
+            @if ($send)
                 <x-button type="a" href="{{ Route('reportes.show', ['mes' => $month]) }}" typeButton="secondary"
                     text="Ver reporte" icon="send" :disabled="$disabled" />
             @else
