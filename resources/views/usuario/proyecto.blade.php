@@ -158,10 +158,6 @@
                 </div>
             </div>
         </div>
-        <div class="mt-4">
-            <x-input type="checkbox" name="accept" id="accept" value="{{ $proyecto->accept }}"
-                label="Aceptar proyecto" checked="{{ $proyecto->accept }}" />
-        </div>
         <div class="mt-6 flex items-center justify-center gap-4">
             <x-button type="submit" icon="pencil" class="w-full sm:w-max" text="Editar proyecto"
                 typeButton="primary" />
