@@ -10,7 +10,7 @@
             @csrf
             <div class="mt-4 flex flex-col gap-4 sm:flex-row">
                 <div class="flex-[2]">
-                    <x-input type="text" icon="folder" name="name" id="name" required
+                    <x-input type="text" icon="folder" name="name" id="name" required value="{{ old('name') }}"
                         placeholder="Ingresa el nombre del proyecto" label="Proyecto" />
                 </div>
                 <div class="flex flex-1 flex-col">
@@ -20,12 +20,12 @@
             </div>
             <div class="mt-4 flex flex-col gap-4">
                 <div class="flex-1">
-                    <x-input type="textarea" name="benefited_population" required
+                    <x-input type="textarea" name="benefited_population"
                         legend="Cantón o comunidad, # de mujeres, # niños, # jóvenes, nombre de la escuela"
                         label="Población beneficiada" placeholder="Ingresa la población beneficiada" />
                 </div>
                 <div class="flex-1">
-                    <x-input type="text" name="general_objective" required
+                    <x-input type="text" name="general_objective"
                         placeholder="Ingresa el objetivo general del proyecto social" label="Objetivo general" />
                 </div>
             </div>
@@ -48,57 +48,55 @@
                     </li>
                 </ul>
                 <div id="list-specific-objetives-inputs">
-
                 </div>
             </div>
             <div class="mt-4">
-                <x-input type="textarea" name="justification" required
-                    legend="Describir por qué decidieron elaborar este proyecto"
+                <x-input type="textarea" name="justification" legend="Describir por qué decidieron elaborar este proyecto"
                     placeholder="Ingresa la justificación del proyecto social" label="Justificación" />
             </div>
             <div class="mt-4">
-                <x-input type="textarea" name="contextualization" required
+                <x-input type="textarea" name="contextualization"
                     legend="Ubicación territorial, a qué se dedica la población principalmente, problemas de desarrollo social de la zona."
                     placeholder="Ingresa la contextualización del proyecto social" label="Contextualización" />
             </div>
             <div class="mt-4">
-                <x-input type="textarea" name="description_activities" required
+                <x-input type="textarea" name="description_activities"
                     legend="Descripción de las actividades que se realizan en el proyecto"
                     placeholder="Ingresa la descripción de las actividades" label="Descripción de actividades" />
             </div>
             <div class="mt-4">
-                <x-input type="textarea" name="projections" required
+                <x-input type="textarea" name="projections"
                     legend="Frutos que esperan recibir de la puesta en práctica de su proyecto"
                     placeholder="Ingresa las proyecciones del proyecto" label="Proyecciones" />
             </div>
             <div class="mt-4">
-                <x-input type="textarea" name="challenges" required
+                <x-input type="textarea" name="challenges"
                     legend="Describir las dificultades y desafíos, pero también algunas alternativas que posibiliten salir adelante con el proyecto"
                     placeholder="Ingresa los desafíos del proyecto" label="Desafíos" />
             </div>
             <div class="mt-4">
-                <x-input type="text" name="location" required placeholder="Ingresa la ubicación del proyecto"
-                    label="Ubicación" icon="map-pin" id="location" />
+                <x-input type="text" name="location" placeholder="Ingresa la ubicación del proyecto" label="Ubicación"
+                    icon="map-pin" id="location" />
             </div>
             <div class="flex flex-col gap-4 md:flex-row md:items-center">
                 <div class="mt-4 flex-1">
-                    <x-input type="file" name="map" id="map" icon="map" required
-                        accept=".jpg, .png, .jpeg, .webp" label="Mapa" placeholder="Adjuntar mapa" />
+                    <x-input type="file" name="map" id="map" icon="map" accept=".jpg, .png, .jpeg, .webp"
+                        label="Mapa" placeholder="Adjuntar mapa" />
                 </div>
                 <div class="mt-4 flex-1">
-                    <x-input type="file" name="schedule" id="schedule" icon="calendar" required accept=".pdf, .docx"
+                    <x-input type="file" name="schedule" id="schedule" icon="calendar" accept=".pdf, .docx"
                         label="Cronograma" placeholder="Adjuntar cronograma" />
                 </div>
                 <div class="mt-4 flex-1">
-                    <x-input type="file" name="project" id="project" icon="file" required accept=".pdf, .docx"
+                    <x-input type="file" name="project" id="project" icon="file" accept=".pdf, .docx"
                         label="Documento" placeholder="Adjuntar proyecto" />
                 </div>
             </div>
             <div class="mt-6 flex items-center justify-center gap-4">
-                <x-button type="a" href="{{ Route('admin.proyectos.index') }}" icon="corner-down-left"
-                    class="w-full sm:w-max" text="Regresar" typeButton="secondary" />
                 <x-button type="submit" icon="folder-plus" class="w-full sm:w-max" text="Agregar proyecto"
                     typeButton="primary" />
+                <x-button type="a" href="{{ Route('admin.proyectos.index') }}" icon="corner-down-left"
+                    class="w-full sm:w-max" text="Regresar" typeButton="secondary" />
             </div>
         </form>
     </section>
