@@ -38,7 +38,8 @@ class LoginController extends Controller
 
         return redirect()->route('login')
             ->with('error_title', 'Error de autenticación')
-            ->with('error_message', 'Las credenciales ingresadas son incorrectas.');
+            ->with('error_message', 'Las credenciales ingresadas son incorrectas.')
+            ->withInput();
     }
 
 
