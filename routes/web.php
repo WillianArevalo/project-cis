@@ -43,6 +43,8 @@ Route::middleware("auth")->group(function () {
     Route::post("/enviar-correo", [EmailController::class, "send"])->name("sendEmail");
     Route::get("/verify-email", [EmailController::class, "verify"])->name("verifyEmail");
 
+    Route::get("/proyecto", [ProfileController::class, "project"])->name("proyectos.index");
+    Route::put("/proyecto/{id}", [ProfileController::class, "updateProject"])->name("proyectos.update");
     Route::post("/proyectos", [ProyectoController::class, "store"])->name("proyectos.store");
 
     Route::post("/answers", [AnswerController::class, "store"])->name("answers.store");
