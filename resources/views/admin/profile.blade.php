@@ -38,7 +38,7 @@
                         {{ $user->scholarship ? $user->scholarship->community->name : 'San Pablo Tacachico' }}
                     </p>
                     <p class="mt-2 text-sm text-zinc-800 dark:text-zinc-300">
-                        {{ $user->scholarship ? $user->scholarship->project->name : 'Sin proyecto' }}
+                        {{ $user->scholarship && $user->scholarship->project ? $user->scholarship->project->name : 'Sin proyecto' }}
                     </p>
                 </div>
                 <div class="mt-4 rounded-2xl border border-zinc-400 p-4 shadow-md dark:border-zinc-800">
