@@ -17,7 +17,7 @@ class LoginController extends Controller
     {
         $user = auth()->user();
         $maintenance = Setting::where('key', 'maintenance')->first();
-        if ($user && $maintenance->value === 0) {
+        if ($user && $maintenance->value == 0) {
             if ($user->role == 'admin') {
                 return redirect()->route('admin.dashboard');
             }
