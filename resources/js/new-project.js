@@ -153,24 +153,19 @@ $(document).ready(function () {
     $(document).on("change", ".input-doc", function () {
         const $file = $(this);
         const file = $file[0].files[0];
-
-        console.log($file.data("name"), $file.data("button-remove"));
-
         const $fileName = $($file.data("name"));
         const $btnRemoveFile = $($file.data("button-remove"));
-
+        const $preview = $($file.data("preview"));
         if (file) {
             $fileName.text(file.name);
-            if (file.size > 1024 * 1024) {
-                showToast(
-                    "error",
-                    "Archivo muy grande",
-                    "El archivo no debe superar 1MB"
-                );
-                $file.val("");
-                $fileName.text("Formatos permitidos: .jpg, .png, .jpeg, .webp");
-                return;
+            if ($preview) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    $preview.attr("src", e.target.result);
+                };
+                reader.readAsDataURL(file);
             }
+
             $btnRemoveFile.removeClass("hidden");
         }
     });
