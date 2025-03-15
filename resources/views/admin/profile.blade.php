@@ -32,13 +32,13 @@
             <div class="h-full flex-[2]">
                 <div class="rounded-2xl border border-zinc-400 p-4 shadow-md dark:border-zinc-800">
                     <h1 class="text-lg font-bold text-orange-500 dark:text-orange-500 sm:text-xl md:text-2xl lg:text-3xl">
-                        {{ $user->scholarship->name }}
+                        {{ $user->scholarship ? $user->scholarship->name : $user->user }}
                     </h1>
                     <p class="mt-2 text-sm text-zinc-800 dark:text-zinc-300">
-                        {{ $user->scholarship->community->name }}
+                        {{ $user->scholarship ? $user->scholarship->community->name : 'San Pablo Tacachico' }}
                     </p>
                     <p class="mt-2 text-sm text-zinc-800 dark:text-zinc-300">
-                        {{ $user->scholarship->project ? $user->scholarship->project->name : 'Sin proyecto' }}
+                        {{ $user->scholarship ? $user->scholarship->project->name : 'Sin proyecto' }}
                     </p>
                 </div>
                 <div class="mt-4 rounded-2xl border border-zinc-400 p-4 shadow-md dark:border-zinc-800">
