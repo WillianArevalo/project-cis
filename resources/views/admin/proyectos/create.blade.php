@@ -95,6 +95,9 @@
                         label="Documento" placeholder="Adjuntar proyecto" />
                 </div>
             </div>
+            <div class="mt-4">
+                <x-input type="checkbox" name="accept" id="accept" value="1" label="Aceptar proyecto" />
+            </div>
             <div class="mt-6 flex items-center justify-center gap-4">
                 <x-button type="submit" icon="folder-plus" class="w-full sm:w-max" text="Agregar proyecto"
                     typeButton="primary" />

@@ -83,6 +83,8 @@ class ProyectoController extends Controller
                 $proyecto->map = $path;
             }
 
+            $proyecto->accept = $request->has("accept") ? 1 : 0;
+
             $proyecto->save();
 
             if ($request->has("specific_objectives") && is_array($request->specific_objectives)) {
