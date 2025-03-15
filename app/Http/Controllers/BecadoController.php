@@ -78,7 +78,9 @@ class BecadoController extends Controller
         try {
             $becado = Scholarship::find($id);
             if ($request->hasFile("photo")) {
-                Storage::disk("public")->delete($becado->photo);
+                if ($becado->photo) {
+                    Storage::disk("public")->delete($becado->photo);
+                }
                 $name = $request->file("photo")->getClientOriginalName();
                 $path = $request->file("photo")->storeAs("images/becados", $name, "public");
                 $validated["photo"] = $path;
