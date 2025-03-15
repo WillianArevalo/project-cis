@@ -35,9 +35,23 @@
                     </div>
                     <x-icon icon="arrow-down" class="h-4 w-4 text-zinc-700 dark:text-zinc-400" />
                 </button>
-                <div class="absolute right-0 top-12 hidden w-44 rounded-xl border border-zinc-400 bg-white p-1 shadow-md dark:border-zinc-800 dark:bg-black z-50"
+                <div class="absolute right-0 top-12 z-50 hidden w-44 rounded-xl border border-zinc-400 bg-white p-1 shadow-md dark:border-zinc-800 dark:bg-black"
                     id="profile-dropdown">
                     <ul class="flex flex-col">
+                        <li>
+                            <a href="{{ Route('home') }}"
+                                class="flex items-center gap-2 rounded-lg px-4 py-2 text-sm text-zinc-800 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-950">
+                                <x-icon icon="home" class="h-5 w-5" />
+                                Inicio
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ Route('reportes.index') }}"
+                                class="flex items-center gap-2 rounded-lg px-4 py-2 text-sm text-zinc-800 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-950">
+                                <x-icon icon="report" class="h-5 w-5" />
+                                Reportes
+                            </a>
+                        </li>
                         <li>
                             <a href="{{ Route('profile') }}"
                                 class="flex items-center gap-2 rounded-lg px-4 py-2 text-sm text-zinc-800 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-950">
