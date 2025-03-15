@@ -94,6 +94,18 @@ class ReporteController extends Controller
                 ->with("error_message", "No puedes enviar un reporte para un mes futuro");
         }
 
+        $user = auth()->user();
+        $project = Project::find($user->scholarship->project_id);
+        $exists = Report::where("project_id", $project->id)
+            ->where("month", $mes)
+            ->first();
+
+        if ($exists) {
+            return redirect()->route("reportes.index")
+                ->with("error_title", "Reporte ya enviado")
+                ->with("error_message", "Ya has enviado un reporte para este mes");
+        }
+
         $proyecto = Project::find(auth()->user()->scholarship->project_id);
         return view("usuario.reportes.create", compact("proyecto", "mes"));
     }

@@ -90,8 +90,13 @@
             <x-button type="button" typeButton="secondary" text="Enviar reporte" icon="send"
                 class="w-full cursor-not-allowed" />
         @else
-            <x-button type="a" href="{{ Route('reportes.create', ['mes' => $month]) }}" typeButton="primary"
-                text="Enviar reporte" icon="send" :disabled="$disabled" />
+            @if ($reportCount === 1)
+                <x-button type="a" href="{{ Route('reportes.show', ['mes' => $month]) }}" typeButton="secondary"
+                    text="Ver reporte" icon="send" :disabled="$disabled" />
+            @else
+                <x-button type="a" href="{{ Route('reportes.create', ['mes' => $month]) }}" typeButton="primary"
+                    text="Enviar reporte" icon="send" :disabled="$disabled" />
+            @endif
         @endif
     </div>
 </div>
