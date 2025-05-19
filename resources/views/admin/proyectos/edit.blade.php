@@ -125,13 +125,33 @@
                         accept=".jpg, .png, .jpeg, .webp" label="Mapa" placeholder="Editar mapa" />
                 </div>
             </div>
-            <div class="flex flex-col gap-4 md:flex-row md:items-center">
+            <div class="flex flex-col gap-4 md:flex-row">
                 <div class="mt-4 flex-1">
-                    @if ($proyecto->schedule)
-                        <div class="mb-4">
-                            <iframe src="{{ Storage::url($proyecto->schedule) }}" frameborder="0"
-                                class="h-96 w-full"></iframe>
-                        </div>
+                    @if ($proyecto->schedule && Storage::disk('public')->exists($proyecto->schedule))
+                        @php
+                            $extension = pathinfo($proyecto->schedule, PATHINFO_EXTENSION);
+                        @endphp
+
+                        @if (strtolower($extension) === 'pdf')
+                            <div class="mb-4">
+                                <iframe src="{{ Storage::url($proyecto->schedule) }}" frameborder="0"
+                                    class="h-96 w-full"></iframe>
+                            </div>
+                        @else
+                            <div
+                                class="mb-4 flex flex-col items-center justify-center rounded-xl border border-dashed border-zinc-400 p-4 text-center dark:border-zinc-800">
+                                <h5 class="mb-2 flex items-center justify-center text-base font-bold text-green-500">
+                                    <x-icon icon="circle-check" class="mr-1 inline-block size-4" />
+                                    Cronograma enviado
+                                </h5>
+                                <p class="mb-2 text-xs text-zinc-500 dark:text-zinc-400">
+                                    No se puede previsualizar este tipo de archivo.
+                                </p>
+                                <x-button type="a" href="{{ Storage::url($proyecto->schedule) }}"
+                                    class="mt-2 w-full sm:w-max" icon="download" text="Descargar archivo"
+                                    typeButton="info" />
+                            </div>
+                        @endif
                     @else
                         <div class="mb-4 rounded-xl border border-dashed border-zinc-400 p-4 dark:border-zinc-800">
                             <p class="text-center text-xs text-zinc-500 dark:text-zinc-400" id="no-schedule">
@@ -139,6 +159,7 @@
                             </p>
                         </div>
                     @endif
+
                     <div class="mt-4 flex-1">
                         <x-input type="file" name="schedule" id="schedule" icon="calendar" accept=".pdf, .docx"
                             label="Cronograma" placeholder="Editar cronograma" />
@@ -146,20 +167,41 @@
                 </div>
 
                 <div class="mt-4 flex-1">
-                    @if ($proyecto->document)
-                        <div class="mb-4">
-                            <iframe src="{{ Storage::url($proyecto->document) }}" frameborder="0"
-                                class="h-96 w-full"></iframe>
-                        </div>
+                    @if ($proyecto->document && Storage::disk('public')->exists($proyecto->document))
+                        @php
+                            $extension = pathinfo($proyecto->document, PATHINFO_EXTENSION);
+                        @endphp
+
+                        @if (strtolower($extension) === 'pdf')
+                            <div class="mb-4">
+                                <iframe src="{{ Storage::url($proyecto->document) }}" frameborder="0"
+                                    class="h-96 w-full"></iframe>
+                            </div>
+                        @else
+                            <div
+                                class="mb-4 flex flex-col items-center justify-center rounded-xl border border-dashed border-zinc-400 p-4 text-center dark:border-zinc-800">
+                                <h5 class="mb-2 flex items-center justify-center text-base font-bold text-green-500">
+                                    <x-icon icon="circle-check" class="mr-1 inline-block size-4" />
+                                    Documento del proyecto enviado
+                                </h5>
+                                <p class="mb-2 text-xs text-zinc-500 dark:text-zinc-400">
+                                    No se puede previsualizar este tipo de archivo.
+                                </p>
+                                <x-button type="a" href="{{ Storage::url($proyecto->document) }}"
+                                    class="mt-2 w-full sm:w-max" icon="download" text="Descargar archivo"
+                                    typeButton="info" />
+                            </div>
+                        @endif
                     @else
                         <div class="mb-4 rounded-xl border border-dashed border-zinc-400 p-4 dark:border-zinc-800">
-                            <p class="text-center text-xs text-zinc-500 dark:text-zinc-400" id="no-document">
-                                No se ha agregado documento
+                            <p class="text-center text-xs text-zinc-500 dark:text-zinc-400" id="no-schedule">
+                                No se ha agregado documento del proyecto
                             </p>
                         </div>
                     @endif
+
                     <div class="mt-4 flex-1">
-                        <x-input type="file" name="project" id="project" icon="file" accept=".pdf, .docx"
+                        <x-input type="file" name="document" id="project" icon="file" accept=".pdf, .docx"
                             label="Documento" placeholder="Editar proyecto" />
                     </div>
                 </div>
