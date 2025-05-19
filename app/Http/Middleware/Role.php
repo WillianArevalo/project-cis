@@ -21,11 +21,8 @@ class Role
         }
 
         $user = Auth::user();
-
         if ($user->role != $role) {
-            if ($role === "admin") {
-                return redirect("/");
-            }
+            return redirect()->route('home');
         }
         return $next($request);
     }

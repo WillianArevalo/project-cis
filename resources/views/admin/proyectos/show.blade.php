@@ -7,7 +7,7 @@
             'icon' => 'folder',
         ])
         <div class="mt-4">
-            <div class="flex items-center justify-between">
+            <div class="flex flex-col justify-between gap-y-2 sm:flex-row sm:items-center">
                 <h2 class="text-2xl font-semibold text-orange-500">
                     {{ $proyecto->name }}
                 </h2>
@@ -46,7 +46,7 @@
                                         Población beneficiada
                                     </h3>
                                     <p class="mt-1 text-sm text-zinc-500 dark:text-zinc-400">
-                                        {{ $proyecto->benefited_population }}
+                                        {{ $proyecto->benefited_population ?? 'Sin especificar' }}
                                     </p>
                                 </div>
                                 <div class="mt-4">
@@ -54,7 +54,7 @@
                                         Contextualización
                                     </h3>
                                     <p class="mt-1 text-sm text-zinc-500 dark:text-zinc-400">
-                                        {{ $proyecto->contextualization }}
+                                        {{ $proyecto->contextualization ?? 'Sin especificar' }}
                                     </p>
                                 </div>
                             </div>
@@ -64,7 +64,7 @@
                                         Proyecciones
                                     </h3>
                                     <p class="mt-1 text-sm text-zinc-500 dark:text-zinc-400">
-                                        {{ $proyecto->projections }}
+                                        {{ $proyecto->projections ?? 'Sin especificar' }}
                                     </p>
                                 </div>
                                 <div class="mt-4">
@@ -72,7 +72,7 @@
                                         Desafíos
                                     </h3>
                                     <p class="mt-1 text-sm text-zinc-500 dark:text-zinc-400">
-                                        {{ $proyecto->challenges }}
+                                        {{ $proyecto->challenges ?? 'Sin especificar' }}
                                     </p>
                                 </div>
                             </div>
@@ -85,7 +85,7 @@
                         </h2>
                         <div>
                             <p class="text-sm text-zinc-500 dark:text-zinc-400">
-                                {{ $proyecto->justification }}
+                                {{ $proyecto->justification ?? 'Sin especificar' }}
                             </p>
                         </div>
                     </div>
@@ -96,7 +96,7 @@
                         </h2>
                         <div>
                             <p class="text-sm text-zinc-500 dark:text-zinc-400">
-                                {{ $proyecto->description_activities }}
+                                {{ $proyecto->description_activities ?? 'Sin especificar' }}
                             </p>
                         </div>
                     </div>
