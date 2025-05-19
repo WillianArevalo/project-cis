@@ -14,7 +14,7 @@
                 </p>
                 <div class="mt-8">
                     <x-input type="text" label="Correo electrónico" icon="email" name="email" id="email"
-                        placeholder="Ingresa tu email" />
+                        placeholder="Ingresa tu correo electrónico" />
                 </div>
                 <div class="mt-6">
                     <x-button type="submit" icon="login" class="w-full" text="Enviar correo" typeButton="primary" />
