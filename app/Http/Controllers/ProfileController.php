@@ -90,7 +90,6 @@ class ProfileController extends Controller
 
             $proyecto->fill($request->all());
             $proyecto->slug = $newSlug;
-            $proyecto->accept = $request->has("accept") ? 1 : 0;
 
             if ($oldSlug !== $newSlug) {
                 $oldDirectory = "proyectos/{$oldSlug}";
@@ -154,7 +153,7 @@ class ProfileController extends Controller
             }
 
             $proyecto->save();
-            
+
             DB::commit();
             return redirect()->route('proyectos.index')
                 ->with('success_title', 'Proyecto actualizado')
